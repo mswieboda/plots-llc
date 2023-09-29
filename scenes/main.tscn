@@ -1,3 +1,32 @@
-[gd_scene format=3 uid="uid://cnxy45wvdy0mc"]
+[gd_scene load_steps=6 format=3 uid="uid://cnxy45wvdy0mc"]
+
+[ext_resource type="Texture2D" uid="uid://cdvj0yl824ud7" path="res://icon.svg" id="1_6gak8"]
+[ext_resource type="PackedScene" uid="uid://c2kwkhbhphv37" path="res://objs/player.tscn" id="2_q32cp"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_kvau7"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ngq5s"]
+albedo_texture = ExtResource("1_6gak8")
+uv1_scale = Vector3(300, 300, 300)
+
+[sub_resource type="BoxMesh" id="BoxMesh_l27ps"]
+material = SubResource("StandardMaterial3D_ngq5s")
 
 [node name="main" type="Node3D"]
+
+[node name="sun" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.358368, 0.93358, 0, -0.93358, 0.358368, 0, 23.506, 17.1547)
+
+[node name="floor" type="Node3D" parent="."]
+transform = Transform3D(30, 0, 0, 0, 1, 0, 0, 0, 30, 0, 0, 0)
+
+[node name="static_body" type="StaticBody3D" parent="floor"]
+
+[node name="collision" type="CollisionShape3D" parent="floor/static_body"]
+shape = SubResource("BoxShape3D_kvau7")
+
+[node name="mesh" type="MeshInstance3D" parent="floor/static_body"]
+mesh = SubResource("BoxMesh_l27ps")
+
+[node name="player" parent="." instance=ExtResource("2_q32cp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0684395, 0)
