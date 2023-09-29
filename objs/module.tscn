@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://nocmen0u76pa"]
+
+[ext_resource type="Script" path="res://objs/module.gd" id="1_6cnv0"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_003wg"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_s1lcx"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_yshiv"]
+
+[node name="module" type="StaticBody3D"]
+script = ExtResource("1_6cnv0")
+
+[node name="collision" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_003wg")
+
+[node name="area" type="Area3D" parent="."]
+transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 0, 0, 0)
+
+[node name="collision" type="CollisionShape3D" parent="area"]
+shape = SubResource("BoxShape3D_s1lcx")
+
+[node name="mesh" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_yshiv")

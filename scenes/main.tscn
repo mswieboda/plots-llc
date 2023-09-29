@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://cnxy45wvdy0mc"]
+[gd_scene load_steps=7 format=3 uid="uid://cnxy45wvdy0mc"]
 
 [ext_resource type="Texture2D" uid="uid://cdvj0yl824ud7" path="res://icon.svg" id="1_6gak8"]
 [ext_resource type="PackedScene" uid="uid://c2kwkhbhphv37" path="res://objs/player.tscn" id="2_q32cp"]
+[ext_resource type="PackedScene" uid="uid://nocmen0u76pa" path="res://objs/module.tscn" id="3_v83xd"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_kvau7"]
 
@@ -18,7 +19,7 @@ material = SubResource("StandardMaterial3D_ngq5s")
 transform = Transform3D(1, 0, 0, 0, 0.358368, 0.93358, 0, -0.93358, 0.358368, 0, 23.506, 17.1547)
 
 [node name="floor" type="Node3D" parent="."]
-transform = Transform3D(30, 0, 0, 0, 1, 0, 0, 0, 30, 0, 0, 0)
+transform = Transform3D(15, 0, 0, 0, 0.75, 0, 0, 0, 15, 0, 0, 0)
 
 [node name="static_body" type="StaticBody3D" parent="floor"]
 
@@ -29,4 +30,10 @@ shape = SubResource("BoxShape3D_kvau7")
 mesh = SubResource("BoxMesh_l27ps")
 
 [node name="player" parent="." instance=ExtResource("2_q32cp")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0684395, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.17679, 0)
+
+[node name="modues" type="Node3D" parent="."]
+
+[node name="module" parent="modues" instance=ExtResource("3_v83xd")]
+
+[node name="module2" parent="modues" instance=ExtResource("3_v83xd")]
