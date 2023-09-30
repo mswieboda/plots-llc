@@ -1,8 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://c2kwkhbhphv37"]
+[gd_scene load_steps=4 format=3 uid="uid://c2kwkhbhphv37"]
 
 [ext_resource type="Script" path="res://objs/player.gd" id="1_37ysd"]
 [ext_resource type="PackedScene" uid="uid://boetgvk4y7ah1" path="res://assets/models/player/Player.gltf" id="2_1vpmv"]
-[ext_resource type="PackedScene" uid="uid://khk0o0agsd6w" path="res://objs/levels_gui.tscn" id="3_85csr"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_3vq77"]
 
@@ -36,5 +35,3 @@ theme_override_constants/margin_bottom = 64
 [node name="action_label" type="Label" parent="action_gui/margin"]
 layout_mode = 2
 horizontal_alignment = 1
-
-[node name="levels_gui" parent="." instance=ExtResource("3_85csr")]

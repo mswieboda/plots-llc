@@ -1,8 +1,9 @@
-[gd_scene load_steps=13 format=3 uid="uid://bqa20lrsf8uht"]
+[gd_scene load_steps=14 format=3 uid="uid://bqa20lrsf8uht"]
 
 [ext_resource type="Script" path="res://objs/rooms.gd" id="1_eghmx"]
 [ext_resource type="PackedScene" uid="uid://bhdlu7tayhgxr" path="res://assets/models/level/Harvest_Room.dae" id="1_n8tqn"]
 [ext_resource type="PackedScene" uid="uid://dk4akh4tvhjit" path="res://assets/models/level/living_room.dae" id="2_ket1f"]
+[ext_resource type="PackedScene" uid="uid://khk0o0agsd6w" path="res://objs/levels_gui.tscn" id="4_b4q20"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_uu57r"]
 size = Vector3(10, 0.1, 10)
@@ -84,3 +85,5 @@ shape = SubResource("BoxShape3D_xtyww")
 [node name="collision_box_3" type="CollisionShape3D" parent="living_room"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.89862, 0.8, 4.10147)
 shape = SubResource("BoxShape3D_xtyww")
+
+[node name="levels_gui" parent="." instance=ExtResource("4_b4q20")]

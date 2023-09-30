@@ -5,8 +5,12 @@ var oxygen = 100
 var food = 100
 
 const WARNING_LEVEL = 25
+const ENERGY_COST_BASE = 0.05
+const ENERGY_COST_MODULE = 0.1
+const ENERGY_GENERATED = 0.35
 
 @onready var hbox = $margin/hbox
+@onready var modules = get_parent().get_node('modules')
 
 func _ready():
   update_gui()
@@ -53,7 +57,18 @@ func change_music_checks():
 
 
 func _on_energy_timer_timeout():
-  energy -= 0.1 # times number of modules
+  var energy_output = 0
+
+  for module in modules.get_children():
+    # TODO: bonus for adjacent generators
+    if module.type == "generator":
+      energy_output += 1
+
+  var num_modules = modules.get_children().filter(func(module): return !!module.type).size()
+
+  energy += ENERGY_GENERATED * energy_output
+  energy -= ENERGY_COST_BASE + ENERGY_COST_MODULE * num_modules
+  energy = clamp(energy, 0, 100)
   update_label('energy', energy)
 
 
