@@ -36,7 +36,32 @@ func movement(delta):
     velocity.x = move_toward(velocity.x, 0, SPEED)
     velocity.z = move_toward(velocity.z, 0, SPEED)
 
+  rotate_player_mesh(direction)
   move_and_slide()
+
+
+func rotate_player_mesh(direction):
+  var angle = 0
+
+  if direction.x < 0 and direction.z == 0:
+    angle = -90
+  elif direction.x > 0 and direction.z == 0:
+    angle = 90
+  elif direction.z < 0 and direction.x == 0:
+    angle = 180
+  elif direction.z > 0 and direction.x == 0:
+    angle = 0
+  elif direction.x < 0 and direction.z < 0:
+    angle = -135
+  elif direction.x < 0 and direction.z > 0:
+    angle = -45
+  elif direction.x > 0 and direction.z < 0:
+    angle = 135
+  elif direction.x > 0 and direction.z > 0:
+    angle = 45
+
+  if direction != Vector3.ZERO:
+    $mesh.rotation.y = deg_to_rad(angle)
 
 
 func unhandled_input_actions(event : InputEvent):
