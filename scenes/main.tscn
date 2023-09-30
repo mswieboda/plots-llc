@@ -15,7 +15,7 @@ current = true
 transform = Transform3D(1, 0, 0, 0, 0.358368, 0.93358, 0, -0.93358, 0.358368, 0, 23.506, 17.1547)
 
 [node name="player" parent="." instance=ExtResource("2_q32cp")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.17679, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.85, 0)
 
 [node name="rooms" parent="." instance=ExtResource("3_16k1e")]
 
