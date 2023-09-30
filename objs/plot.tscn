@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://nocmen0u76pa"]
 
-[ext_resource type="Script" path="res://objs/module.gd" id="1_6cnv0"]
-[ext_resource type="Material" uid="uid://dioh7gjpcws7p" path="res://assets/materials/default_module.tres" id="2_2rjuj"]
+[ext_resource type="Script" path="res://objs/plot.gd" id="1_80uc7"]
+[ext_resource type="Material" uid="uid://dioh7gjpcws7p" path="res://assets/materials/default_plot.tres" id="2_qxixm"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_003wg"]
 size = Vector3(2.5, 0.1, 2.5)
@@ -9,11 +9,11 @@ size = Vector3(2.5, 0.1, 2.5)
 [sub_resource type="BoxShape3D" id="BoxShape3D_s1lcx"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_yshiv"]
-material = ExtResource("2_2rjuj")
+material = ExtResource("2_qxixm")
 size = Vector3(2.5, 0.1, 2.5)
 
-[node name="module" type="StaticBody3D"]
-script = ExtResource("1_6cnv0")
+[node name="plot" type="StaticBody3D"]
+script = ExtResource("1_80uc7")
 
 [node name="collision" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_003wg")

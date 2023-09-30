@@ -17,7 +17,7 @@ shape = SubResource("CapsuleShape3D_3vq77")
 [node name="mesh" parent="rotated" instance=ExtResource("2_1vpmv")]
 transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0)
 
-[node name="carry_module_spawn" type="Node3D" parent="rotated"]
+[node name="carry_plot_spawn" type="Node3D" parent="rotated"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3, 0.75)
 
 [node name="carry_resource_spawn" type="Node3D" parent="rotated"]

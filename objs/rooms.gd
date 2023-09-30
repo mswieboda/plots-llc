@@ -2,7 +2,7 @@ extends StaticBody3D
 
 const NUM_MODULES = 25
 
-var module_scene = preload("res://objs/module.tscn")
+var plot_scene = preload("res://objs/plot.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -13,6 +13,6 @@ func _ready():
 
   for row in range(size):
     for col in range(size):
-      var module: Node3D = module_scene.instantiate()
-      module.position = Vector3(row * size - size, 0, col * size - size)
-      $modules.add_child(module)
+      var plot: Node3D = plot_scene.instantiate()
+      plot.position = Vector3(row * size - size, 0, col * size - size)
+      $plots.add_child(plot)

@@ -6,7 +6,7 @@
 material = SubResource("StandardMaterial3D_5uqbe")
 size = Vector3(0.69, 0.69, 0.69)
 
-[node name="carry_module" type="Node3D"]
+[node name="carry_plot" type="Node3D"]
 
 [node name="mesh" type="MeshInstance3D" parent="."]
 mesh = SubResource("BoxMesh_0p48e")

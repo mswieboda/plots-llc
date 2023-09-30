@@ -6,31 +6,31 @@ var type = null
 
 func get_action_name():
   if type:
-    if player.module && player.module != type:
-      return "swap module to %s" % player.module
+    if not player.resource and player.plot and player.plot != type:
+      return "replace with %s" % player.plot
     else:
-      return "remove module %s" % type if not player.module else ""
+      return "remove %s" % type if not player.plot else ""
 
-  return "place module %s" % player.module if player.module else ""
+  return "plot %s" % player.plot if player.plot else ""
 
 
 func can_perform():
-  if not Action.is_action_node(self):
+  if not Action.is_action_node(self) or player.resource:
     return false
 
-  if player.module:
-    return player.module != type
+  if player.plot:
+    return player.plot != type
 
   return !!type
 
 
 func perform():
-  if player.module:
-    type = player.module
-    player.remove_carry_module()
+  if player.plot:
+    type = player.plot
+    player.remove_carry_plot()
     update_type_material()
   elif type:
-    player.add_carry_module(type)
+    player.add_carry_plot(type)
     type = null
 
 

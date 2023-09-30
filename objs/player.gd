@@ -3,16 +3,16 @@ extends CharacterBody3D
 
 const SPEED = 6.9
 const FAKE_EXTRA_GRAVITY = 5
-const MODULE_TYPES = ['farm', 'drill', 'oxygen pump', 'generator']
+const PLOT_TYPES = ['farm', 'drill', 'oxygen pump', 'generator']
 const RESOURCE_TYPES = ['food', 'oxygen']
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
-var carry_module_scene = preload("res://objs/carry_module.tscn")
+var carry_plot_scene = preload("res://objs/carry_plot.tscn")
 
 @onready var animation_player: AnimationPlayer = $rotated/mesh.get_node('AnimationPlayer') as AnimationPlayer
-var module = null
+var plot = null
 var resource = null
 
 
@@ -50,7 +50,7 @@ func movement(delta):
   if abs(velocity.x) > 0 or abs(velocity.z) > 0:
     animation = "run"
 
-  animation_player.play(animation + "_holding" if module or resource else animation)
+  animation_player.play(animation + "_holding" if plot or resource else animation)
 
   rotate_player_mesh(direction)
   move_and_slide()
@@ -84,52 +84,52 @@ func unhandled_input_actions(event : InputEvent):
   if event.is_action_pressed("action"):
     Action.perform()
 
-  if event.is_action_pressed("test_module"):
-    if module:
-      switch_carry_module()
+  if event.is_action_pressed("test_plot"):
+    if plot:
+      switch_carry_plot()
     else:
-      add_carry_module(MODULE_TYPES.pick_random())
+      add_carry_plot(PLOT_TYPES.pick_random())
 
   if event.is_action_pressed("test_resource"):
     if resource:
       switch_resource()
-    elif not module:
+    elif not plot:
       add_resource(RESOURCE_TYPES.pick_random())
 
 
-func update_carry_module_material(carry_module):
-  var material = preload("res://assets/materials/default_module.tres")
+func update_carry_plot_material(carry_plot):
+  var material = preload("res://assets/materials/default_plot.tres")
 
-  if module == "farm":
+  if plot == "farm":
     material = preload("res://assets/materials/farm.tres")
-  elif module == "drill":
+  elif plot == "drill":
     material = preload("res://assets/materials/drill.tres")
-  elif module == "oxygen pump":
+  elif plot == "oxygen pump":
     material = preload("res://assets/materials/oxygen_pump.tres")
-  elif module == "generator":
+  elif plot == "generator":
     material = preload("res://assets/materials/generator.tres")
 
-  carry_module.get_node('mesh').material_override = material
+  carry_plot.get_node('mesh').material_override = material
 
 
-func add_carry_module(type):
-  var carry_module = carry_module_scene.instantiate()
-  module = type
-  update_carry_module_material(carry_module)
-  $rotated/carry_module_spawn.add_child(carry_module)
+func add_carry_plot(type):
+  var carry_plot = carry_plot_scene.instantiate()
+  plot = type
+  update_carry_plot_material(carry_plot)
+  $rotated/carry_plot_spawn.add_child(carry_plot)
   Action.update_changes()
 
 
-func remove_carry_module():
-  module = null
-  Global.remove_nodes($rotated/carry_module_spawn)
+func remove_carry_plot():
+  plot = null
+  Global.remove_nodes($rotated/carry_plot_spawn)
   Action.update_changes()
 
 
-func switch_carry_module():
-  var next_module = next_thing(module, MODULE_TYPES)
-  remove_carry_module()
-  add_carry_module(next_module)
+func switch_carry_plot():
+  var next_plot = next_thing(plot, PLOT_TYPES)
+  remove_carry_plot()
+  add_carry_plot(next_plot)
   Action.update_changes()
 
 

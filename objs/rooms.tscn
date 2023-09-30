@@ -52,7 +52,7 @@ shape = SubResource("BoxShape3D_nliiu")
 
 [node name="mesh" parent="." instance=ExtResource("1_n8tqn")]
 
-[node name="modules" type="Node3D" parent="."]
+[node name="plots" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
 
 [node name="living_room" type="StaticBody3D" parent="."]
