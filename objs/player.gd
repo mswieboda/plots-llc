@@ -10,7 +10,13 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 var carry_module_scene = preload("res://objs/carry_module.tscn")
 
+@onready var animation_player: AnimationPlayer = $rotated/mesh.get_node('AnimationPlayer') as AnimationPlayer
 var module = null
+
+
+func _ready():
+  animation_player.play("idle")
+
 
 func _physics_process(delta):
   movement(delta)
@@ -35,6 +41,14 @@ func movement(delta):
   else:
     velocity.x = move_toward(velocity.x, 0, SPEED)
     velocity.z = move_toward(velocity.z, 0, SPEED)
+
+  # animate walking
+  var animation = "idle"
+
+  if abs(velocity.x) > 0 or abs(velocity.z) > 0:
+    animation = "run"
+
+  animation_player.play(animation + "_holding" if module else animation)
 
   rotate_player_mesh(direction)
   move_and_slide()
@@ -61,7 +75,7 @@ func rotate_player_mesh(direction):
     angle = 45
 
   if direction != Vector3.ZERO:
-    $mesh.rotation.y = deg_to_rad(angle)
+    $rotated.rotation.y = deg_to_rad(angle)
 
 
 func unhandled_input_actions(event : InputEvent):
@@ -94,13 +108,13 @@ func add_carry_module(type):
   var carry_module = carry_module_scene.instantiate()
   module = type
   update_carry_module_material(carry_module)
-  $carry_module_spawn.add_child(carry_module)
+  $rotated/carry_module_spawn.add_child(carry_module)
   Action.update_changes()
 
 
 func remove_carry_module():
-  for node in $carry_module_spawn.get_children():
-    $carry_module_spawn.remove_child(node)
+  for node in $rotated/carry_module_spawn.get_children():
+    $rotated/carry_module_spawn.remove_child(node)
     node.queue_free()
 
   module = null
@@ -116,6 +130,6 @@ func switch_carry_module():
 
   module = MODULE_TYPES[next_module_index]
 
-  var carry_module = $carry_module_spawn.get_child(0)
+  var carry_module = $rotated/carry_module_spawn.get_child(0)
   update_carry_module_material(carry_module)
   Action.update_changes()
