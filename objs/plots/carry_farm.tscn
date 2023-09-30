@@ -1,8 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://0ha44e10hnko"]
-
-[ext_resource type="PackedScene" uid="uid://c8bvncggbsfrq" path="res://assets/models/plots/farm/plant_module.gltf" id="1_k17ld"]
-
-[node name="carry_farm" type="Node3D"]
-
-[node name="mesh" parent="." instance=ExtResource("1_k17ld")]
-transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 0)

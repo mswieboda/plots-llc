@@ -101,15 +101,21 @@ func add_carry_plot(type):
   var carry_plot_scene = preload("res://objs/plots/carry_default.tscn")
 
   if plot == "farm":
-    carry_plot_scene = preload("res://objs/plots/carry_farm.tscn")
-  elif plot == "drill":
-    carry_plot_scene = preload("res://objs/plots/carry_drill.tscn")
-  elif plot == "oxygen pump":
-    carry_plot_scene = preload("res://objs/plots/carry_oxygen_pump.tscn")
-  elif plot == "generator":
-    carry_plot_scene = preload("res://objs/plots/carry_generator.tscn")
+    carry_plot_scene = preload("res://assets/models/plots/farm/plant_module.gltf")
 
-  $rotated/carry_plot_spawn.add_child(carry_plot_scene.instantiate())
+  var node = carry_plot_scene.instantiate()
+
+  if plot == "drill":
+    var material = preload('res://assets/materials/drill.tres')
+    node.get_node('mesh').material_overlay = material
+  elif plot == "oxygen pump":
+    var material = preload('res://assets/materials/oxygen_pump.tres')
+    node.get_node('mesh').material_overlay = material
+  elif plot == "generator":
+    var material = preload('res://assets/materials/generator.tres')
+    node.get_node('mesh').material_overlay = material
+
+  $rotated/carry_plot_spawn.add_child(node)
   Action.update_changes()
 
 
