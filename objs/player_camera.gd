@@ -7,6 +7,6 @@ func _ready():
   distance = global_position.z - player.global_position.z
 
 
-func _process(delta):
+func _process(_delta):
   global_position.z = player.global_position.z + distance
   global_position.x = player.global_position.x
