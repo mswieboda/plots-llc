@@ -1,6 +1,5 @@
-[gd_scene load_steps=6 format=3 uid="uid://cnxy45wvdy0mc"]
+[gd_scene load_steps=5 format=3 uid="uid://cnxy45wvdy0mc"]
 
-[ext_resource type="AudioStream" uid="uid://mqefo4s4jeoi" path="res://assets/music/chill.mp3" id="1_21fd3"]
 [ext_resource type="PackedScene" uid="uid://dmey0dnw2slsq" path="res://objs/player_camera.tscn" id="1_45egp"]
 [ext_resource type="PackedScene" uid="uid://c2kwkhbhphv37" path="res://objs/player.tscn" id="2_q32cp"]
 [ext_resource type="PackedScene" uid="uid://bqa20lrsf8uht" path="res://objs/rooms.tscn" id="3_16k1e"]
@@ -14,11 +13,6 @@ current = true
 
 [node name="sun" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.358368, 0.93358, 0, -0.93358, 0.358368, 0, 23.506, 17.1547)
-
-[node name="music_player" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("1_21fd3")
-volume_db = -19.0
-autoplay = true
 
 [node name="player" parent="." instance=ExtResource("2_q32cp")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.17679, 0)
