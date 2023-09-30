@@ -10,9 +10,14 @@ func action_node():
 
   return action_nodes[-1]
 
+
+func is_action_node(node):
+  var action_node = action_node()
+
+  return action_node and action_node.name == node.name
+
+
 func get_display() -> String:
-
-
   if can_perform():
     var action_node = action_node()
 
@@ -44,7 +49,17 @@ func perform():
   if not action_node or not action_node.has_method("perform") or not can_perform():
     return
 
-  return action_node.perform()
+  action_node.perform()
+  action_node.update_changes()
+
+
+func update_changes():
+  var action_node = action_node()
+
+  if action_node:
+    action_node.update_changes()
+
+  update_gui()
 
 
 func update_gui():

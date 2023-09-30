@@ -42,22 +42,28 @@ func unhandled_input_actions(event : InputEvent):
   if event.is_action_pressed("action"):
     Action.perform()
 
-  if event.is_action_pressed("test_module"):
-    var carry_module = carry_module_scene.instantiate()
-    module = "farm"
+  if event.is_action_pressed("test_module") and not module:
+    add_carry_module("farm")
 
-    if module == "farm":
-      var material = preload("res://assets/materials/farm.tres")
-      carry_module.get_node('mesh').material_override = material
 
-    $carry_module_spawn.add_child(carry_module)
+func add_carry_module(type):
+  var carry_module = carry_module_scene.instantiate()
+  module = type
+
+  if module == "farm":
+    var material = preload("res://assets/materials/farm.tres")
+    carry_module.get_node('mesh').material_override = material
+
+  $carry_module_spawn.add_child(carry_module)
+  Action.update_changes()
 
 
 func remove_carry_module():
-  if not module:
-    return
+  for node in $carry_module_spawn.get_children():
+    $carry_module_spawn.remove_child(node)
+    node.queue_free()
 
-  var node = $carry_module_spawn.get_child(0)
-  $carry_module_spawn.remove_child(node)
-  node.queue_free()
   module = null
+  Action.update_changes()
+
+

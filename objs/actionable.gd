@@ -11,3 +11,7 @@ func can_perform():
 
 func perform():
   pass
+
+
+func update_changes():
+  pass
