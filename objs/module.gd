@@ -50,11 +50,18 @@ func update_actionable_material():
 
 
 func update_type_material():
+  var material = null
+
   if type == "farm":
-    var material = preload("res://assets/materials/farm.tres")
-    $mesh.material_override = material
-  else:
-    $mesh.material_override = null
+    material = preload("res://assets/materials/farm.tres")
+  elif type == "drill":
+    material = preload("res://assets/materials/drill.tres")
+  elif type == "oxygen pump":
+    material = preload("res://assets/materials/oxygen_pump.tres")
+  elif type == "generator":
+    material = preload("res://assets/materials/generator.tres")
+
+  $mesh.material_override = material
 
 
 func _on_area_body_entered(body):
