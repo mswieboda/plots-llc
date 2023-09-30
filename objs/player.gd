@@ -51,6 +51,11 @@ func movement(delta):
   if abs(velocity.x) > 0 or abs(velocity.z) > 0:
     animation = "run"
 
+    if not $audio_footsteps_player.playing:
+      $audio_footsteps_player.play()
+  else:
+    $audio_footsteps_player.stop()
+
   animation_player.play(animation + "_holding" if plot or resource else animation)
 
   rotate_player_mesh(direction)
