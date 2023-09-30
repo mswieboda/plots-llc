@@ -21,6 +21,9 @@ func _ready():
 func _physics_process(delta):
   movement(delta)
 
+  if resource == "food" and not Action.is_action_node(self):
+    Action.add_action(self)
+
 
 func _unhandled_input(event):
   unhandled_input_actions(event)
@@ -169,3 +172,27 @@ func switch_resource():
   remove_resource()
   add_resource(next_resource)
   Action.update_changes()
+
+
+func get_action_name():
+  return "eat food"
+
+
+func get_action_info():
+  return ""
+
+
+func can_perform():
+  return resource == "food"
+
+
+func perform():
+  if resource != "food":
+    return
+
+  remove_resource()
+  get_node('/root/main/levels_gui').add_food(5)
+
+
+func update_changes():
+  pass
