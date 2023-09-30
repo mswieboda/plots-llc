@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://c8bvncggbsfrq"
-path="res://.godot/imported/plant_module.gltf-035dd4cc2935b431509191a086766178.scn"
+path="res://.godot/imported/plant_module.gltf-bee90a0eb13d44ce8263303328ecbab0.scn"
 
 [deps]
 
-source_file="res://assets/models/modules/plant_module/plant_module.gltf"
-dest_files=["res://.godot/imported/plant_module.gltf-035dd4cc2935b431509191a086766178.scn"]
+source_file="res://assets/models/plots/farm/plant_module.gltf"
+dest_files=["res://.godot/imported/plant_module.gltf-bee90a0eb13d44ce8263303328ecbab0.scn"]
 
 [params]
 

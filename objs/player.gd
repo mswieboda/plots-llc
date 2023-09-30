@@ -9,8 +9,6 @@ const RESOURCE_TYPES = ['food', 'oxygen']
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
-var carry_plot_scene = preload("res://objs/carry_plot.tscn")
-
 @onready var animation_player: AnimationPlayer = $rotated/mesh.get_node('AnimationPlayer') as AnimationPlayer
 var plot = null
 var resource = null
@@ -97,26 +95,21 @@ func unhandled_input_actions(event : InputEvent):
       add_resource(RESOURCE_TYPES.pick_random())
 
 
-func update_carry_plot_material(carry_plot):
-  var material = preload("res://assets/materials/default_plot.tres")
+func add_carry_plot(type):
+  plot = type
+
+  var carry_plot_scene = preload("res://objs/plots/carry_default.tscn")
 
   if plot == "farm":
-    material = preload("res://assets/materials/farm.tres")
+    carry_plot_scene = preload("res://objs/plots/carry_farm.tscn")
   elif plot == "drill":
-    material = preload("res://assets/materials/drill.tres")
+    carry_plot_scene = preload("res://objs/plots/carry_drill.tscn")
   elif plot == "oxygen pump":
-    material = preload("res://assets/materials/oxygen_pump.tres")
+    carry_plot_scene = preload("res://objs/plots/carry_oxygen_pump.tscn")
   elif plot == "generator":
-    material = preload("res://assets/materials/generator.tres")
+    carry_plot_scene = preload("res://objs/plots/carry_generator.tscn")
 
-  carry_plot.get_node('mesh').material_override = material
-
-
-func add_carry_plot(type):
-  var carry_plot = carry_plot_scene.instantiate()
-  plot = type
-  update_carry_plot_material(carry_plot)
-  $rotated/carry_plot_spawn.add_child(carry_plot)
+  $rotated/carry_plot_spawn.add_child(carry_plot_scene.instantiate())
   Action.update_changes()
 
 
