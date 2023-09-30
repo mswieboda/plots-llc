@@ -2,7 +2,7 @@ extends Node
 
 var action_nodes = []
 
-@onready var action_label = get_node('/root/main/player/gui/margin/action_label')
+@onready var action_label = get_node('/root/main/player/action_gui/margin/action_label')
 
 func action_node():
   if action_nodes.is_empty():

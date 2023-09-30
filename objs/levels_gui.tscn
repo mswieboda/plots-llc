@@ -1,0 +1,81 @@
+[gd_scene load_steps=5 format=3 uid="uid://khk0o0agsd6w"]
+
+[ext_resource type="Script" path="res://objs/levels_gui.gd" id="1_cgp06"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q1ly6"]
+bg_color = Color(0.521569, 0.521569, 0, 1)
+border_color = Color(1, 0, 0, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2808i"]
+bg_color = Color(0, 0.270588, 0.270588, 1)
+border_color = Color(1, 0, 0, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fnq3b"]
+bg_color = Color(0, 0.270588, 0, 1)
+border_color = Color(1, 0, 0, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[node name="levels_gui" type="CanvasLayer"]
+script = ExtResource("1_cgp06")
+
+[node name="margin" type="MarginContainer" parent="."]
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 4.0
+grow_vertical = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+
+[node name="hbox" type="HBoxContainer" parent="margin"]
+layout_mode = 2
+
+[node name="energy" type="ProgressBar" parent="margin/hbox"]
+custom_minimum_size = Vector2(16, 100)
+layout_mode = 2
+theme_override_styles/fill = SubResource("StyleBoxFlat_q1ly6")
+value = 100.0
+fill_mode = 3
+show_percentage = false
+
+[node name="oxygen" type="ProgressBar" parent="margin/hbox"]
+custom_minimum_size = Vector2(16, 100)
+layout_mode = 2
+theme_override_styles/fill = SubResource("StyleBoxFlat_2808i")
+value = 100.0
+fill_mode = 3
+show_percentage = false
+
+[node name="food" type="ProgressBar" parent="margin/hbox"]
+custom_minimum_size = Vector2(16, 100)
+layout_mode = 2
+theme_override_styles/fill = SubResource("StyleBoxFlat_fnq3b")
+value = 100.0
+fill_mode = 3
+show_percentage = false
+
+[node name="energy_timer" type="Timer" parent="."]
+wait_time = 0.1
+autostart = true
+
+[node name="oxygen_timer" type="Timer" parent="."]
+wait_time = 0.25
+autostart = true
+
+[node name="food_timer" type="Timer" parent="."]
+wait_time = 7.0
+autostart = true
+
+[connection signal="timeout" from="energy_timer" to="." method="_on_energy_timer_timeout"]
+[connection signal="timeout" from="oxygen_timer" to="." method="_on_oxygen_timer_timeout"]
+[connection signal="timeout" from="food_timer" to="." method="_on_food_timer_timeout"]
