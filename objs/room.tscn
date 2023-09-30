@@ -1,0 +1,34 @@
+[gd_scene load_steps=6 format=3 uid="uid://bqa20lrsf8uht"]
+
+[ext_resource type="PackedScene" uid="uid://bhdlu7tayhgxr" path="res://assets/models/level/Harvest_Room.dae" id="1_n8tqn"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_uu57r"]
+size = Vector3(10, 0.1, 10)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_k6stg"]
+size = Vector3(10, 1, 0.2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_bxroe"]
+size = Vector3(0.2, 1, 10)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_nliiu"]
+size = Vector3(10, 1, 0.2)
+
+[node name="room" type="StaticBody3D"]
+
+[node name="collision_floor" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_uu57r")
+
+[node name="collision_wall_top" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, -5.1)
+shape = SubResource("BoxShape3D_k6stg")
+
+[node name="collision_wall_left" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.1, 0.4, 0)
+shape = SubResource("BoxShape3D_bxroe")
+
+[node name="collision_wall_bottom" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, 5.1)
+shape = SubResource("BoxShape3D_nliiu")
+
+[node name="mesh" parent="." instance=ExtResource("1_n8tqn")]
