@@ -11,18 +11,18 @@ func action_node():
   return action_nodes[-1]
 
 
-func is_action_node(node):
-  var action_node = action_node()
+func is_action_node(n):
+  var node = action_node()
 
-  return action_node and action_node.name == node.name
+  return node and node.name == n.name
 
 
 func get_display() -> String:
   if can_perform():
-    var action_node = action_node()
+    var node = action_node()
 
-    if action_node and action_node.has_method("get_action_name"):
-      return "Press [E] to " + action_node.get_action_name()
+    if node and node.has_method("get_action_name"):
+      return "Press [E] to " + node.get_action_name()
 
   return " "
 
@@ -36,28 +36,28 @@ func remove_action(n):
   update_gui()
 
 func can_perform() -> bool:
-  var action_node = action_node()
+  var node = action_node()
 
-  if not action_node or not action_node.has_method("can_perform"):
+  if not node or not node.has_method("can_perform"):
     return false
 
-  return action_node.can_perform()
+  return node.can_perform()
 
 func perform():
-  var action_node = action_node()
+  var node = action_node()
 
-  if not action_node or not action_node.has_method("perform") or not can_perform():
+  if not node or not node.has_method("perform") or not can_perform():
     return
 
-  action_node.perform()
-  action_node.update_changes()
+  node.perform()
+  node.update_changes()
 
 
 func update_changes():
-  var action_node = action_node()
+  var node = action_node()
 
-  if action_node:
-    action_node.update_changes()
+  if node:
+    node.update_changes()
 
   update_gui()
 

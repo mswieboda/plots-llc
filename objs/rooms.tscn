@@ -1,6 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://cybv1mqm7gqqg"]
+[gd_scene load_steps=8 format=3 uid="uid://bqa20lrsf8uht"]
 
+[ext_resource type="Script" path="res://objs/rooms.gd" id="1_eghmx"]
 [ext_resource type="PackedScene" uid="uid://bhdlu7tayhgxr" path="res://assets/models/level/Harvest_Room.dae" id="1_n8tqn"]
+[ext_resource type="PackedScene" uid="uid://dk4akh4tvhjit" path="res://assets/models/level/living_room.dae" id="2_ket1f"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_uu57r"]
 size = Vector3(10, 0.1, 10)
@@ -15,6 +17,7 @@ size = Vector3(0.2, 1, 10)
 size = Vector3(10, 1, 0.2)
 
 [node name="rooms" type="StaticBody3D"]
+script = ExtResource("1_eghmx")
 
 [node name="collision_floor" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_uu57r")
@@ -31,4 +34,9 @@ shape = SubResource("BoxShape3D_bxroe")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, 5.1)
 shape = SubResource("BoxShape3D_nliiu")
 
-[node name="mesh" parent="." instance=ExtResource("1_n8tqn")]
+[node name="room_mesh" parent="." instance=ExtResource("1_n8tqn")]
+
+[node name="living_room_mesh" parent="." instance=ExtResource("2_ket1f")]
+
+[node name="modules" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
