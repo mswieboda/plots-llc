@@ -1,16 +1,18 @@
-[gd_scene load_steps=5 format=3 uid="uid://ktn3sxtb2p1b"]
+[gd_scene load_steps=6 format=3 uid="uid://ktn3sxtb2p1b"]
 
-[ext_resource type="Script" path="res://objs/storage.gd" id="1_44ft8"]
+[ext_resource type="Script" path="res://objs/storage/food_store.gd" id="1_axuc2"]
+[ext_resource type="Material" uid="uid://j24q5skq8gti" path="res://assets/materials/farm.tres" id="2_bcato"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_f3ppr"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_3ls61"]
+material = ExtResource("2_bcato")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_cpoff"]
 size = Vector3(1.1, 1.5, 2)
 
-[node name="storage" type="StaticBody3D"]
-script = ExtResource("1_44ft8")
+[node name="food_store" type="StaticBody3D"]
+script = ExtResource("1_axuc2")
 
 [node name="collision" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_f3ppr")

@@ -1,41 +1,31 @@
 extends "res://objs/actionable.gd"
 
-@export_enum("food", "oxygen") var type: String = "food"
+const TYPE = "food"
 @onready var player = get_node("/root/main/player")
 
 var count = 0
 
-func _ready():
-  var material = null
-
-  if type == "food":
-    material = preload("res://assets/materials/farm.tres")
-  elif type == "oxygen":
-    material = preload("res://assets/materials/oxygen_pump.tres")
-
-  $mesh.material_override = material
-
 
 func display_storage():
-  return "%s: %d" % [type, count]
+  return "%s: %d" % [TYPE, count]
 
 
 func get_action_name():
   if player.resource:
-    return "store %s\n%s" % [type, display_storage()]
+    return "store %s\n%s" % [TYPE, display_storage()]
 
   if count > 0:
-    return "take %s\n%s" % [type, display_storage()]
+    return "take %s\n%s" % [TYPE, display_storage()]
 
   return ""
 
 
 func get_action_info():
-  return "%s storage\n%s" % [type, display_storage()]
+  return "%s storage\n%s" % [TYPE, display_storage()]
 
 
 func can_perform():
-  return player.resource == type or count > 0
+  return player.resource == TYPE or count > 0
 
 
 func perform():
@@ -44,7 +34,7 @@ func perform():
     count += 1
   else:
     count -= 1
-    player.add_resource(type)
+    player.add_resource(TYPE)
 
   Action.update_changes()
 

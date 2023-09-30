@@ -5,12 +5,16 @@ var oxygen = 100
 var food = 100
 
 const WARNING_LEVEL = 25
+
 const ENERGY_COST_BASE = 0.05
 const ENERGY_COST_PLOT = 0.1
 const ENERGY_GENERATED = 0.35
 
+const OXYGEN_DRAIN = -0.1
+const FOOD_DRAIN = -5
+
 @onready var hbox = $margin/hbox
-@onready var plots = get_parent().get_node('plots')
+@onready var plots = get_node('/root/main/rooms/plots')
 
 func _ready():
   update_gui()
@@ -57,26 +61,42 @@ func change_music_checks():
 
 
 func _on_energy_timer_timeout():
-  var energy_output = 0
+  var energy_to_add = 0
 
   for plot in plots.get_children():
     # TODO: bonus for adjacent generators
     if plot.type == "generator":
-      energy_output += 1
+      energy_to_add += 1
 
   var num_plots = plots.get_children().filter(func(plot): return !!plot.type).size()
 
-  energy += ENERGY_GENERATED * energy_output
-  energy -= ENERGY_COST_BASE + ENERGY_COST_PLOT * num_plots
+  energy_to_add *= ENERGY_GENERATED
+  energy_to_add -= ENERGY_COST_BASE + ENERGY_COST_PLOT * num_plots
+
+  add_energy(energy_to_add)
+
+
+func _on_oxygen_timer_timeout():
+  add_oxygen(OXYGEN_DRAIN)
+
+
+func _on_food_timer_timeout():
+  add_food(FOOD_DRAIN)
+
+
+func add_energy(value):
+  energy += value
   energy = clamp(energy, 0, 100)
   update_label('energy', energy)
 
 
-func _on_oxygen_timer_timeout():
-  oxygen -= 0.1
+func add_oxygen(value):
+  oxygen += value
+  oxygen = clamp(oxygen, 0, 100)
   update_label('oxygen', oxygen)
 
 
-func _on_food_timer_timeout():
-  food -= 5
+func add_food(value):
+  food += value
+  food = clamp(food, 0, 100)
   update_label('food', food)
