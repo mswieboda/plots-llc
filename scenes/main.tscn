@@ -21,7 +21,7 @@ transform = Transform3D(1, 0, 0, 0, 0.358368, 0.93358, 0, -0.93358, 0.358368, 0,
 
 [node name="music_player" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("1_21fd3")
-volume_db = -30.0
+volume_db = -19.0
 autoplay = true
 
 [node name="floor" type="Node3D" parent="."]
