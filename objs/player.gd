@@ -4,6 +4,7 @@ extends CharacterBody3D
 const SPEED = 6.9
 const FAKE_EXTRA_GRAVITY = 5
 const MODULE_TYPES = ['farm', 'drill', 'oxygen pump', 'generator']
+const RESOURCE_TYPES = ['food', 'oxygen']
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
@@ -12,6 +13,7 @@ var carry_module_scene = preload("res://objs/carry_module.tscn")
 
 @onready var animation_player: AnimationPlayer = $rotated/mesh.get_node('AnimationPlayer') as AnimationPlayer
 var module = null
+var resource = null
 
 
 func _ready():
@@ -48,7 +50,7 @@ func movement(delta):
   if abs(velocity.x) > 0 or abs(velocity.z) > 0:
     animation = "run"
 
-  animation_player.play(animation + "_holding" if module else animation)
+  animation_player.play(animation + "_holding" if module or resource else animation)
 
   rotate_player_mesh(direction)
   move_and_slide()
@@ -88,6 +90,12 @@ func unhandled_input_actions(event : InputEvent):
     else:
       add_carry_module(MODULE_TYPES.pick_random())
 
+  if event.is_action_pressed("test_resource"):
+    if resource:
+      switch_resource()
+    elif not module:
+      add_resource(RESOURCE_TYPES.pick_random())
+
 
 func update_carry_module_material(carry_module):
   var material = preload("res://assets/materials/default_module.tres")
@@ -113,23 +121,51 @@ func add_carry_module(type):
 
 
 func remove_carry_module():
-  for node in $rotated/carry_module_spawn.get_children():
-    $rotated/carry_module_spawn.remove_child(node)
-    node.queue_free()
-
   module = null
+  Global.remove_nodes($rotated/carry_module_spawn)
   Action.update_changes()
 
 
 func switch_carry_module():
-  var module_index = MODULE_TYPES.find(module)
-  var next_module_index = module_index + 1
+  var next_module = next_thing(module, MODULE_TYPES)
+  remove_carry_module()
+  add_carry_module(next_module)
+  Action.update_changes()
 
-  if next_module_index > MODULE_TYPES.size() - 1:
-    next_module_index = 0
 
-  module = MODULE_TYPES[next_module_index]
+func next_thing(thing: String, array: Array):
+  var index = array.find(thing)
+  var next_index = index + 1
 
-  var carry_module = $rotated/carry_module_spawn.get_child(0)
-  update_carry_module_material(carry_module)
+  if next_index > array.size() - 1:
+    next_index = 0
+
+  return array[next_index]
+
+func add_resource(type):
+  resource = type
+
+  var node = null
+
+  if resource == "food":
+    node = preload("res://objs/resources/food.tscn")
+  elif resource == "oxygen":
+    node = preload("res://objs/resources/oxygen.tscn")
+
+  if node:
+    $rotated/carry_resource_spawn.add_child(node.instantiate())
+
+  Action.update_changes()
+
+
+func remove_resource():
+  resource = null
+  Global.remove_nodes($rotated/carry_resource_spawn)
+  Action.update_changes()
+
+
+func switch_resource():
+  var next_resource = next_thing(resource, RESOURCE_TYPES)
+  remove_resource()
+  add_resource(next_resource)
   Action.update_changes()

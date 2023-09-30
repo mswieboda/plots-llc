@@ -1,9 +1,10 @@
-[gd_scene load_steps=14 format=3 uid="uid://bqa20lrsf8uht"]
+[gd_scene load_steps=15 format=3 uid="uid://bqa20lrsf8uht"]
 
 [ext_resource type="Script" path="res://objs/rooms.gd" id="1_eghmx"]
 [ext_resource type="PackedScene" uid="uid://bhdlu7tayhgxr" path="res://assets/models/level/Harvest_Room.dae" id="1_n8tqn"]
 [ext_resource type="PackedScene" uid="uid://dk4akh4tvhjit" path="res://assets/models/level/living_room.dae" id="2_ket1f"]
 [ext_resource type="PackedScene" uid="uid://khk0o0agsd6w" path="res://objs/levels_gui.tscn" id="4_b4q20"]
+[ext_resource type="PackedScene" uid="uid://ktn3sxtb2p1b" path="res://objs/storage.tscn" id="5_hfe3f"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_uu57r"]
 size = Vector3(10, 0.1, 10)
@@ -87,3 +88,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.89862, 0.8, 4.10147)
 shape = SubResource("BoxShape3D_xtyww")
 
 [node name="levels_gui" parent="." instance=ExtResource("4_b4q20")]
+
+[node name="oxygen_storage" parent="." instance=ExtResource("5_hfe3f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.75, 0.8, -4.3)
+type = "oxygen"
+
+[node name="food_storage" parent="." instance=ExtResource("5_hfe3f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.25, 0.8, -4.3)

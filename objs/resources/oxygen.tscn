@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://d2cam8f3tr2x4"]
+
+[ext_resource type="Material" uid="uid://dclce4yxpbj7k" path="res://assets/materials/oxygen_pump.tres" id="1_mwuy1"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_l3uba"]
+material = ExtResource("1_mwuy1")
+radius = 0.125
+height = 0.5
+
+[node name="oxygen" type="Node3D"]
+
+[node name="mesh" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_l3uba")
