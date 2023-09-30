@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://cixgeyx1d0ftj"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1jhdd"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_h8p0b"]
+material = SubResource("StandardMaterial3D_1jhdd")
+
+[node name="carry_module" type="Node3D"]
+
+[node name="mesh" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_h8p0b")

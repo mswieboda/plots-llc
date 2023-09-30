@@ -1,19 +1,39 @@
 [gd_scene load_steps=4 format=3 uid="uid://c2kwkhbhphv37"]
 
 [ext_resource type="Script" path="res://objs/player.gd" id="1_37ysd"]
+[ext_resource type="PackedScene" uid="uid://csdpkd1muxxn6" path="res://assets/models/player/Player.dae" id="2_31lq3"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_3vq77"]
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_ykmdx"]
 
 [node name="player" type="CharacterBody3D"]
 script = ExtResource("1_37ysd")
 
 [node name="collision" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CapsuleShape3D_3vq77")
-
-[node name="mesh" type="MeshInstance3D" parent="."]
-mesh = SubResource("CapsuleMesh_ykmdx")
 
 [node name="camera" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.668417, 0.743787, 0, -0.743787, 0.668417, 0, 10.4441, 11.9813)
+
+[node name="mesh" parent="." instance=ExtResource("2_31lq3")]
+transform = Transform3D(-0.25, 0, -2.18557e-08, 0, 0.25, 0, 2.18557e-08, 0, -0.25, 0, 0, 0)
+
+[node name="gui" type="CanvasLayer" parent="."]
+
+[node name="margin" type="MarginContainer" parent="gui"]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -16.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/margin_bottom = 64
+
+[node name="action_label" type="Label" parent="gui/margin"]
+layout_mode = 2
+text = "testing"
+horizontal_alignment = 1
+
+[node name="carry_module_spawn" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.32192, -0.609078)

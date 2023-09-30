@@ -1,16 +1,15 @@
 [gd_scene load_steps=6 format=3 uid="uid://nocmen0u76pa"]
 
 [ext_resource type="Script" path="res://objs/module.gd" id="1_6cnv0"]
+[ext_resource type="Material" uid="uid://dioh7gjpcws7p" path="res://assets/materials/default_module.tres" id="2_2rjuj"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_003wg"]
 size = Vector3(3, 1, 3)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_s1lcx"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1jhdd"]
-
 [sub_resource type="BoxMesh" id="BoxMesh_yshiv"]
-material = SubResource("StandardMaterial3D_1jhdd")
+material = ExtResource("2_2rjuj")
 size = Vector3(3, 1, 3)
 
 [node name="module" type="StaticBody3D"]
