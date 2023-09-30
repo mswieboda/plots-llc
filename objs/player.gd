@@ -87,7 +87,7 @@ func unhandled_input_actions(event : InputEvent):
   if event.is_action_pressed("test_plot"):
     if plot:
       switch_carry_plot()
-    else:
+    elif not resource:
       add_carry_plot(PLOT_TYPES.pick_random())
 
   if event.is_action_pressed("test_resource"):
