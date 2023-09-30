@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://5ppnuxr4kv4y"
-path="res://.godot/imported/solar_module_joined.gltf-4d4104714daab83cb0a2cd06bb811b06.scn"
+path="res://.godot/imported/solar_module_joined.gltf-5a4cdbd0dead24d0d51b00b204e6042c.scn"
 
 [deps]
 
-source_file="res://assets/models/modules/solar_module/solar_module_joined.gltf"
-dest_files=["res://.godot/imported/solar_module_joined.gltf-4d4104714daab83cb0a2cd06bb811b06.scn"]
+source_file="res://assets/models/plots/solar/solar_module_joined.gltf"
+dest_files=["res://.godot/imported/solar_module_joined.gltf-5a4cdbd0dead24d0d51b00b204e6042c.scn"]
 
 [params]
 
