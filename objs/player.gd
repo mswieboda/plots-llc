@@ -9,8 +9,6 @@ const RESOURCE_TYPES = ['food', 'oxygen']
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
-var carry_plot_scene = preload("res://objs/carry_plot.tscn")
-
 @onready var animation_player: AnimationPlayer = $rotated/mesh.get_node('AnimationPlayer') as AnimationPlayer
 var plot = null
 var resource = null
@@ -87,7 +85,7 @@ func unhandled_input_actions(event : InputEvent):
   if event.is_action_pressed("test_plot"):
     if plot:
       switch_carry_plot()
-    else:
+    elif not resource:
       add_carry_plot(PLOT_TYPES.pick_random())
 
   if event.is_action_pressed("test_resource"):
@@ -97,26 +95,27 @@ func unhandled_input_actions(event : InputEvent):
       add_resource(RESOURCE_TYPES.pick_random())
 
 
-func update_carry_plot_material(carry_plot):
-  var material = preload("res://assets/materials/default_plot.tres")
+func add_carry_plot(type):
+  plot = type
+
+  var carry_plot_scene = preload("res://objs/plots/carry_default.tscn")
 
   if plot == "farm":
-    material = preload("res://assets/materials/farm.tres")
-  elif plot == "drill":
-    material = preload("res://assets/materials/drill.tres")
+    carry_plot_scene = preload("res://assets/models/plots/farm/plant_module.gltf")
+
+  var node = carry_plot_scene.instantiate()
+
+  if plot == "drill":
+    var material = preload('res://assets/materials/drill.tres')
+    node.get_node('mesh').material_overlay = material
   elif plot == "oxygen pump":
-    material = preload("res://assets/materials/oxygen_pump.tres")
+    var material = preload('res://assets/materials/oxygen_pump.tres')
+    node.get_node('mesh').material_overlay = material
   elif plot == "generator":
-    material = preload("res://assets/materials/generator.tres")
+    var material = preload('res://assets/materials/generator.tres')
+    node.get_node('mesh').material_overlay = material
 
-  carry_plot.get_node('mesh').material_override = material
-
-
-func add_carry_plot(type):
-  var carry_plot = carry_plot_scene.instantiate()
-  plot = type
-  update_carry_plot_material(carry_plot)
-  $rotated/carry_plot_spawn.add_child(carry_plot)
+  $rotated/carry_plot_spawn.add_child(node)
   Action.update_changes()
 
 

@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://0osn7hh40al6"
-path="res://.godot/imported/module_dirt.png-0ad172285f57b1889b16bca236367031.ctex"
+path="res://.godot/imported/module_dirt.png-eacab200eafb09c63223efaa2e1b9bd3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/models/modules/plant_module/module_dirt.png"
-dest_files=["res://.godot/imported/module_dirt.png-0ad172285f57b1889b16bca236367031.ctex"]
+source_file="res://assets/models/plots/farm/module_dirt.png"
+dest_files=["res://.godot/imported/module_dirt.png-eacab200eafb09c63223efaa2e1b9bd3.ctex"]
 
 [params]
 

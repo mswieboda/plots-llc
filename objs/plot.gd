@@ -4,6 +4,11 @@ var type = null
 
 @onready var player = get_node("/root/main/player")
 
+
+func _ready():
+  update_mesh_type()
+
+
 func get_action_name():
   if type:
     if not player.resource and player.plot and player.plot != type:
@@ -28,7 +33,7 @@ func perform():
   if player.plot:
     type = player.plot
     player.remove_carry_plot()
-    update_type_material()
+    update_mesh_type()
   elif type:
     player.add_carry_plot(type)
     type = null
@@ -36,7 +41,7 @@ func perform():
 
 func update_changes():
   update_actionable_material()
-  update_type_material()
+  update_mesh_type()
 
 
 func update_actionable_material():
@@ -44,24 +49,32 @@ func update_actionable_material():
     var material = StandardMaterial3D.new()
     material.albedo_color = Color(1, 1, 1, 0.069)
     material.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
-    $mesh.material_overlay = material
+    $mesh_spawn/mesh/module.set_surface_override_material(0, material)
   else:
-    $mesh.material_overlay = null
+    $mesh_spawn/mesh/module.set_surface_override_material(0, null)
 
 
-func update_type_material():
-  var material = null
+func update_mesh_type():
+  var mesh = preload("res://objs/plots/default.tscn")
 
   if type == "farm":
-    material = preload("res://assets/materials/farm.tres")
-  elif type == "drill":
-    material = preload("res://assets/materials/drill.tres")
-  elif type == "oxygen pump":
-    material = preload("res://assets/materials/oxygen_pump.tres")
-  elif type == "generator":
-    material = preload("res://assets/materials/generator.tres")
+    mesh = preload("res://assets/models/plots/farm/plant_module.gltf")
 
-  $mesh.material_override = material
+  Global.remove_nodes($mesh_spawn)
+  var node = mesh.instantiate()
+  node.name = "mesh"
+
+  if type == "drill":
+    var material = preload('res://assets/materials/drill.tres')
+    node.get_node('module').material_overlay = material
+  elif type == "oxygen pump":
+    var material = preload('res://assets/materials/oxygen_pump.tres')
+    node.get_node('module').material_overlay = material
+  elif type == "generator":
+    var material = preload('res://assets/materials/generator.tres')
+    node.get_node('module').material_overlay = material
+
+  $mesh_spawn.add_child(node)
 
 
 func _on_area_body_entered(body):

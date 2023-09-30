@@ -43,7 +43,7 @@ theme_override_constants/margin_top = 8
 layout_mode = 2
 
 [node name="energy" type="ProgressBar" parent="margin/hbox"]
-custom_minimum_size = Vector2(16, 100)
+custom_minimum_size = Vector2(16, 300)
 layout_mode = 2
 theme_override_styles/fill = SubResource("StyleBoxFlat_q1ly6")
 value = 100.0
@@ -51,7 +51,7 @@ fill_mode = 3
 show_percentage = false
 
 [node name="oxygen" type="ProgressBar" parent="margin/hbox"]
-custom_minimum_size = Vector2(16, 100)
+custom_minimum_size = Vector2(16, 300)
 layout_mode = 2
 theme_override_styles/fill = SubResource("StyleBoxFlat_2808i")
 value = 100.0
@@ -59,7 +59,7 @@ fill_mode = 3
 show_percentage = false
 
 [node name="food" type="ProgressBar" parent="margin/hbox"]
-custom_minimum_size = Vector2(16, 100)
+custom_minimum_size = Vector2(16, 300)
 layout_mode = 2
 theme_override_styles/fill = SubResource("StyleBoxFlat_fnq3b")
 value = 100.0
