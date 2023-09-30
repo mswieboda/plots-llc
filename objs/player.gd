@@ -3,6 +3,7 @@ extends CharacterBody3D
 
 const SPEED = 6.9
 const FAKE_EXTRA_GRAVITY = 5
+const MODULE_TYPES = ['farm', 'drill', 'oxygen pump', 'generator']
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
@@ -42,18 +43,32 @@ func unhandled_input_actions(event : InputEvent):
   if event.is_action_pressed("action"):
     Action.perform()
 
-  if event.is_action_pressed("test_module") and not module:
-    add_carry_module("farm")
+  if event.is_action_pressed("test_module"):
+    if module:
+      switch_carry_module()
+    else:
+      add_carry_module(MODULE_TYPES.pick_random())
+
+
+func update_carry_module_material(carry_module):
+  var material = preload("res://assets/materials/default_module.tres")
+
+  if module == "farm":
+    material = preload("res://assets/materials/farm.tres")
+  elif module == "drill":
+    material = preload("res://assets/materials/drill.tres")
+  elif module == "oxygen pump":
+    material = preload("res://assets/materials/oxygen_pump.tres")
+  elif module == "generator":
+    material = preload("res://assets/materials/generator.tres")
+
+  carry_module.get_node('mesh').material_override = material
 
 
 func add_carry_module(type):
   var carry_module = carry_module_scene.instantiate()
   module = type
-
-  if module == "farm":
-    var material = preload("res://assets/materials/farm.tres")
-    carry_module.get_node('mesh').material_override = material
-
+  update_carry_module_material(carry_module)
   $carry_module_spawn.add_child(carry_module)
   Action.update_changes()
 
@@ -67,3 +82,15 @@ func remove_carry_module():
   Action.update_changes()
 
 
+func switch_carry_module():
+  var module_index = MODULE_TYPES.find(module)
+  var next_module_index = module_index + 1
+
+  if next_module_index > MODULE_TYPES.size() - 1:
+    next_module_index = 0
+
+  module = MODULE_TYPES[next_module_index]
+
+  var carry_module = $carry_module_spawn.get_child(0)
+  update_carry_module_material(carry_module)
+  Action.update_changes()
