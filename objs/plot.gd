@@ -44,27 +44,18 @@ func update_changes():
   update_actionable_material()
 
 
-func get_mesh_from_model_type():
-  var mesh_name = "module"
-
-  if type == "solar panel":
-    mesh_name = "Cube"
-
-  return $mesh_spawn/mesh.find_child(mesh_name)
-
-
 func update_actionable_material():
   if Action.is_action_node(self) and can_perform():
     var material = StandardMaterial3D.new()
     material.albedo_color = Color(1, 1, 1, 0.069)
     material.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
 
-    var mesh = get_mesh_from_model_type()
+    var mesh = $mesh_spawn/mesh.find_child("Cube")
 
     if mesh:
       mesh.set_surface_override_material(0, material)
   else:
-    var mesh = get_mesh_from_model_type()
+    var mesh = $mesh_spawn/mesh.find_child("Cube")
 
     if mesh:
       mesh.set_surface_override_material(0, null)
@@ -74,9 +65,9 @@ func update_mesh_type():
   var mesh = preload("res://objs/plots/default.tscn")
 
   if type == "farm":
-    mesh = preload("res://assets/models/plots/farm/plant_module.gltf")
+    mesh = preload("res://assets/models/plots/farm/plant.gltf")
   elif type == "drill":
-    mesh = preload("res://assets/models/plots/drill/drill_module.gltf")
+    mesh = preload("res://assets/models/plots/drill/drill.gltf")
   elif type == "solar panel":
     mesh = preload("res://assets/models/plots/solar_panel/solar_module_joined.gltf")
 
@@ -84,12 +75,9 @@ func update_mesh_type():
   var node = mesh.instantiate()
   node.name = "mesh"
 
-#  if type == "drill":
-#    var material = preload('res://assets/materials/drill.tres')
-#    node.get_node('module').material_overlay = material
   if type == "oxygen pump":
     var material = preload('res://assets/materials/oxygen_pump.tres')
-    node.get_node('module').material_overlay = material
+    node.get_node('Cube').material_overlay = material
 
   $mesh_spawn.add_child(node)
 
