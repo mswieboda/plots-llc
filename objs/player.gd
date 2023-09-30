@@ -192,6 +192,8 @@ func perform():
 
   remove_resource()
   get_node('/root/main/levels_gui').add_food(5)
+  Action.remove_action(self)
+  Action.update_changes()
 
 
 func update_changes():
