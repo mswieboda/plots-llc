@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://bbt7fxku3v2v8"
-path="res://.godot/imported/drill_module.gltf-fc227fc8008c135430f1d7dd9bab7b6c.scn"
+path="res://.godot/imported/drill_module.gltf-021a431e7017af596464672f61228712.scn"
 
 [deps]
 
-source_file="res://assets/models/modules/drill_module/drill_module.gltf"
-dest_files=["res://.godot/imported/drill_module.gltf-fc227fc8008c135430f1d7dd9bab7b6c.scn"]
+source_file="res://assets/models/plots/drill/drill_module.gltf"
+dest_files=["res://.godot/imported/drill_module.gltf-021a431e7017af596464672f61228712.scn"]
 
 [params]
 

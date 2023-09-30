@@ -45,6 +45,10 @@ func update_changes():
 
 
 func update_actionable_material():
+  # TODO: drill can't be highlighted right now
+  if type == "drill" or not $mesh_spawn/mesh.has_node('module'):
+    return
+
   if Action.is_action_node(self) and can_perform():
     var material = StandardMaterial3D.new()
     material.albedo_color = Color(1, 1, 1, 0.069)
@@ -59,15 +63,17 @@ func update_mesh_type():
 
   if type == "farm":
     mesh = preload("res://assets/models/plots/farm/plant_module.gltf")
+  elif type == "drill":
+    mesh = preload("res://assets/models/plots/drill/drill_module.gltf")
 
   Global.remove_nodes($mesh_spawn)
   var node = mesh.instantiate()
   node.name = "mesh"
 
-  if type == "drill":
-    var material = preload('res://assets/materials/drill.tres')
-    node.get_node('module').material_overlay = material
-  elif type == "oxygen pump":
+#  if type == "drill":
+#    var material = preload('res://assets/materials/drill.tres')
+#    node.get_node('module').material_overlay = material
+  if type == "oxygen pump":
     var material = preload('res://assets/materials/oxygen_pump.tres')
     node.get_node('module').material_overlay = material
   elif type == "generator":

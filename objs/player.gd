@@ -102,13 +102,15 @@ func add_carry_plot(type):
 
   if plot == "farm":
     carry_plot_scene = preload("res://assets/models/plots/farm/plant_module.gltf")
+  elif plot == "drill":
+    carry_plot_scene = preload("res://assets/models/plots/drill/drill_module.gltf")
 
   var node = carry_plot_scene.instantiate()
 
-  if plot == "drill":
-    var material = preload('res://assets/materials/drill.tres')
-    node.get_node('mesh').material_overlay = material
-  elif plot == "oxygen pump":
+#  if plot == "drill":
+#    var material = preload('res://assets/materials/drill.tres')
+#    node.get_node('module').material_overlay = material
+  if plot == "oxygen pump":
     var material = preload('res://assets/materials/oxygen_pump.tres')
     node.get_node('mesh').material_overlay = material
   elif plot == "generator":
