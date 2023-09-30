@@ -14,7 +14,7 @@ size = Vector3(0.2, 1, 10)
 [sub_resource type="BoxShape3D" id="BoxShape3D_nliiu"]
 size = Vector3(10, 1, 0.2)
 
-[node name="room" type="StaticBody3D"]
+[node name="rooms" type="StaticBody3D"]
 
 [node name="collision_floor" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_uu57r")
