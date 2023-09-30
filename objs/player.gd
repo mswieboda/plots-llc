@@ -3,7 +3,7 @@ extends CharacterBody3D
 
 const SPEED = 6.9
 const FAKE_EXTRA_GRAVITY = 5
-const PLOT_TYPES = ['farm', 'drill', 'oxygen pump', 'generator']
+const PLOT_TYPES = ['farm', 'drill', 'oxygen pump', 'solar panel']
 const RESOURCE_TYPES = ['food', 'oxygen']
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
@@ -104,6 +104,8 @@ func add_carry_plot(type):
     carry_plot_scene = preload("res://assets/models/plots/farm/plant_module.gltf")
   elif plot == "drill":
     carry_plot_scene = preload("res://assets/models/plots/drill/drill_module.gltf")
+  elif plot == "solar panel":
+    carry_plot_scene = preload("res://assets/models/plots/solar_panel/solar_module_joined.gltf")
 
   var node = carry_plot_scene.instantiate()
 
@@ -112,9 +114,6 @@ func add_carry_plot(type):
 #    node.get_node('module').material_overlay = material
   if plot == "oxygen pump":
     var material = preload('res://assets/materials/oxygen_pump.tres')
-    node.get_node('mesh').material_overlay = material
-  elif plot == "generator":
-    var material = preload('res://assets/materials/generator.tres')
     node.get_node('mesh').material_overlay = material
 
   $rotated/carry_plot_spawn.add_child(node)

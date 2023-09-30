@@ -30,32 +30,44 @@ func can_perform():
 
 
 func perform():
+  print('>>> Plot perform')
   if player.plot:
     type = player.plot
     player.remove_carry_plot()
-    update_mesh_type()
   elif type:
     player.add_carry_plot(type)
     type = null
 
 
 func update_changes():
-  update_actionable_material()
   update_mesh_type()
+  update_actionable_material()
+
+
+func get_mesh_from_model_type():
+  var mesh_name = "module"
+
+  if type == "solar panel":
+    mesh_name = "Cube"
+
+  return $mesh_spawn/mesh.find_child(mesh_name)
 
 
 func update_actionable_material():
-  # TODO: drill can't be highlighted right now
-  if type == "drill" or not $mesh_spawn/mesh.has_node('module'):
-    return
-
   if Action.is_action_node(self) and can_perform():
     var material = StandardMaterial3D.new()
     material.albedo_color = Color(1, 1, 1, 0.069)
     material.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
-    $mesh_spawn/mesh/module.set_surface_override_material(0, material)
+
+    var mesh = get_mesh_from_model_type()
+
+    if mesh:
+      mesh.set_surface_override_material(0, material)
   else:
-    $mesh_spawn/mesh/module.set_surface_override_material(0, null)
+    var mesh = get_mesh_from_model_type()
+
+    if mesh:
+      mesh.set_surface_override_material(0, null)
 
 
 func update_mesh_type():
@@ -65,6 +77,8 @@ func update_mesh_type():
     mesh = preload("res://assets/models/plots/farm/plant_module.gltf")
   elif type == "drill":
     mesh = preload("res://assets/models/plots/drill/drill_module.gltf")
+  elif type == "solar panel":
+    mesh = preload("res://assets/models/plots/solar_panel/solar_module_joined.gltf")
 
   Global.remove_nodes($mesh_spawn)
   var node = mesh.instantiate()
@@ -75,9 +89,6 @@ func update_mesh_type():
 #    node.get_node('module').material_overlay = material
   if type == "oxygen pump":
     var material = preload('res://assets/materials/oxygen_pump.tres')
-    node.get_node('module').material_overlay = material
-  elif type == "generator":
-    var material = preload('res://assets/materials/generator.tres')
     node.get_node('module').material_overlay = material
 
   $mesh_spawn.add_child(node)

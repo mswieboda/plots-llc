@@ -64,8 +64,8 @@ func _on_energy_timer_timeout():
   var energy_to_add = 0
 
   for plot in plots.get_children():
-    # TODO: bonus for adjacent generators
-    if plot.type == "generator":
+    # TODO: bonus for adjacent solar panels
+    if plot.type == "solar panel":
       energy_to_add += 1
 
   var num_plots = plots.get_children().filter(func(plot): return !!plot.type).size()

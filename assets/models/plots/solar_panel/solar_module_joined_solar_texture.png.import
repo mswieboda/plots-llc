@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://couw2jufw12od"
-path.s3tc="res://.godot/imported/solar_module_joined_solar_texture.png-fb9666aefa0d429a16d9d9ac9a4e39e9.s3tc.ctex"
+path.s3tc="res://.godot/imported/solar_module_joined_solar_texture.png-7ccf0cbc543c49183234f57204e12e31.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -12,8 +12,8 @@ generator_parameters={}
 
 [deps]
 
-source_file="res://assets/models/plots/solar/solar_module_joined_solar_texture.png"
-dest_files=["res://.godot/imported/solar_module_joined_solar_texture.png-fb9666aefa0d429a16d9d9ac9a4e39e9.s3tc.ctex"]
+source_file="res://assets/models/plots/solar_panel/solar_module_joined_solar_texture.png"
+dest_files=["res://.godot/imported/solar_module_joined_solar_texture.png-7ccf0cbc543c49183234f57204e12e31.s3tc.ctex"]
 
 [params]
 
