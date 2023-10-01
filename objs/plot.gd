@@ -147,6 +147,8 @@ func grab_resource():
     Global.remove_nodes($oxygen_spawn)
     $oxygen_spawn_timer.start()
 
+  resource = null
+
 
 
 func _on_oxygen_spawn_timer_timeout():
