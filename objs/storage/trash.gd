@@ -18,23 +18,20 @@ func player_holding():
 
 func get_action_name():
   if player_holding():
-    return "store %s" % player_holding()
-
-  if plot or resource:
-    return "take %s" % stored()
+    return "destroy %s" % player_holding()
 
   return ""
 
 
 func get_action_info():
-  return "storage\nstore 1 raw material, resource or plot"
+  if plot or resource:
+    return "destroying %s" % stored()
+  else:
+    return "trash\ndestroy raw materials, resources or plots"
 
 
 func can_perform():
-  if plot or resource:
-    return not player.plot and not player.resource
-
-  return !!player_holding()
+  return not plot and not resource and !!player_holding()
 
 
 func perform():
@@ -54,7 +51,7 @@ func perform():
       node = preload("res://objs/resources/solar_panel.tscn")
 
     $mesh/resource_spawn.add_child(node.instantiate())
-    $audio_store.play()
+    $destroy_timer.start()
   elif player.plot:
     plot = player.plot
     player.remove_carry_plot()
@@ -71,17 +68,7 @@ func perform():
       carry_plot_scene = preload("res://assets/models/plots/o2/o2.gltf")
 
     $mesh/plot_spawn.add_child(carry_plot_scene.instantiate())
-    $audio_store.play()
-  elif resource:
-    player.add_resource(resource)
-    resource = null
-    Global.remove_nodes($mesh/resource_spawn)
-    $audio_take.play()
-  elif plot:
-    player.add_carry_plot(plot)
-    plot = null
-    Global.remove_nodes($mesh/plot_spawn)
-    $audio_take.play()
+    $destroy_timer.start()
 
   Action.update_changes()
 
@@ -98,3 +85,11 @@ func _on_area_body_entered(body):
 func _on_area_body_exited(body):
   if body.name == "player":
     Action.remove_action(self)
+
+
+func _on_destroy_timer_timeout():
+  plot = null
+  resource = null
+  Global.remove_nodes($mesh/resource_spawn)
+  Global.remove_nodes($mesh/plot_spawn)
+  $audio_destroy.play()

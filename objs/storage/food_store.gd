@@ -2,12 +2,13 @@ extends "res://objs/actionable.gd"
 
 const TYPE = "food"
 @onready var player = get_node("/root/main/player")
+@onready var levels_gui = get_node("/root/main/levels_gui")
 
 var count = 0
 
 
 func display_storage():
-  return "%s: %d" % [TYPE, count]
+  return "%s: %d\nfood level: %s%%" % [TYPE, count, str(levels_gui.food)]
 
 
 func get_action_name():

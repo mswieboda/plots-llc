@@ -1,17 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://c4nwgu8low3ib"]
+[gd_scene load_steps=7 format=3 uid="uid://c4nwgu8low3ib"]
 
 [ext_resource type="Script" path="res://objs/storage/market_terminal.gd" id="1_em15g"]
 [ext_resource type="AudioStream" uid="uid://bdhh8hluat28f" path="res://assets/sounds/put_in_storage.mp3" id="2_tb1hh"]
+[ext_resource type="PackedScene" uid="uid://6fd5dxh0gyv7" path="res://assets/models/trade_computer/trade_computer.gltf" id="2_voseh"]
 [ext_resource type="AudioStream" uid="uid://wfn4ftlcrn6f" path="res://assets/sounds/take_out_of_storage.mp3" id="3_x6tfn"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_f3ppr"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_02h5v"]
-transparency = 1
-albedo_color = Color(0, 0.403922, 0, 0.662745)
-
-[sub_resource type="BoxMesh" id="BoxMesh_3ls61"]
-material = SubResource("StandardMaterial3D_02h5v")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_cpoff"]
 size = Vector3(1.1, 1.5, 2)
@@ -22,14 +16,13 @@ script = ExtResource("1_em15g")
 [node name="collision" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_f3ppr")
 
-[node name="mesh" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0117102, 0, -0.00387573)
-mesh = SubResource("BoxMesh_3ls61")
+[node name="mesh" parent="." instance=ExtResource("2_voseh")]
 
 [node name="resource_spawn" type="Node3D" parent="mesh"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.149565, 0)
+transform = Transform3D(-0.75, 0, 1.13247e-07, 0, 0.75, 0, -1.13247e-07, 0, -0.75, 0.025, 0.002, 0.425)
 
 [node name="market_resource_spawn" type="Node3D" parent="mesh"]
+transform = Transform3D(-0.75, 0, 1.13247e-07, 0, 0.75, 0, -1.13247e-07, 0, -0.75, 0.025, 0.002, 0.425)
 
 [node name="area" type="Area3D" parent="."]
 

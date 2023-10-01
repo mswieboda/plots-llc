@@ -8,13 +8,13 @@ const ENERGY_USAGE_COST = 1
 
 func get_action_name():
   if player.resource:
-    return "inject %s" % TYPE
+    return "inject %s\noxygen level: %s%%" % [TYPE, str(levels_gui.oxygen)]
 
   return ""
 
 
 func get_action_info():
-  return "inject %s" % TYPE
+  return "oxygen tank\ninject %s" % TYPE
 
 
 func can_perform():
