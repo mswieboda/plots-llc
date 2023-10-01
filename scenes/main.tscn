@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://c2kwkhbhphv37" path="res://objs/player.tscn" id="2_q32cp"]
 [ext_resource type="PackedScene" uid="uid://bqa20lrsf8uht" path="res://objs/rooms.tscn" id="3_16k1e"]
 [ext_resource type="PackedScene" uid="uid://khk0o0agsd6w" path="res://objs/levels_gui.tscn" id="4_n22wr"]
-[ext_resource type="PackedScene" uid="uid://hwofljviff7d" path="res://assets/models/level/outside_env.gltf" id="5_wfkx7"]
+[ext_resource type="PackedScene" uid="uid://c7sefpnvmtyck" path="res://assets/models/level/outside_env.gltf" id="5_wfkx7"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_1lubk"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
