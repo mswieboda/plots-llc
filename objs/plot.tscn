@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://nocmen0u76pa"]
+[gd_scene load_steps=5 format=3 uid="uid://nocmen0u76pa"]
 
 [ext_resource type="Script" path="res://objs/plot.gd" id="1_80uc7"]
+[ext_resource type="PackedScene" uid="uid://crajsrvs7tikn" path="res://assets/models/plots/farm/plant.gltf" id="2_af004"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_003wg"]
 size = Vector3(2.5, 0.1, 2.5)
@@ -22,6 +23,8 @@ shape = SubResource("BoxShape3D_s1lcx")
 [node name="mesh_spawn" type="Node3D" parent="."]
 transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 0, -1.15, 0)
 
+[node name="plant" parent="mesh_spawn" instance=ExtResource("2_af004")]
+
 [node name="plot_added" type="AudioStreamPlayer3D" parent="."]
 volume_db = -9.0
 unit_size = 3.0
@@ -40,6 +43,13 @@ wait_time = 10.0
 volume_db = -19.0
 unit_size = 3.0
 
+[node name="plant_grow_timer" type="Timer" parent="."]
+wait_time = 3.0
+
+[node name="food_spawn" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.0806, 0)
+
 [connection signal="body_entered" from="area" to="." method="_on_area_body_entered"]
 [connection signal="body_exited" from="area" to="." method="_on_area_body_exited"]
 [connection signal="timeout" from="oxygen_spawn_timer" to="." method="_on_oxygen_spawn_timer_timeout"]
+[connection signal="timeout" from="plant_grow_timer" to="." method="_on_plant_grow_timer_timeout"]

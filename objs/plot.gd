@@ -88,7 +88,9 @@ func update_mesh_type():
   var node = mesh.instantiate()
   node.name = "mesh"
 
-  if type == "drill":
+  if type == "farm":
+    start_plant_animation(node)
+  elif type == "drill":
     var animation_player = node.find_child("AnimationPlayer")
     animation_player.play("drill_rotate")
     var animation = animation_player.get_animation(animation_player.current_animation)
@@ -134,9 +136,13 @@ func play_plot_added():
 func grab_resource():
   player.add_resource(resource)
 
-  if resource == "oxygen":
+  if resource == "food":
+    Global.remove_nodes($food_spawn)
+    start_plant_animation($mesh_spawn/mesh)
+  elif resource == "oxygen":
     Global.remove_nodes($oxygen_spawn)
     $oxygen_spawn_timer.start()
+
 
 
 func _on_oxygen_spawn_timer_timeout():
@@ -150,3 +156,35 @@ func _on_oxygen_spawn_timer_timeout():
   $resource_produced.volume_db = -3
   $resource_produced.play()
   resource = "oxygen"
+
+
+func start_plant_animation(node):
+  var animation_player = node.find_child("AnimationPlayer")
+  animation_player.play("plant_grow_1")
+  animation_player.advance(0.1)
+  animation_player.pause()
+  $plant_grow_timer.start()
+
+
+func _on_plant_grow_timer_timeout():
+  var animation_player = $mesh_spawn/mesh/AnimationPlayer
+
+  if animation_player.assigned_animation == 'plant_grow_1' and animation_player.current_animation_position == 0.1:
+    animation_player.play('plant_grow_1')
+    $plant_grow_timer.start()
+  elif animation_player.assigned_animation == 'plant_grow_1':
+    animation_player.play('plant_grow_2')
+    $plant_grow_timer.start()
+  elif animation_player.assigned_animation == 'plant_grow_2':
+    animation_player.play('plant_grow_3')
+    $plant_grow_timer.start()
+  elif animation_player.assigned_animation == 'plant_grow_3':
+    $plant_grow_timer.stop()
+
+    var node = preload("res://objs/resources/food.tscn").instantiate()
+    node.name = "resource"
+    $food_spawn.add_child(node)
+#    $resource_produced.stream = preload("res://assets/sounds/oxygen_tank_produced.mp3")
+#    $resource_produced.volume_db = -3
+#    $resource_produced.play()
+    resource = "food"
