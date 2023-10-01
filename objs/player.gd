@@ -114,14 +114,10 @@ func add_carry_plot(type):
     carry_plot_scene = preload("res://assets/models/plots/drill/drill.gltf")
   elif plot == "solar panel":
     carry_plot_scene = preload("res://assets/models/plots/solar_panel/solar_module_joined.gltf")
+  elif plot == "oxygen pump":
+    carry_plot_scene = preload("res://assets/models/plots/o2/o2.gltf")
 
-  var node = carry_plot_scene.instantiate()
-
-  if plot == "oxygen pump":
-    var material = preload('res://assets/materials/oxygen_pump.tres')
-    node.get_node('Cube').material_overlay = material
-
-  $rotated/carry_plot_spawn.add_child(node)
+  $rotated/carry_plot_spawn.add_child(carry_plot_scene.instantiate())
   Action.update_changes()
 
 

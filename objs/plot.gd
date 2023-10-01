@@ -30,7 +30,6 @@ func can_perform():
 
 
 func perform():
-  print('>>> Plot perform')
   if player.plot:
     type = player.plot
     player.remove_carry_plot()
@@ -70,14 +69,12 @@ func update_mesh_type():
     mesh = preload("res://assets/models/plots/drill/drill.gltf")
   elif type == "solar panel":
     mesh = preload("res://assets/models/plots/solar_panel/solar_module_joined.gltf")
+  elif type == "oxygen pump":
+    mesh = preload("res://assets/models/plots/o2/o2.gltf")
 
   Global.remove_nodes($mesh_spawn)
   var node = mesh.instantiate()
   node.name = "mesh"
-
-  if type == "oxygen pump":
-    var material = preload('res://assets/materials/oxygen_pump.tres')
-    node.get_node('Cube').material_overlay = material
 
   $mesh_spawn.add_child(node)
 
