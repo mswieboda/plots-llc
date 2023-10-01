@@ -9,20 +9,16 @@ func stored():
   return ", ".join(resources)
 
 
-func player_holding():
-  return player.plot if player.plot else player.resource
-
-
 func display_storage():
   return "inputed: %s" % stored()
 
 
 func get_action_name():
-  if player_holding():
-    return "input %s" % player_holding()
+  if player.resource:
+    return "input %s\n%s" % [player.resource, display_storage()]
 
   if not resources.is_empty():
-    return "take %s" % stored()
+    return "take %s\n%s" % [resources[-1], display_storage()]
 
   if plot:
     return "take %s" % plot
@@ -35,11 +31,7 @@ func get_action_info():
 
 
 func can_perform():
-  if not resources.is_empty():
-    return not player.plot or not player.resource
-
-  return !!player.resource
-
+  return not player.plot and (player.resource or not resources.is_empty())
 
 func perform():
   if player.resource:
@@ -53,6 +45,8 @@ func perform():
       node = preload("res://objs/resources/oxygen.tscn")
     elif player.resource == "metal":
       node = preload("res://objs/resources/metal.tscn")
+    elif player.resource == "solar panel":
+      node = preload("res://objs/resources/solar_panel.tscn")
 
     $mesh/resource_spawn.add_child(node.instantiate())
     player.remove_resource()

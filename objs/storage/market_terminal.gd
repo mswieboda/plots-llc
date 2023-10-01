@@ -1,7 +1,8 @@
 extends "res://objs/actionable.gd"
 
+const ENERGY_USAGE_COST = 5
 @onready var player = get_node("/root/main/player")
-
+@onready var levels_gui = get_node("/root/main/levels_gui")
 var resource = null
 
 
@@ -16,7 +17,7 @@ func get_action_name():
 
   # TODO: after pressing E, prompt with a buy/upgrade menu
   # return "buy resources or upgrades"
-  return "get random free resource"
+  return "get free solar panel resource"
 
 func get_action_info():
   # TODO: remove DONTATION MODE when money implemented
@@ -30,37 +31,29 @@ func can_perform():
 # TODO: still WIP on currency, and buying things
 func perform():
   if player.resource:
-
-    var node = null
-
-    if player.resource == "food":
-      node = preload("res://objs/resources/food.tscn")
-    elif player.resource == "oxygen":
-      node = preload("res://objs/resources/oxygen.tscn")
-    elif player.resource == "metal":
-      node = preload("res://objs/resources/metal.tscn")
-
     var market_resource_node = preload("res://objs/resources/market_resource.tscn").instantiate()
-    market_resource_node.get_node("resource").add_child(node.instantiate())
+    market_resource_node.get_node("resource").add_child(create_resource_node(player.resource))
     $mesh/market_resource_spawn.add_child(market_resource_node)
     market_resource_node.get_node("sell_timer").start()
     player.remove_resource()
     $audio_store.play()
-#    $sell_timer.start()
+    levels_gui.add_energy(-ENERGY_USAGE_COST)
   elif resource:
     player.add_resource(resource)
     resource = null
     Global.remove_nodes($mesh/resource_spawn)
     $audio_take.play()
   else:
-    # TODO: use a menu to determine this
-    var choice = ["food", "oxygen", "metal"].pick_random()
+    # we're buying
+    # TODO: use a menu to determine what to buy, display prices, etc
+    var choice = "solar panel"
     var market_resource_node = preload("res://objs/resources/market_resource.tscn").instantiate()
     market_resource_node.get_node("resource").add_child(create_resource_node(choice))
     $mesh/market_resource_spawn.add_child(market_resource_node)
     market_resource_node.buy_start(choice)
     player.remove_resource()
     $audio_take.play()
+    levels_gui.add_energy(-ENERGY_USAGE_COST)
 
   Action.update_changes()
 
@@ -81,6 +74,8 @@ func create_resource_node(type):
     node = preload("res://objs/resources/oxygen.tscn")
   elif type == "metal":
     node = preload("res://objs/resources/metal.tscn")
+  elif type == "solar panel":
+    node = preload("res://objs/resources/solar_panel.tscn")
 
   return node.instantiate()
 

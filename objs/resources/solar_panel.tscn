@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://blxextkxfurf0"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lnx4r"]
+albedo_color = Color(0, 0, 1, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_mqkys"]
+material = SubResource("StandardMaterial3D_lnx4r")
+radius = 0.25
+height = 0.125
+is_hemisphere = true
+
+[node name="solar_panel" type="Node3D"]
+
+[node name="mesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
+mesh = SubResource("SphereMesh_mqkys")

@@ -54,6 +54,8 @@ func perform():
       node = preload("res://objs/resources/oxygen.tscn")
     elif resource == "metal":
       node = preload("res://objs/resources/metal.tscn")
+    elif resource == "solar panel":
+      node = preload("res://objs/resources/solar_panel.tscn")
 
     $mesh/resource_spawn.add_child(node.instantiate())
     $audio_store.play()

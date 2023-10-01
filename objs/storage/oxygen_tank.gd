@@ -1,6 +1,7 @@
 extends "res://objs/actionable.gd"
 
 const TYPE: String = "oxygen"
+const ENERGY_USAGE_COST = 1
 @onready var player = get_node("/root/main/player")
 @onready var levels_gui = get_node("/root/main/levels_gui")
 
@@ -28,6 +29,7 @@ func perform():
   levels_gui.add_oxygen(5)
   $mesh/AnimationPlayer.play("pump_action")
   $audio_consumed.play()
+  levels_gui.add_energy(-ENERGY_USAGE_COST)
   Action.update_changes()
 
 

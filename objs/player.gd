@@ -1,10 +1,11 @@
 extends CharacterBody3D
 
-
+@export
+var DEBUG = true
 const SPEED = 6.9
 const FAKE_EXTRA_GRAVITY = 5
 const PLOT_TYPES = ['farm', 'drill', 'oxygen pump', 'solar panel']
-const RESOURCE_TYPES = ['food', 'oxygen', 'metal']
+const RESOURCE_TYPES = ['food', 'oxygen', 'metal', 'solar panel']
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
@@ -90,13 +91,13 @@ func unhandled_input_actions(event : InputEvent):
   if event.is_action_pressed("action"):
     Action.perform()
 
-  if event.is_action_pressed("test_plot"):
+  if DEBUG and event.is_action_pressed("test_plot"):
     if plot:
       switch_carry_plot()
     elif not resource:
       add_carry_plot(PLOT_TYPES[0])
 
-  if event.is_action_pressed("test_resource"):
+  if DEBUG and event.is_action_pressed("test_resource"):
     if resource:
       switch_resource()
     elif not plot:
@@ -161,6 +162,8 @@ func add_resource(type):
     node = preload("res://objs/resources/oxygen.tscn")
   elif resource == "metal":
     node = preload("res://objs/resources/metal.tscn")
+  elif resource == "solar panel":
+    node = preload("res://objs/resources/solar_panel.tscn")
 
   if node:
     $rotated/carry_resource_spawn.add_child(node.instantiate())
