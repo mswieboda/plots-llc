@@ -156,7 +156,7 @@ func add_resource(type):
 
   if resource == "food":
     node = preload("res://objs/resources/food.tscn")
-    Action.add_action(self)
+    Action.add_action_least_priority(self)
   elif resource == "oxygen":
     node = preload("res://objs/resources/oxygen.tscn")
 

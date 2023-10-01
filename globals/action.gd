@@ -8,6 +8,13 @@ func action_node():
   if action_nodes.is_empty():
     return null
 
+  var nodes = action_nodes.duplicate()
+  nodes.reverse()
+
+  for n in nodes:
+    if n and n.has_method("can_perform") and n.can_perform():
+      return n
+
   return action_nodes[-1]
 
 
@@ -31,9 +38,12 @@ func get_display() -> String:
 
 
 func add_action(n):
-  if n.can_perform():
-    action_nodes.append(n)
-    update_gui()
+  action_nodes.append(n)
+  update_gui()
+
+func add_action_least_priority(n):
+  action_nodes.push_front(n)
+  update_gui()
 
 func remove_action(n):
   action_nodes.erase(n)

@@ -105,7 +105,6 @@ func update_mesh_type():
 func _on_area_body_entered(body):
   if body.name == "player":
     Action.add_action(self)
-    print('>>> Plot _on_area_body_entered ', Action.action_nodes.map(func(n): n.name))
     update_actionable_material()
 
 
