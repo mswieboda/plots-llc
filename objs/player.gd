@@ -97,13 +97,13 @@ func unhandled_input_actions(event : InputEvent):
     if plot:
       switch_carry_plot()
     elif not resource:
-      add_carry_plot(PLOT_TYPES.pick_random())
+      add_carry_plot(PLOT_TYPES[0])
 
   if event.is_action_pressed("test_resource"):
     if resource:
       switch_resource()
     elif not plot:
-      add_resource(RESOURCE_TYPES.pick_random())
+      add_resource(RESOURCE_TYPES[0])
 
 
 func add_carry_plot(type):
@@ -132,8 +132,12 @@ func remove_carry_plot():
 
 func switch_carry_plot():
   var next_plot = next_thing(plot, PLOT_TYPES)
+
   remove_carry_plot()
-  add_carry_plot(next_plot)
+
+  if next_plot:
+    add_carry_plot(next_plot)
+
   Action.update_changes()
 
 
@@ -141,7 +145,9 @@ func next_thing(thing: String, array: Array):
   var index = array.find(thing)
   var next_index = index + 1
 
-  if next_index > array.size() - 1:
+  if next_index == array.size():
+    return null
+  elif next_index > array.size():
     next_index = 0
 
   return array[next_index]
@@ -170,8 +176,12 @@ func remove_resource():
 
 func switch_resource():
   var next_resource = next_thing(resource, RESOURCE_TYPES)
+
   remove_resource()
-  add_resource(next_resource)
+
+  if next_resource:
+    add_resource(next_resource)
+
   Action.update_changes()
 
 
