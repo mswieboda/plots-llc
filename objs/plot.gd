@@ -32,6 +32,7 @@ func can_perform():
 func perform():
   if player.plot:
     type = player.plot
+    play_plot_added()
     player.remove_carry_plot()
   elif type:
     player.add_carry_plot(type)
@@ -89,3 +90,10 @@ func _on_area_body_exited(body):
   if body.name == "player":
     Action.remove_action(self)
     update_actionable_material()
+
+
+func play_plot_added():
+  if type == "solar panel":
+    $plot_added.stream = preload("res://assets/sounds/solar_panel_install.mp3")
+
+  $plot_added.play()
