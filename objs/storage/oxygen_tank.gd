@@ -26,6 +26,7 @@ func perform():
 
   player.remove_resource()
   levels_gui.add_oxygen(5)
+  $mesh/AnimationPlayer.play("pump_action")
   $audio_consumed.play()
   Action.update_changes()
 

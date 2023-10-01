@@ -77,13 +77,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.5, 0.8, 5.1)
 shape = SubResource("BoxShape3D_e48si")
 
 [node name="oxygen_tank" parent="living_room" instance=ExtResource("5_4kghu")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.75, 0.8, -4.3)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 0.8, -4.3)
 
 [node name="food_store" parent="living_room" instance=ExtResource("4_n028q")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.25, 0.8, -4.3)
 
 [node name="storage" parent="living_room" instance=ExtResource("6_virs4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.75, 0.8, -4.3)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.75, 0.8, -4.3)
 
 [node name="plot_printer" parent="living_room" instance=ExtResource("7_dfh06")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.25, 0.8, 1.25)

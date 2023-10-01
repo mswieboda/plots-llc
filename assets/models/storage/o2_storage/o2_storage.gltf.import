@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://3s5u6v16tg3"
-path="res://.godot/imported/o2_storage.gltf-3702edf93a059ffdd8b1e25757ceed6c.scn"
+path="res://.godot/imported/o2_storage.gltf-2197f2071d07ba2aa638a8c40d4d344e.scn"
 
 [deps]
 
-source_file="res://assets/models/modules/o2_storage/o2_storage.gltf"
-dest_files=["res://.godot/imported/o2_storage.gltf-3702edf93a059ffdd8b1e25757ceed6c.scn"]
+source_file="res://assets/models/storage/o2_storage/o2_storage.gltf"
+dest_files=["res://.godot/imported/o2_storage.gltf-2197f2071d07ba2aa638a8c40d4d344e.scn"]
 
 [params]
 

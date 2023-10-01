@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cwnxr8uhtlmck"
-path.s3tc="res://.godot/imported/o2_storage_o2_pump_texture.png-25977ea91dddcc8a0480673c63d0df30.s3tc.ctex"
+uid="uid://7a77s18b5k8q"
+path.s3tc="res://.godot/imported/o2_storage_o2_storage_texture.png-265af648e4e8e046de3f233f03e56779.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -12,8 +12,8 @@ generator_parameters={}
 
 [deps]
 
-source_file="res://assets/models/modules/o2_storage/o2_storage_o2_pump_texture.png"
-dest_files=["res://.godot/imported/o2_storage_o2_pump_texture.png-25977ea91dddcc8a0480673c63d0df30.s3tc.ctex"]
+source_file="res://assets/models/storage/o2_storage/o2_storage_o2_storage_texture.png"
+dest_files=["res://.godot/imported/o2_storage_o2_storage_texture.png-265af648e4e8e046de3f233f03e56779.s3tc.ctex"]
 
 [params]
 

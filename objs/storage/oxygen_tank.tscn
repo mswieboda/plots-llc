@@ -1,13 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://cdjjj4oedxaka"]
+[gd_scene load_steps=6 format=3 uid="uid://cdjjj4oedxaka"]
 
 [ext_resource type="Script" path="res://objs/storage/oxygen_tank.gd" id="1_g3smb"]
-[ext_resource type="Material" uid="uid://dclce4yxpbj7k" path="res://assets/materials/oxygen_pump.tres" id="2_g4gsr"]
 [ext_resource type="AudioStream" uid="uid://4nirubewktny" path="res://assets/sounds/oxygen_tank_consumed.mp3" id="3_8cc4e"]
+[ext_resource type="PackedScene" uid="uid://3s5u6v16tg3" path="res://assets/models/storage/o2_storage/o2_storage.gltf" id="3_t32l1"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_f3ppr"]
-
-[sub_resource type="BoxMesh" id="BoxMesh_3ls61"]
-material = ExtResource("2_g4gsr")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_cpoff"]
 size = Vector3(1.1, 1.5, 2)
@@ -18,9 +15,7 @@ script = ExtResource("1_g3smb")
 [node name="collision" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_f3ppr")
 
-[node name="mesh" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0117102, 0, -0.00387573)
-mesh = SubResource("BoxMesh_3ls61")
+[node name="mesh" parent="." instance=ExtResource("3_t32l1")]
 
 [node name="area" type="Area3D" parent="."]
 
