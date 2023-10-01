@@ -44,7 +44,7 @@ volume_db = -19.0
 unit_size = 3.0
 
 [node name="plant_grow_timer" type="Timer" parent="."]
-wait_time = 3.0
+wait_time = 5.0
 
 [node name="food_spawn" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.0806, 0)
