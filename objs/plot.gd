@@ -1,9 +1,9 @@
 extends "res://objs/actionable.gd"
 
-var type = null
-
 @onready var player = get_node("/root/main/player")
 
+var type = null
+var resource = null
 
 func _ready():
   update_mesh_type()
@@ -13,6 +13,8 @@ func get_action_name():
   if type:
     if not player.resource and player.plot and player.plot != type:
       return "replace with %s" % player.plot
+    elif resource:
+      return "grab %s" % resource if not player.resource and not player.plot else ""
     else:
       return "remove %s" % type if not player.plot else ""
 
@@ -30,14 +32,22 @@ func can_perform():
 
 
 func perform():
-  if player.plot:
+  if resource:
+    grab_resource()
+  elif player.plot:
     type = player.plot
     play_plot_added()
     player.remove_carry_plot()
   elif type:
-    $plot_audio.stop()
-    player.add_carry_plot(type)
-    type = null
+    remove_plot()
+
+
+func remove_plot():
+  $oxygen_spawn_timer.stop()
+  $plot_audio.stop()
+  player.add_carry_plot(type)
+  resource = null
+  type = null
 
 
 func update_changes():
@@ -115,3 +125,26 @@ func play_plot_added():
     $plot_audio.stream = preload("res://assets/sounds/drill_ongoing.mp3")
     $plot_audio.volume_db = -19
     $plot_audio.play()
+  elif type == "oxygen pump":
+    $oxygen_spawn_timer.start()
+
+
+func grab_resource():
+  player.add_resource(resource)
+
+  if resource == "oxygen":
+    Global.remove_nodes($oxygen_spawn)
+    $oxygen_spawn_timer.start()
+
+
+func _on_oxygen_spawn_timer_timeout():
+  if $oxygen_spawn.has_node('resource'):
+    $oxygen_spawn_timer.stop()
+
+  var node = preload("res://objs/resources/oxygen.tscn").instantiate()
+  node.name = "resource"
+  $oxygen_spawn.add_child(node)
+  $resource_produced.stream = preload("res://assets/sounds/oxygen_tank_produced.mp3")
+  $resource_produced.volume_db = -3
+  $resource_produced.play()
+  resource = "oxygen"

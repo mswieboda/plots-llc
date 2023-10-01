@@ -19,7 +19,6 @@ const FOOD_DRAIN = -5
 var is_game_over = false
 
 func _ready():
-  energy = 3
   update_gui()
 
 
