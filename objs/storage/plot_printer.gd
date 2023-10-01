@@ -37,7 +37,7 @@ func get_action_info():
 
 func can_perform():
   if not items.is_empty():
-    return not player.plot and not player.resource
+    return not player.plot or not player.resource
 
   return !!player_holding()
 

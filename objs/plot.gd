@@ -35,10 +35,12 @@ func perform():
   if resource:
     grab_resource()
   elif player.plot:
+    remove_plot()
     type = player.plot
     play_plot_added()
     player.remove_carry_plot()
   elif type:
+    player.add_carry_plot(type)
     remove_plot()
 
 
@@ -47,7 +49,6 @@ func remove_plot():
   $plant_grow_timer.stop()
   $metal_spawn_timer.stop()
   $plot_audio.stop()
-  player.add_carry_plot(type)
   resource = null
   type = null
 
