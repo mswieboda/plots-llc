@@ -127,6 +127,7 @@ func play_plot_added():
     $plot_audio.stream = preload("res://assets/sounds/drill_ongoing.mp3")
     $plot_audio.volume_db = -19
     $plot_audio.play()
+    $metal_spawn_timer.start()
   elif type == "oxygen pump":
     $plot_added.stream = preload("res://assets/sounds/oxygen_install.mp3")
     $plot_added.play()
@@ -139,6 +140,9 @@ func grab_resource():
   if resource == "food":
     Global.remove_nodes($food_spawn)
     start_plant_animation($mesh_spawn/mesh)
+  elif resource == "metal":
+    Global.remove_nodes($metal_spawn)
+    $metal_spawn_timer.start()
   elif resource == "oxygen":
     Global.remove_nodes($oxygen_spawn)
     $oxygen_spawn_timer.start()
@@ -188,3 +192,16 @@ func _on_plant_grow_timer_timeout():
 #    $resource_produced.volume_db = -3
 #    $resource_produced.play()
     resource = "food"
+
+
+func _on_metal_spawn_timer_timeout():
+  if $metal_spawn.has_node('resource'):
+    $metal_spawn_timer.stop()
+
+  var node = preload("res://objs/resources/metal.tscn").instantiate()
+  node.name = "resource"
+  $metal_spawn.add_child(node)
+  $resource_produced.stream = preload("res://assets/sounds/metal_produced.mp3")
+  $resource_produced.volume_db = -3
+  $resource_produced.play()
+  resource = "metal"
