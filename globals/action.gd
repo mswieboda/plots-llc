@@ -29,7 +29,7 @@ func get_display() -> String:
 
   if can_perform():
     if node and node.has_method("get_action_name"):
-      return "Press [E] to " + node.get_action_name()
+      return "press [E] to " + node.get_action_name()
 
   if node and node.has_method("get_action_info"):
     return node.get_action_info()

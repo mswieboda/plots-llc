@@ -16,3 +16,13 @@ func _ready():
       var plot: Node3D = plot_scene.instantiate()
       plot.position = Vector3(row * size - size, 0, col * size - size)
       $plots.add_child(plot)
+
+  # room wall meshes to concrete
+  for node in $mesh.get_children():
+    if node.has_method("get_material_override") and node.name.begins_with("wall"):
+      node.material_override = preload("res://assets/materials/concrete.tres")
+
+  # living room wall meshes to concrete
+  for node in $living_room/mesh.get_children():
+    if node.has_method("get_material_override"):
+      node.material_override = preload("res://assets/materials/concrete.tres")

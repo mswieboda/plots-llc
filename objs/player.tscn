@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://c2kwkhbhphv37"]
+[gd_scene load_steps=7 format=3 uid="uid://c2kwkhbhphv37"]
 
 [ext_resource type="Script" path="res://objs/player.gd" id="1_37ysd"]
 [ext_resource type="PackedScene" uid="uid://boetgvk4y7ah1" path="res://assets/models/player/Player.gltf" id="2_1vpmv"]
+[ext_resource type="FontFile" uid="uid://o6iltpv0mnpf" path="res://assets/fonts/exo/Exo-SemiBold.ttf" id="3_ie6ny"]
 [ext_resource type="AudioStream" uid="uid://dy7st6a46qw5j" path="res://assets/sounds/footsteps.mp3" id="3_ysa6p"]
 [ext_resource type="AudioStream" uid="uid://dneajlhst1xkh" path="res://assets/sounds/eating.mp3" id="4_g7730"]
 
@@ -39,6 +40,12 @@ theme_override_constants/margin_bottom = 64
 
 [node name="action_label" type="Label" parent="action_gui/margin"]
 layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
+theme_override_constants/shadow_outline_size = 3
+theme_override_fonts/font = ExtResource("3_ie6ny")
 horizontal_alignment = 1
 
 [node name="audio_footsteps_player" type="AudioStreamPlayer3D" parent="."]
