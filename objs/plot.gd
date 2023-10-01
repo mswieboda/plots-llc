@@ -35,6 +35,7 @@ func perform():
     play_plot_added()
     player.remove_carry_plot()
   elif type:
+    $plot_audio.stop()
     player.add_carry_plot(type)
     type = null
 
@@ -110,3 +111,7 @@ func play_plot_added():
   elif type == "drill":
     $plot_added.stream = preload("res://assets/sounds/drill_install.mp3")
     $plot_added.play()
+
+    $plot_audio.stream = preload("res://assets/sounds/drill_ongoing.mp3")
+    $plot_audio.volume_db = -19
+    $plot_audio.play()
