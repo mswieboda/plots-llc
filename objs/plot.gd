@@ -22,7 +22,7 @@ func get_action_name():
 
 
 func can_perform():
-  if not Action.is_action_node(self) or player.resource:
+  if player.resource:
     return false
 
   if player.plot:
@@ -105,6 +105,7 @@ func update_mesh_type():
 func _on_area_body_entered(body):
   if body.name == "player":
     Action.add_action(self)
+    print('>>> Plot _on_area_body_entered ', Action.action_nodes.map(func(n): n.name))
     update_actionable_material()
 
 
