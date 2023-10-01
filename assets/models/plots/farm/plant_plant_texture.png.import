@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://uvcrgcdv10x5"
-path="res://.godot/imported/plant_module_dirt.png-c4297e4adcf37aaf70592f3141bc754b.ctex"
+uid="uid://wkeyp8gsciun"
+path="res://.godot/imported/plant_plant_texture.png-8508dd58ef91a2810ade3cf90db51aa1.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,8 +11,8 @@ generator_parameters={}
 
 [deps]
 
-source_file="res://assets/models/plots/farm/plant_module_dirt.png"
-dest_files=["res://.godot/imported/plant_module_dirt.png-c4297e4adcf37aaf70592f3141bc754b.ctex"]
+source_file="res://assets/models/plots/farm/plant_plant_texture.png"
+dest_files=["res://.godot/imported/plant_plant_texture.png-8508dd58ef91a2810ade3cf90db51aa1.ctex"]
 
 [params]
 
