@@ -196,9 +196,9 @@ func _on_plant_grow_timer_timeout():
     var node = preload("res://objs/resources/food.tscn").instantiate()
     node.name = "resource"
     $food_spawn.add_child(node)
-#    $resource_produced.stream = preload("res://assets/sounds/oxygen_tank_produced.mp3")
-#    $resource_produced.volume_db = -3
-#    $resource_produced.play()
+    $resource_produced.stream = preload("res://assets/sounds/food_produced.mp3")
+    $resource_produced.volume_db = -3
+    $resource_produced.play()
     resource = "food"
 
 
