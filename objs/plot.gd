@@ -44,6 +44,8 @@ func perform():
 
 func remove_plot():
   $oxygen_spawn_timer.stop()
+  $plant_grow_timer.stop()
+  $metal_spawn_timer.stop()
   $plot_audio.stop()
   player.add_carry_plot(type)
   resource = null
