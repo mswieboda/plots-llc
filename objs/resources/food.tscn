@@ -1,12 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://cmiie1ec2li4r"]
+[gd_scene load_steps=2 format=3 uid="uid://cmiie1ec2li4r"]
 
-[ext_resource type="Material" uid="uid://j24q5skq8gti" path="res://assets/materials/farm.tres" id="1_lewed"]
-
-[sub_resource type="PrismMesh" id="PrismMesh_varmj"]
-material = ExtResource("1_lewed")
-size = Vector3(0.25, 0.5, 0.25)
+[ext_resource type="PackedScene" uid="uid://dmngpc5verd3a" path="res://assets/models/resources/food/food.gltf" id="1_x1vhm"]
 
 [node name="food" type="Node3D"]
 
-[node name="mesh" type="MeshInstance3D" parent="."]
-mesh = SubResource("PrismMesh_varmj")
+[node name="mesh" parent="." instance=ExtResource("1_x1vhm")]
