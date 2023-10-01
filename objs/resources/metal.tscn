@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://c03taijiioknl"]
+
+[ext_resource type="Material" uid="uid://cjn7bvekii8q8" path="res://assets/materials/drill.tres" id="1_qvhd3"]
+
+[sub_resource type="PrismMesh" id="PrismMesh_ipbep"]
+material = ExtResource("1_qvhd3")
+left_to_right = 0.1
+size = Vector3(0.5, 0.1, 0.5)
+
+[node name="metal" type="Node3D"]
+
+[node name="mesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
+mesh = SubResource("PrismMesh_ipbep")

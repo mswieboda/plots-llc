@@ -4,7 +4,7 @@ extends CharacterBody3D
 const SPEED = 6.9
 const FAKE_EXTRA_GRAVITY = 5
 const PLOT_TYPES = ['farm', 'drill', 'oxygen pump', 'solar panel']
-const RESOURCE_TYPES = ['food', 'oxygen']
+const RESOURCE_TYPES = ['food', 'oxygen', 'metal']
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
@@ -159,6 +159,8 @@ func add_resource(type):
     Action.add_action_least_priority(self)
   elif resource == "oxygen":
     node = preload("res://objs/resources/oxygen.tscn")
+  elif resource == "metal":
+    node = preload("res://objs/resources/metal.tscn")
 
   if node:
     $rotated/carry_resource_spawn.add_child(node.instantiate())
