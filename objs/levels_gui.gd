@@ -15,8 +15,11 @@ const FOOD_DRAIN = -5
 
 @onready var hbox = $margin/hbox
 @onready var plots = get_node('/root/main/rooms/plots')
+@onready var player = get_node('/root/main/player')
+@onready var sun = get_node('/root/main/sun')
 
 var is_game_over = false
+var is_power_shutdown = false
 
 func _ready():
   update_gui()
@@ -91,18 +94,18 @@ func add_energy(value):
   energy = clamp(energy, 0, 100)
   update_label('energy', energy)
 
-  if energy <= 0 and not Global.is_power_shutdown:
+  if energy <= 0 and not is_power_shutdown:
     $audio_power_shutdown.play()
-    Global.power_shutdown()
-  elif Global.is_power_shutdown and energy > 0:
-    Global.power_resume()
+    power_shutdown()
+  elif is_power_shutdown and energy > 0:
+    power_resume()
 
 func add_oxygen(value):
   oxygen += value
   oxygen = clamp(oxygen, 0, 100)
   update_label('oxygen', oxygen)
 
-  if oxygen <= 0 and not Global.is_game_over:
+  if oxygen <= 0 and not is_game_over:
     $audio_gasping.play()
     end_game()
 
@@ -113,6 +116,24 @@ func add_food(value):
 
 
 func end_game():
+  $game_over_timer.start()
   $music_stressed.stop()
   $music_chill.stop()
-  Global.end_game()
+
+  is_game_over = true
+  player.dead = true
+
+
+func _on_game_over_timer_timeout():
+  # TODO: implement an actual UI menu for this
+  OS.alert("Please exit the game and restart to start over.", "Game Over")
+
+
+func power_shutdown():
+  is_power_shutdown = true
+  sun.light_energy = 0.3
+
+
+func power_resume():
+  is_power_shutdown = false
+  sun.light_energy = 1

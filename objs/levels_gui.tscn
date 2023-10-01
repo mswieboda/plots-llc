@@ -97,6 +97,11 @@ volume_db = -13.0
 stream = ExtResource("5_0nwai")
 volume_db = -15.0
 
+[node name="game_over_timer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
 [connection signal="timeout" from="energy_timer" to="." method="_on_energy_timer_timeout"]
 [connection signal="timeout" from="oxygen_timer" to="." method="_on_oxygen_timer_timeout"]
 [connection signal="timeout" from="food_timer" to="." method="_on_food_timer_timeout"]
+[connection signal="timeout" from="game_over_timer" to="." method="_on_game_over_timer_timeout"]
