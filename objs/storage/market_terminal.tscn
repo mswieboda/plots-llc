@@ -1,8 +1,8 @@
 [gd_scene load_steps=7 format=3 uid="uid://c4nwgu8low3ib"]
 
 [ext_resource type="Script" path="res://objs/storage/market_terminal.gd" id="1_em15g"]
-[ext_resource type="AudioStream" uid="uid://bdhh8hluat28f" path="res://assets/sounds/put_in_storage.mp3" id="2_tb1hh"]
 [ext_resource type="PackedScene" uid="uid://6fd5dxh0gyv7" path="res://assets/models/trade_computer/trade_computer.gltf" id="2_voseh"]
+[ext_resource type="AudioStream" uid="uid://diftcbd8ri3m1" path="res://assets/sounds/purchase-trade_made.mp3" id="3_o1eht"]
 [ext_resource type="AudioStream" uid="uid://wfn4ftlcrn6f" path="res://assets/sounds/take_out_of_storage.mp3" id="3_x6tfn"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_f3ppr"]
@@ -30,7 +30,7 @@ transform = Transform3D(-0.75, 0, 1.13247e-07, 0, 0.75, 0, -1.13247e-07, 0, -0.7
 shape = SubResource("BoxShape3D_cpoff")
 
 [node name="audio_store" type="AudioStreamPlayer3D" parent="."]
-stream = ExtResource("2_tb1hh")
+stream = ExtResource("3_o1eht")
 unit_size = 3.0
 
 [node name="audio_take" type="AudioStreamPlayer3D" parent="."]
