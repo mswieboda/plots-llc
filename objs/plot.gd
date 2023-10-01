@@ -96,3 +96,6 @@ func play_plot_added():
   if type == "solar panel":
     $plot_added.stream = preload("res://assets/sounds/solar_panel_install.mp3")
     $plot_added.play()
+  elif type == "drill":
+    $plot_added.stream = preload("res://assets/sounds/drill_install.mp3")
+    $plot_added.play()
