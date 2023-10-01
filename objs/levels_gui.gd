@@ -19,6 +19,7 @@ const FOOD_DRAIN = -5
 var is_game_over = false
 
 func _ready():
+  energy = 3
   update_gui()
 
 
@@ -91,6 +92,11 @@ func add_energy(value):
   energy = clamp(energy, 0, 100)
   update_label('energy', energy)
 
+  if energy <= 0 and not Global.is_power_shutdown:
+    $audio_power_shutdown.play()
+    Global.power_shutdown()
+  elif Global.is_power_shutdown and energy > 0:
+    Global.power_resume()
 
 func add_oxygen(value):
   oxygen += value
@@ -99,11 +105,15 @@ func add_oxygen(value):
 
   if oxygen <= 0 and not Global.is_game_over:
     $audio_gasping.play()
-    $music_stressed.stop()
-    $music_chill.stop()
-    Global.end_game()
+    end_game()
 
 func add_food(value):
   food += value
   food = clamp(food, 0, 100)
   update_label('food', food)
+
+
+func end_game():
+  $music_stressed.stop()
+  $music_chill.stop()
+  Global.end_game()
