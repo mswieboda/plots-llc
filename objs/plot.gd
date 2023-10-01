@@ -120,7 +120,10 @@ func _on_area_body_exited(body):
 
 
 func play_plot_added():
-  if type == "solar panel":
+  if type == "farm":
+    $plot_added.stream = preload("res://assets/sounds/farm_install.mp3")
+    $plot_added.play()
+  elif type == "solar panel":
     $plot_added.stream = preload("res://assets/sounds/solar_panel_install.mp3")
     $plot_added.play()
   elif type == "drill":
