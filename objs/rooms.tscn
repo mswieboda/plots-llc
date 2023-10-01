@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://pomba5k16vdf" path="res://assets/models/level/living_room.gltf" id="3_grxth"]
 [ext_resource type="PackedScene" uid="uid://ktn3sxtb2p1b" path="res://objs/storage/food_store.tscn" id="4_n028q"]
 [ext_resource type="PackedScene" uid="uid://cdjjj4oedxaka" path="res://objs/storage/oxygen_tank.tscn" id="5_4kghu"]
-[ext_resource type="PackedScene" path="res://objs/storage/storage.tscn" id="6_virs4"]
+[ext_resource type="PackedScene" uid="uid://b6357ppi5j416" path="res://objs/storage/storage.tscn" id="6_virs4"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_uu57r"]
 size = Vector3(10, 0.1, 10)
@@ -55,6 +55,7 @@ shape = SubResource("BoxShape3D_nliiu")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
 
 [node name="living_room" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.15, 0)
 
 [node name="mesh" parent="living_room" instance=ExtResource("3_grxth")]
 
