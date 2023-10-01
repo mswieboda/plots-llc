@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://objs/storage/food_store.gd" id="1_axuc2"]
 [ext_resource type="AudioStream" uid="uid://bdhh8hluat28f" path="res://assets/sounds/put_in_storage.mp3" id="3_agyhu"]
-[ext_resource type="PackedScene" uid="uid://cctmig6qfnjoa" path="res://assets/models/storage/food_storage/food_storage.gltf" id="3_eyj4c"]
+[ext_resource type="PackedScene" uid="uid://cmsutbbsy7rca" path="res://assets/models/storage/food_storage/food_storage.gltf" id="3_eyj4c"]
 [ext_resource type="AudioStream" uid="uid://wfn4ftlcrn6f" path="res://assets/sounds/take_out_of_storage.mp3" id="4_aqpei"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_f3ppr"]
@@ -17,7 +17,7 @@ script = ExtResource("1_axuc2")
 shape = SubResource("BoxShape3D_f3ppr")
 
 [node name="mesh" parent="." instance=ExtResource("3_eyj4c")]
-transform = Transform3D(-3.27835e-08, 0, -0.75, 0, 0.75, 0, 0.75, 0, -3.27835e-08, 0, 0, 0)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
 
 [node name="area" type="Area3D" parent="."]
 
