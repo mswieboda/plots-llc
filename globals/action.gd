@@ -31,8 +31,9 @@ func get_display() -> String:
 
 
 func add_action(n):
-  action_nodes.append(n)
-  update_gui()
+  if n.can_perform():
+    action_nodes.append(n)
+    update_gui()
 
 func remove_action(n):
   action_nodes.erase(n)

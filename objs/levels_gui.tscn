@@ -82,12 +82,12 @@ autostart = true
 
 [node name="music_chill" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_wome5")
-volume_db = -13.0
+volume_db = -17.0
 autoplay = true
 
 [node name="music_stressed" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_4kmj2")
-volume_db = -13.0
+volume_db = -17.0
 
 [node name="audio_gasping" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_bh5dg")

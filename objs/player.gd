@@ -21,9 +21,6 @@ func _ready():
 func _physics_process(delta):
   movement(delta)
 
-  if resource == "food" and not Action.is_action_node(self):
-    Action.add_action(self)
-
 
 func _unhandled_input(event):
   unhandled_input_actions(event)
@@ -159,6 +156,7 @@ func add_resource(type):
 
   if resource == "food":
     node = preload("res://objs/resources/food.tscn")
+    Action.add_action(self)
   elif resource == "oxygen":
     node = preload("res://objs/resources/oxygen.tscn")
 

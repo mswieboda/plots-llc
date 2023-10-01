@@ -32,9 +32,11 @@ func perform():
   if player.resource:
     player.remove_resource()
     count += 1
+    $audio_store.play()
   else:
     count -= 1
     player.add_resource(TYPE)
+    $audio_take.play()
 
   Action.update_changes()
 
