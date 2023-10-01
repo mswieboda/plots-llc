@@ -7,16 +7,20 @@ var resource = null
 
 func get_action_name():
   if player.resource:
-    return "sell %s" % player.resource
+    # TODO: change to sell when money is implement
+    # return "sell %s" % player.resource
+    return "donate %s" % player.resource
 
   if resource:
     return "take %s" % resource
 
-  return "buy resources or upgrades"
-
+  # TODO: after pressing E, prompt with a buy/upgrade menu
+  # return "buy resources or upgrades"
+  return "get random free resource"
 
 func get_action_info():
-  return "market terminal\nbuy/sell resources and upgrades"
+  # TODO: remove DONTATION MODE when money implemented
+  return "market terminal (DONATION MODE)\nbuy/sell resources and upgrades"
 
 
 func can_perform():
