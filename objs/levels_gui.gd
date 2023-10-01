@@ -16,6 +16,8 @@ const FOOD_DRAIN = -5
 @onready var hbox = $margin/hbox
 @onready var plots = get_node('/root/main/rooms/plots')
 
+var is_game_over = false
+
 func _ready():
   update_gui()
 
@@ -95,6 +97,11 @@ func add_oxygen(value):
   oxygen = clamp(oxygen, 0, 100)
   update_label('oxygen', oxygen)
 
+  if oxygen <= 0 and not Global.is_game_over:
+    $audio_gasping.play()
+    $music_stressed.stop()
+    $music_chill.stop()
+    Global.end_game()
 
 func add_food(value):
   food += value

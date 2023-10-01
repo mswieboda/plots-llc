@@ -12,7 +12,7 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 @onready var animation_player: AnimationPlayer = $rotated/mesh.get_node('AnimationPlayer') as AnimationPlayer
 var plot = null
 var resource = null
-
+var dead = false
 
 func _ready():
   animation_player.play("idle")
@@ -33,6 +33,9 @@ func movement(delta):
   # add the gravity
   if not is_on_floor():
     velocity.y -= gravity * delta * FAKE_EXTRA_GRAVITY
+
+  if dead:
+    return
 
   # wasd movement
   var input_dir = Input.get_vector("left", "right", "up", "down")
@@ -187,6 +190,8 @@ func can_perform():
 func perform():
   if resource != "food":
     return
+
+  $audio_eating_player.play()
 
   remove_resource()
   get_node('/root/main/levels_gui').add_food(5)

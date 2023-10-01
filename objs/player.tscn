@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://c2kwkhbhphv37"]
+[gd_scene load_steps=6 format=3 uid="uid://c2kwkhbhphv37"]
 
 [ext_resource type="Script" path="res://objs/player.gd" id="1_37ysd"]
 [ext_resource type="PackedScene" uid="uid://boetgvk4y7ah1" path="res://assets/models/player/Player.gltf" id="2_1vpmv"]
 [ext_resource type="AudioStream" uid="uid://dy7st6a46qw5j" path="res://assets/sounds/footsteps.mp3" id="3_ysa6p"]
+[ext_resource type="AudioStream" uid="uid://dneajlhst1xkh" path="res://assets/sounds/eating.mp3" id="4_g7730"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_3vq77"]
 
@@ -43,3 +44,7 @@ horizontal_alignment = 1
 [node name="audio_footsteps_player" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_ysa6p")
 volume_db = -13.0
+
+[node name="audio_eating_player" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_g7730")
+volume_db = -9.0
