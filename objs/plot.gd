@@ -77,6 +77,17 @@ func update_mesh_type():
   var node = mesh.instantiate()
   node.name = "mesh"
 
+  if type == "drill":
+    var animation_player = node.find_child("AnimationPlayer")
+    animation_player.play("drill_rotate")
+    var animation = animation_player.get_animation(animation_player.current_animation)
+    animation.loop_mode = Animation.LOOP_LINEAR
+  elif type == "oxygen pump":
+    var animation_player = node.find_child("AnimationPlayer")
+    animation_player.play("pump_move")
+    var animation = animation_player.get_animation(animation_player.current_animation)
+    animation.loop_mode = Animation.LOOP_LINEAR
+
   $mesh_spawn.add_child(node)
 
 
