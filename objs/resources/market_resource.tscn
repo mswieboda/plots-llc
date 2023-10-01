@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://cau40dy62ub6y"]
+
+[ext_resource type="Script" path="res://objs/resources/market_resource.gd" id="1_spa1d"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_wq2rv"]
+
+[node name="market_resource" type="CharacterBody3D"]
+script = ExtResource("1_spa1d")
+
+[node name="collision" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_wq2rv")
+disabled = true
+
+[node name="resource" type="Node3D" parent="."]
+
+[node name="sell_timer" type="Timer" parent="."]
+wait_time = 0.25
+one_shot = true
+
+[connection signal="timeout" from="sell_timer" to="." method="_on_sell_timer_timeout"]

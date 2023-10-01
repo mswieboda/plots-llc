@@ -1,0 +1,48 @@
+[gd_scene load_steps=8 format=3 uid="uid://c4nwgu8low3ib"]
+
+[ext_resource type="Script" path="res://objs/storage/market_terminal.gd" id="1_em15g"]
+[ext_resource type="AudioStream" uid="uid://bdhh8hluat28f" path="res://assets/sounds/put_in_storage.mp3" id="2_tb1hh"]
+[ext_resource type="AudioStream" uid="uid://wfn4ftlcrn6f" path="res://assets/sounds/take_out_of_storage.mp3" id="3_x6tfn"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_f3ppr"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_02h5v"]
+transparency = 1
+albedo_color = Color(0, 0.403922, 0, 0.662745)
+
+[sub_resource type="BoxMesh" id="BoxMesh_3ls61"]
+material = SubResource("StandardMaterial3D_02h5v")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_cpoff"]
+size = Vector3(1.1, 1.5, 2)
+
+[node name="market_terminal" type="StaticBody3D"]
+script = ExtResource("1_em15g")
+
+[node name="collision" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_f3ppr")
+
+[node name="mesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0117102, 0, -0.00387573)
+mesh = SubResource("BoxMesh_3ls61")
+
+[node name="resource_spawn" type="Node3D" parent="mesh"]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, -0.149565, 0)
+
+[node name="market_resource_spawn" type="Node3D" parent="mesh"]
+
+[node name="area" type="Area3D" parent="."]
+
+[node name="collision" type="CollisionShape3D" parent="area"]
+shape = SubResource("BoxShape3D_cpoff")
+
+[node name="audio_store" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("2_tb1hh")
+unit_size = 3.0
+
+[node name="audio_take" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("3_x6tfn")
+unit_size = 3.0
+
+[connection signal="body_entered" from="area" to="." method="_on_area_body_entered"]
+[connection signal="body_exited" from="area" to="." method="_on_area_body_exited"]

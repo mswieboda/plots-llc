@@ -2,12 +2,11 @@ extends "res://objs/actionable.gd"
 
 @onready var player = get_node("/root/main/player")
 
-var items = []
+var resources = []
 var plot = null
 
-
 func stored():
-  return ", ".join(items)
+  return ", ".join(resources)
 
 
 func player_holding():
@@ -15,14 +14,14 @@ func player_holding():
 
 
 func display_storage():
-  return "stored: %s" % stored()
+  return "inputed: %s" % stored()
 
 
 func get_action_name():
   if player_holding():
-    return "store %s" % player_holding()
+    return "input %s" % player_holding()
 
-  if not items.is_empty():
+  if not resources.is_empty():
     return "take %s" % stored()
 
   if plot:
@@ -32,19 +31,19 @@ func get_action_name():
 
 
 func get_action_info():
-  return "plot printer\nstore resources to create plots\n%s" % display_storage()
+  return "plot printer\ninput resources to create plots\n%s" % display_storage()
 
 
 func can_perform():
-  if not items.is_empty():
+  if not resources.is_empty():
     return not player.plot or not player.resource
 
-  return !!player_holding()
+  return !!player.resource
 
 
 func perform():
   if player.resource:
-    items.append(player.resource)
+    resources.append(player.resource)
 
     var node = null
 
@@ -58,6 +57,14 @@ func perform():
     $mesh/resource_spawn.add_child(node.instantiate())
     player.remove_resource()
     $audio_store.play()
+  elif not resources.is_empty():
+    var resource = resources.pop_back()
+
+    player.add_resource(resource)
+    var node = $mesh/resource_spawn.get_child(-1)
+    $mesh/resource_spawn.remove_child(node)
+    node.queue_free()
+    $audio_take.play()
   elif plot:
     player.add_carry_plot(plot)
     plot = null
