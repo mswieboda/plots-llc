@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://khk0o0agsd6w"]
+[gd_scene load_steps=10 format=3 uid="uid://khk0o0agsd6w"]
 
 [ext_resource type="Script" path="res://objs/levels_gui.gd" id="1_cgp06"]
 [ext_resource type="AudioStream" uid="uid://mqefo4s4jeoi" path="res://assets/music/chill.mp3" id="2_wome5"]
 [ext_resource type="AudioStream" uid="uid://d440vgxge423" path="res://assets/music/stressed.mp3" id="3_4kmj2"]
 [ext_resource type="AudioStream" uid="uid://tdttf0as3d42" path="res://assets/sounds/gasping.mp3" id="4_bh5dg"]
 [ext_resource type="AudioStream" uid="uid://bwrdkei1w87nv" path="res://assets/sounds/power_shutdown.mp3" id="5_0nwai"]
+[ext_resource type="AudioStream" uid="uid://05a8nxiowfia" path="res://assets/sounds/death_by_starvation.mp3" id="5_en4e6"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q1ly6"]
 bg_color = Color(0.521569, 0.521569, 0, 1)
@@ -77,7 +78,7 @@ wait_time = 0.25
 autostart = true
 
 [node name="food_timer" type="Timer" parent="."]
-wait_time = 7.0
+wait_time = 3.0
 autostart = true
 
 [node name="music_chill" type="AudioStreamPlayer" parent="."]
@@ -92,6 +93,10 @@ volume_db = -17.0
 [node name="audio_gasping" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_bh5dg")
 volume_db = -13.0
+
+[node name="audio_starvation" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_en4e6")
+volume_db = -19.0
 
 [node name="audio_power_shutdown" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_0nwai")

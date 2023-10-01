@@ -20,8 +20,12 @@ const FOOD_DRAIN = -5
 
 var is_game_over = false
 var is_power_shutdown = false
+var end_game_reason = ""
+var start_time = 0
+var end_time = 0
 
 func _ready():
+  start_time = Time.get_ticks_msec()
   update_gui()
 
 
@@ -107,6 +111,7 @@ func add_oxygen(value):
 
   if oxygen <= 0 and not is_game_over:
     $audio_gasping.play()
+    end_game_reason = "suffocated"
     end_game()
 
 func add_food(value):
@@ -114,8 +119,15 @@ func add_food(value):
   food = clamp(food, 0, 100)
   update_label('food', food)
 
+  if food <= 0 and not is_game_over:
+    # TODO: audio death sound
+    $audio_starvation.play()
+    end_game_reason = "starved"
+    end_game()
+
 
 func end_game():
+  end_time = Time.get_ticks_msec()
   $game_over_timer.start()
   $music_stressed.stop()
   $music_chill.stop()
@@ -126,7 +138,12 @@ func end_game():
 
 func _on_game_over_timer_timeout():
   # TODO: implement an actual UI menu for this
-  OS.alert("Please exit the game and restart to start over.", "Game Over")
+  var reason = "Oh no, you %s and died." % end_game_reason
+  var funny = "Blame it on the limited plots in space Plots, LLC provided you."
+  var stats = "Lasted: %.2f min" % ((end_time - start_time) / 1000.0 / 60.0)
+  var instructions = "Please exit the game and restart to start over."
+  var message = "%s\n%s\n%s\n%s" % [reason, funny, stats, instructions]
+  OS.alert(message, "Game Over")
 
 
 func power_shutdown():
