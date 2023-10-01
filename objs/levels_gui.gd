@@ -131,7 +131,7 @@ func _on_game_over_timer_timeout():
 
 func power_shutdown():
   is_power_shutdown = true
-  sun.light_energy = 0.3
+  sun.light_energy = 0.03
 
 
 func power_resume():
