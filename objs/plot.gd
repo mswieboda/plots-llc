@@ -126,6 +126,8 @@ func play_plot_added():
     $plot_audio.volume_db = -19
     $plot_audio.play()
   elif type == "oxygen pump":
+    $plot_added.stream = preload("res://assets/sounds/oxygen_install.mp3")
+    $plot_added.play()
     $oxygen_spawn_timer.start()
 
 

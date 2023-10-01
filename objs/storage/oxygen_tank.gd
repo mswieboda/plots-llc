@@ -26,6 +26,7 @@ func perform():
 
   player.remove_resource()
   levels_gui.add_oxygen(5)
+  $audio_consumed.play()
   Action.update_changes()
 
 
