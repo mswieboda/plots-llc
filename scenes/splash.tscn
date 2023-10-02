@@ -50,13 +50,13 @@ text = "		P			:		play
 
 [node name="TextEdit2" type="TextEdit" parent="menu"]
 layout_mode = 0
-offset_left = 379.0
+offset_left = 369.0
 offset_top = 43.0
-offset_right = 753.0
+offset_right = 761.0
 offset_bottom = 134.0
 theme_override_fonts/font = ExtResource("3_tmkh1")
 theme_override_font_sizes/font_size = 50
-text = "  SPACE         LLC"
+text = "   SPACE         LLC"
 
 [node name="TextEdit3" type="TextEdit" parent="menu"]
 offset_left = 379.0
