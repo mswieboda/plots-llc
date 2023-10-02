@@ -168,7 +168,7 @@ func _on_oxygen_spawn_timer_timeout():
   $resource_produced.volume_db = -3
   $resource_produced.play()
   resource = "oxygen"
-  $metal_spawn_timer.start()
+  $oxygen_spawn_timer.start()
 
 
 func start_plant_animation(node):
