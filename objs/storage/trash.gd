@@ -41,10 +41,12 @@ func get_action_name():
 
 
 func get_action_info():
+  var message = "trash destroyer\n "
+
   if is_stored():
-    return "destroying %s" % stored()
-  else:
-    return "trash\ndestroy raw materials, resources or plots"
+    message += "destroying %s" % stored()
+
+  return message
 
 
 func can_perform():
@@ -92,3 +94,4 @@ func _on_destroy_timer_timeout():
   Global.remove_nodes($mesh/plot_spawn)
   Global.remove_nodes($mesh/raw_material_spawn)
   $audio_destroy.play()
+  Action.update_changes()

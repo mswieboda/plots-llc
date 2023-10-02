@@ -44,7 +44,7 @@ func get_action_name():
 
 
 func get_action_info():
-  return "storage\nstore a single raw material, resource or plot"
+  return "single item storage"
 
 
 func can_perform():

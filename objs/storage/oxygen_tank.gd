@@ -1,6 +1,6 @@
 extends "res://objs/actionable.gd"
 
-const TYPE: String = "oxygen"
+const TYPE: String = "O2 tank"
 const ENERGY_USAGE_COST = 1
 const OXYGEN_INCREASE = 6
 
@@ -10,16 +10,16 @@ const OXYGEN_INCREASE = 6
 
 func get_action_name():
   if player.resource:
-    return "inject %s" % TYPE
+    return "deposit %s" % TYPE
 
   return ""
 
 
 func get_action_info():
-  var message = "oxygen tank\ninject %s" % TYPE
+  var message = "O2 distributor\n "
 
   if Global.is_power_out:
-    message += " (NO POWER - can't inject)"
+    message += "(NO POWER - can't inject)"
 
   return message
 

@@ -1,8 +1,8 @@
 extends Node
 
-const RAW_MATERIALS = ['seeds', 'liquid oxygen', 'solar disk']
-const PLOTS = ['farm', 'drill', 'oxygen pump', 'solar panel']
-const RESOURCES = ['food', 'oxygen', 'metal']
+const RAW_MATERIALS = ['seeds', 'liquid O2', 'solar disk']
+const PLOTS = ['farm', 'drill', 'O2 pump', 'solar panel']
+const RESOURCES = ['food', 'O2 tank', 'metal']
 
 var is_power_out = false
 
@@ -22,7 +22,7 @@ func create_plot_node(plot):
     node = preload("res://assets/models/plots/drill/drill.gltf")
   elif plot == "solar panel":
     node = preload("res://assets/models/plots/solar_panel/solar_module_joined.gltf")
-  elif plot == "oxygen pump":
+  elif plot == "O2 pump":
     node = preload("res://assets/models/plots/o2/o2.gltf")
 
   return node.instantiate() if node else null
@@ -37,7 +37,7 @@ func create_carry_plot_node(plot):
     node = preload("res://assets/models/plots/drill/drill.gltf")
   elif plot == "solar panel":
     node = preload("res://assets/models/plots/solar_panel/solar_module_joined.gltf")
-  elif plot == "oxygen pump":
+  elif plot == "O2 pump":
     node = preload("res://assets/models/plots/o2/o2.gltf")
 
   return node.instantiate() if node else null
@@ -47,7 +47,7 @@ func create_resource_node(resource):
 
   if resource == "food":
     node = preload("res://objs/resources/food.tscn")
-  elif resource == "oxygen":
+  elif resource == "O2 tank":
     node = preload("res://objs/resources/oxygen.tscn")
   elif resource == "metal":
     node = preload("res://objs/resources/metal.tscn")
@@ -60,7 +60,7 @@ func create_raw_material_node(raw_material):
 
   if raw_material == "seeds":
     node = preload("res://objs/raw_materials/seeds.tscn")
-  elif raw_material == "liquid oxygen":
+  elif raw_material == "liquid O2":
     node = preload("res://objs/raw_materials/liquid_oxygen.tscn")
   elif raw_material == "solar disk":
     node = preload("res://objs/raw_materials/solar_disk.tscn")

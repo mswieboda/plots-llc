@@ -91,7 +91,7 @@ func update_mesh_type():
 
     if Global.is_power_out:
       animation_player.pause()
-  elif type == "oxygen pump":
+  elif type == "O2 pump":
     var animation_player = node.find_child("AnimationPlayer")
     animation_player.play("pump_move")
     var animation = animation_player.get_animation(animation_player.current_animation)
@@ -141,7 +141,7 @@ func play_plot_added():
       $plot_audio.volume_db = -19
       $plot_audio.play()
       $metal_spawn_timer.start()
-  elif type == "oxygen pump":
+  elif type == "O2 pump":
     $plot_added.stream = preload("res://assets/sounds/oxygen_install.mp3")
     $plot_added.play()
 
@@ -158,7 +158,7 @@ func grab_resource():
   elif resource == "metal":
     Global.remove_nodes($metal_spawn)
     $metal_spawn_timer.start()
-  elif resource == "oxygen":
+  elif resource == "O2 tank":
     Global.remove_nodes($oxygen_spawn)
     $oxygen_spawn_timer.start()
 
@@ -188,7 +188,7 @@ func _on_oxygen_spawn_timer_timeout():
   $resource_produced.volume_db = -3
   $resource_produced.play()
   $oxygen_spawn_timer.start()
-  add_resource("oxygen")
+  add_resource("O2 tank")
 
 
 func start_plant_animation(node):

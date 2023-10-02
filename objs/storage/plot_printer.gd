@@ -44,7 +44,7 @@ func display_storage():
   if Global.is_power_out:
     extra += " (NO POWER - can't print)"
 
-  return "inputed: %s%s" % [stored(), extra]
+  return "deposited: %s%s" % [stored(), extra]
 
 
 func get_action_name():
@@ -61,7 +61,7 @@ func get_action_name():
 
 
 func get_action_info():
-  return "plot printer\ncombine metal and raw materials to create plots\n%s" % display_storage()
+  return "plot printer\ncombine metal and raw materials to create production plots\n%s" % display_storage()
 
 
 func can_perform():
@@ -113,8 +113,8 @@ func setup_printing():
 
   if items.has('seeds'):
     printing_plot = 'farm'
-  elif items.has('liquid oxygen'):
-    printing_plot = 'oxygen pump'
+  elif items.has('liquid O2'):
+    printing_plot = 'O2 pump'
   elif items.has('solar disk'):
     printing_plot = 'solar panel'
   elif items[0] == 'metal' and items[1] == 'metal':

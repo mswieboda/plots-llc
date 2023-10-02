@@ -183,7 +183,7 @@ func stop_plots():
       plot.get_node('mesh_spawn/mesh/AnimationPlayer').pause()
       plot.get_node('metal_spawn_timer').stop()
       plot.get_node('plot_audio').stream_paused = true
-    elif plot.type == "oxygen pump":
+    elif plot.type == "O2 pump":
       plot.get_node('mesh_spawn/mesh/AnimationPlayer').pause()
       plot.get_node('oxygen_spawn_timer').stop()
 
@@ -196,6 +196,6 @@ func start_plots():
       plot.get_node('mesh_spawn/mesh/AnimationPlayer').play()
       plot.get_node('metal_spawn_timer').start()
       plot.get_node('plot_audio').stream_paused = false
-    elif plot.type == "oxygen pump":
+    elif plot.type == "O2 pump":
       plot.get_node('mesh_spawn/mesh/AnimationPlayer').play()
       plot.get_node('oxygen_spawn_timer').start()

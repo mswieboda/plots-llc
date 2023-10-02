@@ -42,7 +42,7 @@ func get_action_name():
   return ""
 
 func get_action_info():
-  var message = "market terminal\ntrade metal for raw materials"
+  var message = "market\ntrade metal for raw materials"
 
   if Global.is_power_out:
     message += " (NO POWER - can't trade)"
