@@ -247,5 +247,10 @@ func die():
   $rotated/mesh/AnimationPlayer.play("death")
 
 
+func celebrate():
+  dead = true
+  $rotated/mesh/AnimationPlayer.play("victory")
+
+
 func update_changes():
   pass

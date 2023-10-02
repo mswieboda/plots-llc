@@ -51,6 +51,7 @@ func update_gui_objectives():
   if not is_game_won and Global.delivered_metals >= Global.delivered_metals_objective:
     is_game_won = true
     stop_game()
+    player.celebrate()
     $game_won_timer.start()
 
 
