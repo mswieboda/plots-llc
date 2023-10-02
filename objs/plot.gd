@@ -25,7 +25,7 @@ func can_perform():
   if player.resource:
     return false
 
-  if player.plot:
+  if player.plot and not resource:
     return player.plot != type
 
   return !!type
@@ -60,7 +60,7 @@ func update_changes():
 
 
 func update_actionable_material():
-  if Action.is_action_node(self) and can_perform():
+  if Action.is_action_node(self, "action_plot") or Action.is_action_node(self) and can_perform():
     var material = StandardMaterial3D.new()
     material.albedo_color = Color(1, 1, 1, 0.069)
     material.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
@@ -117,7 +117,10 @@ func _on_area_body_entered(body):
 func _on_area_body_exited(body):
   if body.name == "player":
     # remove for plot
-    Action.remove_action(self)
+    Action.remove_action(self, "action_plot")
+
+    if resource:
+      Action.remove_action(self)
 
     update_actionable_material()
 
@@ -167,7 +170,7 @@ func grab_resource():
 func add_resource(new_resource):
   resource = new_resource
 
-  if Action.is_action_node(self) and Action.can_perform():
+  if Action.is_action_node(self, "action_plot") and Action.can_perform():
     Action.add_action(self)
 
   Action.update_changes()

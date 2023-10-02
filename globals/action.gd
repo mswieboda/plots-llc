@@ -24,7 +24,7 @@ func action_node():
   return action()["node"]
 
 
-func is_action_node(n):
+func is_action_node(n, input = "action"):
   var node = action_node()
 
   return node and node.name == n.name
@@ -56,15 +56,18 @@ func add_action_least_priority(n, input = "action", display = "E"):
   actions.push_front({ "node": n, "input": input, "display": display })
   update_gui()
 
-func remove_action(n):
+func remove_action(n, input = "action"):
   if actions.is_empty():
     return
 
   var index = -1
 
   for i in actions.size():
-    if actions[i]["node"] == n:
+    if actions[i]["node"] == n and actions[i]["input"] == input:
       index = i
+
+  if index == -1:
+    return
 
   actions.remove_at(index)
   update_gui()
