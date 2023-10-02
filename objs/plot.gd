@@ -105,13 +105,20 @@ func update_mesh_type():
 
 func _on_area_body_entered(body):
   if body.name == "player":
-    Action.add_action(self)
+    if resource:
+      Action.add_action(self, "action_plot", "SPACE")
+      Action.add_action(self)
+    else:
+      Action.add_action(self, "action_plot", "SPACE")
+
     update_actionable_material()
 
 
 func _on_area_body_exited(body):
   if body.name == "player":
+    # remove for plot
     Action.remove_action(self)
+
     update_actionable_material()
 
 
@@ -153,7 +160,17 @@ func grab_resource():
     $oxygen_spawn_timer.start()
 
   resource = null
+  Action.remove_action(self)
+  Action.update_changes()
 
+
+func add_resource(new_resource):
+  resource = new_resource
+
+  if Action.is_action_node(self) and Action.can_perform():
+    Action.add_action(self)
+
+  Action.update_changes()
 
 
 func _on_oxygen_spawn_timer_timeout():
@@ -167,8 +184,8 @@ func _on_oxygen_spawn_timer_timeout():
   $resource_produced.stream = preload("res://assets/sounds/oxygen_tank_produced.mp3")
   $resource_produced.volume_db = -3
   $resource_produced.play()
-  resource = "oxygen"
   $oxygen_spawn_timer.start()
+  add_resource("oxygen")
 
 
 func start_plant_animation(node):
@@ -201,7 +218,7 @@ func _on_plant_grow_timer_timeout():
     $resource_produced.stream = preload("res://assets/sounds/food_produced.mp3")
     $resource_produced.volume_db = -3
     $resource_produced.play()
-    resource = "food"
+    add_resource("food")
 
   $plant_grow_timer.start()
 
@@ -217,5 +234,5 @@ func _on_metal_spawn_timer_timeout():
   $resource_produced.stream = preload("res://assets/sounds/metal_produced.mp3")
   $resource_produced.volume_db = -3
   $resource_produced.play()
-  resource = "metal"
   $metal_spawn_timer.start()
+  add_resource("metal")

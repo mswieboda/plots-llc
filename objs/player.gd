@@ -107,7 +107,7 @@ func unhandled_input_actions(event : InputEvent):
       get_tree().change_scene_to_file("res://scenes/splash.tscn")
     return
 
-  if event.is_action_pressed("action"):
+  if Action.action() and event.is_action_pressed(Action.action()["input"]):
     Action.perform()
 
   if DEBUG and event.is_action_pressed("test_plot"):
