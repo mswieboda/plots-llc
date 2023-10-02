@@ -19,9 +19,6 @@ shape = SubResource("BoxShape3D_f3ppr")
 
 [node name="mesh" parent="." instance=ExtResource("2_ahtxq")]
 
-[node name="resource_spawn" type="Node3D" parent="mesh"]
-transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, -0.0117102, -0.149565, -0.00387573)
-
 [node name="plot_spawn" type="Node3D" parent="mesh"]
 transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, -0.0117102, -0.149565, -0.00387573)
 

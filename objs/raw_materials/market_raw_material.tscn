@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://cau40dy62ub6y"]
+
+[ext_resource type="Script" path="res://objs/raw_materials/market_raw_material.gd" id="1_5mi1p"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_wq2rv"]
+
+[node name="market_raw_material" type="CharacterBody3D"]
+script = ExtResource("1_5mi1p")
+
+[node name="collision" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_wq2rv")
+disabled = true
+
+[node name="raw_material" type="Node3D" parent="."]

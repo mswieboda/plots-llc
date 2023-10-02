@@ -76,19 +76,8 @@ func update_actionable_material():
 
 
 func update_mesh_type():
-  var mesh = preload("res://objs/plots/default.tscn")
-
-  if type == "farm":
-    mesh = preload("res://assets/models/plots/farm/plant.gltf")
-  elif type == "drill":
-    mesh = preload("res://assets/models/plots/drill/drill.gltf")
-  elif type == "solar panel":
-    mesh = preload("res://assets/models/plots/solar_panel/solar_module_joined.gltf")
-  elif type == "oxygen pump":
-    mesh = preload("res://assets/models/plots/o2/o2.gltf")
-
   Global.remove_nodes($mesh_spawn)
-  var node = mesh.instantiate()
+  var node = Global.create_plot_node(type)
   node.name = "mesh"
 
   if type == "farm":
@@ -129,7 +118,6 @@ func play_plot_added():
   elif type == "drill":
     $plot_added.stream = preload("res://assets/sounds/drill_install.mp3")
     $plot_added.play()
-
     $plot_audio.stream = preload("res://assets/sounds/drill_ongoing.mp3")
     $plot_audio.volume_db = -19
     $plot_audio.play()

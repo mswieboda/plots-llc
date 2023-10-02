@@ -1,83 +1,89 @@
 extends "res://objs/actionable.gd"
 
 const ENERGY_USAGE_COST = 5
+
 @onready var player = get_node("/root/main/player")
 @onready var levels_gui = get_node("/root/main/levels_gui")
-var resource = null
+var raw_material = null
+var trade_raw_material = "seeds"
+
+
+func _unhandled_input(event):
+  if event.is_action_pressed("cycle"):
+    cycle_trade_selection()
+
+
+func cycle_trade_selection():
+  var index = Global.RAW_MATERIALS.find(trade_raw_material)
+  var next_index = index + 1
+
+  if next_index >= Global.RAW_MATERIALS.size():
+    next_index = 0
+
+  trade_raw_material = Global.RAW_MATERIALS[next_index]
+  Action.update_changes()
+
+
+func display_instructions():
+  return "Press [TAB] to cycle through resources:\n%s" % display_trade_raw_materials()
+
+
+func display_trade_raw_materials():
+  return "\n".join(Global.RAW_MATERIALS.map(func(r): return "-<( %s )>-" % r if r == trade_raw_material else r))
 
 
 func get_action_name():
   if player.resource:
-    # TODO: change to sell when money is implement
-    # return "sell %s" % player.resource
-    return "donate %s" % player.resource
+    return "trade %s for %s\n%s" % [player.resource, trade_raw_material, display_instructions()]
 
-  if resource:
-    return "take %s" % resource
+  if raw_material:
+    return "take %s" % raw_material
 
-  # TODO: after pressing E, prompt with a buy/upgrade menu
-  # return "buy resources or upgrades"
-  return "get free solar panel resource"
+  return ""
 
 func get_action_info():
-  # TODO: remove DONTATION MODE when money implemented
-  return "market terminal (DONATION MODE)\nbuy/sell resources and upgrades"
+  return "market terminal\ntrade metal for raw materials"
 
 
 func can_perform():
-  return $mesh/market_resource_spawn.get_child_count() == 0 and (resource or player.resource or not player.plot)
+  if $mesh/market_raw_material_spawn.get_child_count() > 0:
+    return false
+
+  if raw_material:
+    return not player.raw_material and not player.resource and not player.plot
+
+  return player.resource == "metal"
 
 
-# TODO: still WIP on currency, and buying things
 func perform():
   if player.resource:
-    var market_resource_node = preload("res://objs/resources/market_resource.tscn").instantiate()
-    market_resource_node.get_node("resource").add_child(create_resource_node(player.resource))
-    $mesh/market_resource_spawn.add_child(market_resource_node)
-    market_resource_node.get_node("sell_timer").start()
+    var sell_node = preload("res://objs/resources/market_resource.tscn").instantiate()
+    sell_node.get_node("resource").add_child(Global.create_resource_node(player.resource))
+    $mesh/market_resource_spawn.add_child(sell_node)
+    sell_node.get_node("sell_timer").start()
     player.remove_resource()
+
+    var buy_node = preload("res://objs/raw_materials/market_raw_material.tscn").instantiate()
+    buy_node.get_node("raw_material").add_child(Global.create_raw_material_node(trade_raw_material))
+    $mesh/market_raw_material_spawn.add_child(buy_node)
+    buy_node.buy_start(trade_raw_material)
+
     $audio_store.play()
     levels_gui.add_energy(-ENERGY_USAGE_COST)
-  elif resource:
-    player.add_resource(resource)
-    resource = null
-    Global.remove_nodes($mesh/resource_spawn)
+  elif raw_material:
+    player.add_raw_material(raw_material)
+    raw_material = null
+    Global.remove_nodes($mesh/raw_material_spawn)
     $audio_take.play()
-  else:
-    # we're buying
-    # TODO: use a menu to determine what to buy, display prices, etc
-    var choice = "solar panel"
-    var market_resource_node = preload("res://objs/resources/market_resource.tscn").instantiate()
-    market_resource_node.get_node("resource").add_child(create_resource_node(choice))
-    $mesh/market_resource_spawn.add_child(market_resource_node)
-    market_resource_node.buy_start(choice)
-    player.remove_resource()
-    $audio_take.play()
-    levels_gui.add_energy(-ENERGY_USAGE_COST)
 
   Action.update_changes()
 
 
-func add_bought_resource(bought_resource):
-  resource = bought_resource
-  Global.remove_nodes($mesh/market_resource_spawn)
-  $mesh/resource_spawn.add_child(create_resource_node(resource))
+func add_bought_raw_material(bought_raw_material):
+  raw_material = bought_raw_material
+  Global.remove_nodes($mesh/market_raw_material_spawn)
+  $mesh/raw_material_spawn.add_child(Global.create_raw_material_node(raw_material))
   Action.update_changes()
-
-
-func create_resource_node(type):
-  var node = null
-
-  if type == "food":
-    node = preload("res://objs/resources/food.tscn")
-  elif type == "oxygen":
-    node = preload("res://objs/resources/oxygen.tscn")
-  elif type == "metal":
-    node = preload("res://objs/resources/metal.tscn")
-  elif type == "solar panel":
-    node = preload("res://objs/resources/solar_panel.tscn")
-
-  return node.instantiate()
 
 
 func update_changes():

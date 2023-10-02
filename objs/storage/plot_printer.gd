@@ -2,11 +2,11 @@ extends "res://objs/actionable.gd"
 
 @onready var player = get_node("/root/main/player")
 
-var resources = []
+var items = []
 var plot = null
 
 func stored():
-  return ", ".join(resources)
+  return ", ".join(items)
 
 
 func display_storage():
@@ -14,11 +14,11 @@ func display_storage():
 
 
 func get_action_name():
-  if player.resource:
-    return "input %s\n%s" % [player.resource, display_storage()]
+  if player.raw_material:
+    return "input %s\n%s" % [player.raw_material or player.resource, display_storage()]
 
-  if not resources.is_empty():
-    return "take %s\n%s" % [resources[-1], display_storage()]
+  if not items.is_empty():
+    return "take %s\n%s" % [items[-1], display_storage()]
 
   if plot:
     return "take %s" % plot
@@ -27,37 +27,28 @@ func get_action_name():
 
 
 func get_action_info():
-  return "plot printer\ninput resources to create plots\n%s" % display_storage()
+  return "plot printer\ninput resources and raw materials to create plots\n%s" % display_storage()
 
 
 func can_perform():
-  return not player.plot and (player.resource or not resources.is_empty())
+  return not player.plot and (player.resource or not items.is_empty())
 
 func perform():
-  if player.resource:
-    resources.append(player.resource)
-
-    var node = null
-
-    if player.resource == "food":
-      node = preload("res://objs/resources/food.tscn")
-    elif player.resource == "oxygen":
-      node = preload("res://objs/resources/oxygen.tscn")
-    elif player.resource == "metal":
-      node = preload("res://objs/resources/metal.tscn")
-    elif player.resource == "solar panel":
-      node = preload("res://objs/resources/solar_panel.tscn")
-
-    $mesh/resource_spawn.add_child(node.instantiate())
-    player.remove_resource()
+  if player.raw_material or player.resource:
+    items.append(player.raw_material or player.resource)
+    if player.raw_material:
+      player.remove_raw_material()
+    elif player.resource:
+      player.remove_resource()
     $audio_store.play()
-  elif not resources.is_empty():
-    var resource = resources.pop_back()
 
+    # TODO: check recipes here, timer to create plots
+    # TODO: check recipes here, timer to create plots
+    # TODO: check recipes here, timer to create plots
+
+  elif not items.is_empty():
+    var resource = items.pop_back()
     player.add_resource(resource)
-    var node = $mesh/resource_spawn.get_child(-1)
-    $mesh/resource_spawn.remove_child(node)
-    node.queue_free()
     $audio_take.play()
   elif plot:
     player.add_carry_plot(plot)

@@ -1,0 +1,53 @@
+[gd_scene load_steps=2 format=3 uid="uid://cgrn6y028ibfn"]
+
+[ext_resource type="PackedScene" uid="uid://b8pogjjmfalp3" path="res://assets/models/resources/seed/seed.gltf" id="1_mipfv"]
+
+[node name="seeds" type="Node3D"]
+
+[node name="mesh" type="Node3D" parent="."]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+
+[node name="seed" parent="mesh" instance=ExtResource("1_mipfv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0046052, 0, -0.0557396)
+
+[node name="seed2" parent="mesh" instance=ExtResource("1_mipfv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0301426, 0, 0)
+
+[node name="seed3" parent="mesh" instance=ExtResource("1_mipfv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0296361, 0, 0.0324175)
+
+[node name="seed4" parent="mesh" instance=ExtResource("1_mipfv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0046052, 0, 0.0160396)
+
+[node name="seed5" parent="mesh" instance=ExtResource("1_mipfv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0301426, 0, 0.0717792)
+
+[node name="seed6" parent="mesh" instance=ExtResource("1_mipfv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0296361, 0, 0.104197)
+
+[node name="seed7" parent="mesh" instance=ExtResource("1_mipfv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0827645, 0, 0.0160396)
+
+[node name="seed8" parent="mesh" instance=ExtResource("1_mipfv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0572271, 0, 0.0717792)
+
+[node name="seed9" parent="mesh" instance=ExtResource("1_mipfv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.117006, 0, 0.104197)
+
+[node name="seed10" parent="mesh" instance=ExtResource("1_mipfv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0827645, 0, -0.101262)
+
+[node name="seed11" parent="mesh" instance=ExtResource("1_mipfv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0572271, 0, -0.0455227)
+
+[node name="seed12" parent="mesh" instance=ExtResource("1_mipfv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.117006, 0, -0.0131052)
+
+[node name="seed13" parent="mesh" instance=ExtResource("1_mipfv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0466369, 0, -0.101262)
+
+[node name="seed14" parent="mesh" instance=ExtResource("1_mipfv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0721743, 0, -0.0455227)
+
+[node name="seed15" parent="mesh" instance=ExtResource("1_mipfv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0123957, 0, -0.0131052)

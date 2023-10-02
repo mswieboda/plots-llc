@@ -4,8 +4,7 @@ extends CharacterBody3D
 var DEBUG = true
 const SPEED = 6.9
 const FAKE_EXTRA_GRAVITY = 5
-const PLOT_TYPES = ['farm', 'drill', 'oxygen pump', 'solar panel']
-const RESOURCE_TYPES = ['food', 'oxygen', 'metal', 'solar panel']
+
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
@@ -13,6 +12,7 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 @onready var animation_player: AnimationPlayer = $rotated/mesh.get_node('AnimationPlayer') as AnimationPlayer
 var plot = null
 var resource = null
+var raw_material = null
 var dead = false
 
 func _ready():
@@ -57,7 +57,7 @@ func movement(delta):
   else:
     $audio_footsteps_player.stop()
 
-  animation_player.play(animation + "_holding" if plot or resource else animation)
+  animation_player.play(animation + "_holding" if plot or resource or raw_material else animation)
 
   rotate_player_mesh(direction)
   move_and_slide()
@@ -95,30 +95,18 @@ func unhandled_input_actions(event : InputEvent):
     if plot:
       switch_carry_plot()
     elif not resource:
-      add_carry_plot(PLOT_TYPES[0])
+      add_carry_plot(Global.PLOTS[0])
 
   if DEBUG and event.is_action_pressed("test_resource"):
     if resource:
       switch_resource()
     elif not plot:
-      add_resource(RESOURCE_TYPES[0])
+      add_resource(Global.RESOURCES[0])
 
 
 func add_carry_plot(type):
   plot = type
-
-  var carry_plot_scene = preload("res://objs/plots/carry_default.tscn")
-
-  if plot == "farm":
-    carry_plot_scene = preload("res://assets/models/plots/farm/plant.gltf")
-  elif plot == "drill":
-    carry_plot_scene = preload("res://assets/models/plots/drill/drill.gltf")
-  elif plot == "solar panel":
-    carry_plot_scene = preload("res://assets/models/plots/solar_panel/solar_module_joined.gltf")
-  elif plot == "oxygen pump":
-    carry_plot_scene = preload("res://assets/models/plots/o2/o2.gltf")
-
-  $rotated/carry_plot_spawn.add_child(carry_plot_scene.instantiate())
+  $rotated/carry_plot_spawn.add_child(Global.create_carry_plot_node(plot))
   Action.update_changes()
 
 
@@ -129,7 +117,7 @@ func remove_carry_plot():
 
 
 func switch_carry_plot():
-  var next_plot = next_thing(plot, PLOT_TYPES)
+  var next_plot = next_thing(plot, Global.PLOTS)
 
   remove_carry_plot()
 
@@ -153,20 +141,18 @@ func next_thing(thing: String, array: Array):
 func add_resource(type):
   resource = type
 
-  var node = null
+  $rotated/carry_resource_spawn.add_child(Global.create_resource_node(resource))
 
   if resource == "food":
-    node = preload("res://objs/resources/food.tscn")
     Action.add_action_least_priority(self)
-  elif resource == "oxygen":
-    node = preload("res://objs/resources/oxygen.tscn")
-  elif resource == "metal":
-    node = preload("res://objs/resources/metal.tscn")
-  elif resource == "solar panel":
-    node = preload("res://objs/resources/solar_panel.tscn")
 
-  if node:
-    $rotated/carry_resource_spawn.add_child(node.instantiate())
+  Action.update_changes()
+
+
+func add_raw_material(type):
+  raw_material = type
+
+  $rotated/carry_raw_material_spawn.add_child(Global.create_raw_material_node(raw_material))
 
   Action.update_changes()
 
@@ -177,8 +163,15 @@ func remove_resource():
   Action.update_changes()
 
 
+func remove_raw_material():
+  raw_material = null
+  Global.remove_nodes($rotated/carry_raw_material_spawn)
+  Action.update_changes()
+
+
+
 func switch_resource():
-  var next_resource = next_thing(resource, RESOURCE_TYPES)
+  var next_resource = next_thing(resource, Global.RESOURCES)
 
   remove_resource()
 

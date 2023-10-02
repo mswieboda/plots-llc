@@ -18,7 +18,10 @@ shape = SubResource("BoxShape3D_f3ppr")
 
 [node name="mesh" parent="." instance=ExtResource("2_voseh")]
 
-[node name="resource_spawn" type="Node3D" parent="mesh"]
+[node name="raw_material_spawn" type="Node3D" parent="mesh"]
+transform = Transform3D(-0.75, 0, 1.13247e-07, 0, 0.75, 0, -1.13247e-07, 0, -0.75, 0.025, 0.002, 0.425)
+
+[node name="market_raw_material_spawn" type="Node3D" parent="mesh"]
 transform = Transform3D(-0.75, 0, 1.13247e-07, 0, 0.75, 0, -1.13247e-07, 0, -0.75, 0.025, 0.002, 0.425)
 
 [node name="market_resource_spawn" type="Node3D" parent="mesh"]
