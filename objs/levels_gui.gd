@@ -12,7 +12,7 @@ const ENERGY_GENERATED = 0.35
 const POWER_RESUME_LEVEL = 1
 
 const OXYGEN_DRAIN = -0.1
-const FOOD_DRAIN = -0.19
+const FOOD_DRAIN = -0.17
 
 @onready var hbox = $margin/vbox/hbox
 @onready var objectives = $margin/vbox/objectives
