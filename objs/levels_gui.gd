@@ -6,8 +6,8 @@ var food = 100
 
 const WARNING_LEVEL = 25
 
-const ENERGY_COST_BASE = 0.05
-const ENERGY_COST_PLOT = 0.1
+const ENERGY_COST_BASE = 0.03
+const ENERGY_COST_PLOT = 0.05
 const ENERGY_GENERATED = 0.35
 const POWER_RESUME_LEVEL = 1
 
