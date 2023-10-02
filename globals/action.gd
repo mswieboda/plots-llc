@@ -1,20 +1,27 @@
 extends Node
 
-var action_nodes = []
+var actions = []
+
+
+func action():
+  if actions.is_empty():
+    return null
+
+  var actions_dup = actions.duplicate()
+  actions_dup.reverse()
+
+  for a in actions_dup:
+    if a and a["node"].has_method("can_perform") and a["node"].can_perform():
+      return a
+
+  return actions[-1]
 
 
 func action_node():
-  if action_nodes.is_empty():
+  if not action():
     return null
 
-  var nodes = action_nodes.duplicate()
-  nodes.reverse()
-
-  for n in nodes:
-    if n and n.has_method("can_perform") and n.can_perform():
-      return n
-
-  return action_nodes[-1]
+  return action()["node"]
 
 
 func is_action_node(n):
@@ -24,11 +31,16 @@ func is_action_node(n):
 
 
 func get_display() -> String:
-  var node = action_node()
+  var a = action()
+
+  if not a:
+    return " "
+
+  var node = a["node"]
 
   if can_perform():
     if node and node.has_method("get_action_name"):
-      return "press [E] to " + node.get_action_name()
+      return "press [" + a["display"] + "] to " + node.get_action_name()
 
   if node and node.has_method("get_action_info"):
     return node.get_action_info()
@@ -36,16 +48,25 @@ func get_display() -> String:
   return " "
 
 
-func add_action(n):
-  action_nodes.append(n)
+func add_action(n, input = "action", display = "E"):
+  actions.append({ "node": n, "input": input, "display": display })
   update_gui()
 
-func add_action_least_priority(n):
-  action_nodes.push_front(n)
+func add_action_least_priority(n, input = "action", display = "E"):
+  actions.push_front({ "node": n, "input": input, "display": display })
   update_gui()
 
 func remove_action(n):
-  action_nodes.erase(n)
+  if actions.is_empty():
+    return
+
+  var index = -1
+
+  for i in actions.size():
+    if actions[i]["node"] == n:
+      index = i
+
+  actions.remove_at(index)
   update_gui()
 
 func can_perform() -> bool:
