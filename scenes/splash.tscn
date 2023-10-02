@@ -34,7 +34,7 @@ offset_right = 676.0
 offset_bottom = 494.0
 color = Color(0, 0.462745, 0.592157, 1)
 
-[node name="TextEdit" type="TextEdit" parent="menu"]
+[node name="menu" type="Label" parent="menu"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -45,24 +45,38 @@ offset_right = -492.0
 offset_bottom = -170.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "		P			:		play
-		Q			:		quit"
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 1
+theme_override_constants/shadow_outline_size = 3
+text = "[P] play
+[Q] quit"
+horizontal_alignment = 1
 
-[node name="TextEdit2" type="TextEdit" parent="menu"]
+[node name="title" type="Label" parent="menu"]
 layout_mode = 0
 offset_left = 369.0
 offset_top = 43.0
 offset_right = 761.0
 offset_bottom = 134.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 1
+theme_override_constants/shadow_outline_size = 3
 theme_override_fonts/font = ExtResource("3_tmkh1")
 theme_override_font_sizes/font_size = 50
 text = "   PLOTS         LLC"
 
-[node name="TextEdit3" type="TextEdit" parent="menu"]
+[node name="subtitle" type="Label" parent="menu"]
+layout_mode = 0
 offset_left = 379.0
 offset_top = 134.0
 offset_right = 753.0
 offset_bottom = 189.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 1
+theme_override_constants/shadow_outline_size = 3
 theme_override_fonts/font = ExtResource("3_tmkh1")
 theme_override_font_sizes/font_size = 25
 text = "Limited Lawn Company"

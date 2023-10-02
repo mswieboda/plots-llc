@@ -79,7 +79,7 @@ offset_right = 688.0
 offset_bottom = 393.0
 color = Color(0, 0.462745, 0.592157, 1)
 
-[node name="TextEdit" type="TextEdit" parent="esc_menu"]
+[node name="menu" type="Label" parent="esc_menu"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -90,6 +90,11 @@ offset_right = -480.0
 offset_bottom = -272.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "		ESC		: 		close
-		Q			:		quit
-		R			:		restart"
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 1
+theme_override_constants/shadow_outline_size = 3
+text = "[ESC] close
+[R] restart
+[Q] quit"
+horizontal_alignment = 1
