@@ -78,10 +78,16 @@ func can_perform():
 func perform():
   if is_player_holding():
     items.append(player_holding())
+
+    var spawn = $mesh/item_0_spawn if items.size() == 1 else $mesh/item_1_spawn
+
     if player.raw_material:
+      spawn.add_child(Global.create_raw_material_node(player.raw_material))
       player.remove_raw_material()
     elif player.resource:
+      spawn.add_child(Global.create_resource_node(player.resource))
       player.remove_resource()
+
     $audio_store.play()
 
     is_valid = is_valid_recipe()
@@ -90,10 +96,17 @@ func perform():
       setup_printing()
   elif is_stored():
     var item = items.pop_back()
+
+    if items.size() == 0:
+      Global.remove_nodes($mesh/item_0_spawn)
+    else:
+      Global.remove_nodes($mesh/item_1_spawn)
+
     if Global.RESOURCES.has(item):
       player.add_resource(item)
     elif Global.RAW_MATERIALS.has(item):
       player.add_raw_material(item)
+
     $audio_take.play()
   elif plot:
     player.add_carry_plot(plot)
@@ -151,5 +164,7 @@ func _on_animation_finished(animation_name):
   plot = printing_plot
   printing_plot = null
   items.clear()
+  Global.remove_nodes($mesh/item_0_spawn)
+  Global.remove_nodes($mesh/item_1_spawn)
   $mesh/plot_spawn.add_child(Global.create_carry_plot_node(plot))
   Action.update_changes()
