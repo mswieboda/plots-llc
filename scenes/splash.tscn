@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://b0jqw68hwunw4"]
+[gd_scene load_steps=4 format=3 uid="uid://b0jqw68hwunw4"]
 
 [ext_resource type="Script" path="res://scenes/splash.gd" id="1_fv8lp"]
+[ext_resource type="Texture2D" uid="uid://x3voebuopyh1" path="res://scenes/splash.png" id="2_03a0w"]
+[ext_resource type="FontFile" uid="uid://v82guwx7ce4s" path="res://scenes/Monoton-Regular.ttf" id="3_tmkh1"]
 
 [node name="splash" type="Control"]
 layout_mode = 3
@@ -19,12 +21,17 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="Sprite2D" type="Sprite2D" parent="menu"]
+position = Vector2(573.5, 324.5)
+scale = Vector2(0.53778, 0.541459)
+texture = ExtResource("2_03a0w")
+
 [node name="ColorRect" type="ColorRect" parent="menu"]
 layout_mode = 0
-offset_left = 459.0
-offset_top = 254.0
-offset_right = 688.0
-offset_bottom = 354.0
+offset_left = 447.0
+offset_top = 394.0
+offset_right = 676.0
+offset_bottom = 494.0
 color = Color(0, 0.462745, 0.592157, 1)
 
 [node name="TextEdit" type="TextEdit" parent="menu"]
@@ -32,11 +39,30 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 477.0
-offset_top = 272.0
-offset_right = -480.0
-offset_bottom = -309.0
+offset_left = 465.0
+offset_top = 411.0
+offset_right = -492.0
+offset_bottom = -170.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "		P			:		play
 		Q			:		quit"
+
+[node name="TextEdit2" type="TextEdit" parent="menu"]
+layout_mode = 0
+offset_left = 379.0
+offset_top = 43.0
+offset_right = 753.0
+offset_bottom = 134.0
+theme_override_fonts/font = ExtResource("3_tmkh1")
+theme_override_font_sizes/font_size = 50
+text = "  SPACE         LLC"
+
+[node name="TextEdit3" type="TextEdit" parent="menu"]
+offset_left = 379.0
+offset_top = 134.0
+offset_right = 753.0
+offset_bottom = 189.0
+theme_override_fonts/font = ExtResource("3_tmkh1")
+theme_override_font_sizes/font_size = 25
+text = "Limited Lawn Company"

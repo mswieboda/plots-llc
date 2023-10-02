@@ -1,0 +1,83 @@
+[gd_scene load_steps=9 format=3 uid="uid://bs1d0woqnu0nu"]
+
+[ext_resource type="PackedScene" uid="uid://bqa20lrsf8uht" path="res://objs/rooms.tscn" id="1_bdwyq"]
+[ext_resource type="PackedScene" uid="uid://c7sefpnvmtyck" path="res://assets/models/level/outside_env.gltf" id="2_c4opg"]
+[ext_resource type="PackedScene" uid="uid://crajsrvs7tikn" path="res://assets/models/plots/farm/plant.gltf" id="3_5qru8"]
+[ext_resource type="PackedScene" uid="uid://b7e2la1vuy4ur" path="res://assets/models/plots/o2/o2.gltf" id="4_fbgsa"]
+[ext_resource type="PackedScene" uid="uid://5ppnuxr4kv4y" path="res://assets/models/plots/solar_panel/solar_module_joined.gltf" id="5_8i4cs"]
+[ext_resource type="PackedScene" uid="uid://cmiie1ec2li4r" path="res://objs/resources/food.tscn" id="6_yjshu"]
+[ext_resource type="PackedScene" uid="uid://bdhrqni1ksq2w" path="res://scenes/fake/fake_player.gltf" id="7_cqrhg"]
+[ext_resource type="PackedScene" uid="uid://csxlhk62ook26" path="res://assets/models/plots/drill/drill.gltf" id="8_1rlqo"]
+
+[node name="fake_scene" type="Node3D"]
+
+[node name="rooms" parent="." instance=ExtResource("1_bdwyq")]
+
+[node name="outside_env" parent="." instance=ExtResource("2_c4opg")]
+
+[node name="plant" parent="." instance=ExtResource("3_5qru8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.94724, -0.633771, 3.19758)
+
+[node name="plant2" parent="." instance=ExtResource("3_5qru8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0803862, -0.633771, 3.14262)
+
+[node name="plant3" parent="." instance=ExtResource("3_5qru8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.08039, -0.633771, 3.14262)
+
+[node name="o2" parent="." instance=ExtResource("4_fbgsa")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.08039, -0.633771, 0.14262)
+
+[node name="o3" parent="." instance=ExtResource("4_fbgsa")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0803862, -0.633771, 0.14262)
+
+[node name="o4" parent="." instance=ExtResource("4_fbgsa")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 2.91961, -0.633771, 0.14262)
+
+[node name="solar_module_joined" parent="." instance=ExtResource("5_8i4cs")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 2.94724, -0.633771, -3.00899)
+
+[node name="solar_module_joined2" parent="." instance=ExtResource("5_8i4cs")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.052762, -0.633771, -3.00899)
+
+[node name="solar_module_joined3" parent="." instance=ExtResource("5_8i4cs")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -3.05276, -0.633771, -3.00899)
+
+[node name="food" parent="." instance=ExtResource("6_yjshu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.94822, 2.23233, 3.20547)
+
+[node name="food2" parent="." instance=ExtResource("6_yjshu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0863631, 2.23233, 3.15228)
+
+[node name="food3" parent="." instance=ExtResource("6_yjshu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.07971, 2.23233, 3.15273)
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(-0.236957, 0, 0.97152, 0, 1, 0, -0.97152, 0, -0.236957, 8.47675, 1.10685, -1.82773)
+fov = 48.9641
+
+[node name="fake_player" parent="." instance=ExtResource("7_cqrhg")]
+transform = Transform3D(0.211064, 0, -0.101678, 0, 0.234279, 0, 0.101678, 0, 0.211064, 6.07419, 0, -1.77218)
+
+[node name="Skeleton3D" parent="fake_player/Armature" index="0"]
+bones/0/position = Vector3(9.9476e-14, 3.1, 0.1)
+bones/1/rotation = Quaternion(-0.475158, 0.518777, -0.444535, 0.554513)
+bones/4/position = Vector3(0, 3.1, 0.1)
+bones/7/rotation = Quaternion(-0.484224, 0.50242, 0.503419, 0.50958)
+bones/8/rotation = Quaternion(-0.675926, 0.295673, -0.00635151, 0.675027)
+bones/9/rotation = Quaternion(-0.0673715, -0.411204, 0.577566, 0.70199)
+bones/12/rotation = Quaternion(-0.342498, -0.402064, 0.130194, 0.8391)
+bones/14/rotation = Quaternion(-0.497608, -0.489048, -0.504861, 0.508266)
+bones/15/rotation = Quaternion(-0.647194, -0.180568, -0.132917, 0.728607)
+bones/16/rotation = Quaternion(-0.292385, -0.193691, -0.485192, 0.800989)
+bones/17/position = Vector3(-9.9476e-14, 3.1, 0.1)
+bones/18/rotation = Quaternion(-0.475157, -0.518777, 0.444535, 0.554513)
+bones/19/rotation = Quaternion(-0.00282854, 0.056008, 0.0231111, 0.998159)
+bones/20/rotation = Quaternion(0.0867364, 0.705996, -0.701781, 0.0393655)
+
+[node name="Cube" parent="fake_player/Armature/Skeleton3D" index="0"]
+transform = Transform3D(1, 0, -2.98023e-08, 0, 1, 0, 2.98023e-08, 0, 1, 0, 0, 0)
+
+[node name="drill" parent="fake_player" instance=ExtResource("8_1rlqo")]
+transform = Transform3D(1.23554, 0, -0.0482208, 0, 1.23648, 0, 0.0482208, 0, 1.23554, 0.00964546, 4.44271, 1.8296)
+
+[editable path="fake_player"]
