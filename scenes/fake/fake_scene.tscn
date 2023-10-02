@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://bs1d0woqnu0nu"]
 
 [ext_resource type="PackedScene" uid="uid://bqa20lrsf8uht" path="res://objs/rooms.tscn" id="1_bdwyq"]
-[ext_resource type="PackedScene" uid="uid://c7sefpnvmtyck" path="res://assets/models/level/outside_env.gltf" id="2_c4opg"]
+[ext_resource type="PackedScene" uid="uid://domy5xrfyvoki" path="res://assets/models/level/outside_env.gltf" id="2_c4opg"]
 [ext_resource type="PackedScene" uid="uid://crajsrvs7tikn" path="res://assets/models/plots/farm/plant.gltf" id="3_5qru8"]
 [ext_resource type="PackedScene" uid="uid://b7e2la1vuy4ur" path="res://assets/models/plots/o2/o2.gltf" id="4_fbgsa"]
 [ext_resource type="PackedScene" uid="uid://5ppnuxr4kv4y" path="res://assets/models/plots/solar_panel/solar_module_joined.gltf" id="5_8i4cs"]
