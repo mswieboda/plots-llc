@@ -9,6 +9,7 @@
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_3vq77"]
 
 [node name="player" type="CharacterBody3D"]
+process_mode = 3
 script = ExtResource("1_37ysd")
 
 [node name="collision" type="CollisionShape3D" parent="."]
@@ -89,6 +90,6 @@ offset_right = -480.0
 offset_bottom = -272.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "            ESC   :   close
-			Q		  :   quit
-			R		  :  reset"
+text = "		ESC		: 		close
+		Q			:		quit
+		R			:		restart"

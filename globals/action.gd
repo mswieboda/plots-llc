@@ -77,4 +77,5 @@ func update_changes():
 
 
 func update_gui():
-  action_label.text = get_display()
+  if action_label:
+    action_label.text = get_display()

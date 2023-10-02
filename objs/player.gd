@@ -89,6 +89,24 @@ func rotate_player_mesh(direction):
 
 
 func unhandled_input_actions(event : InputEvent):
+  if event.is_action_pressed("menu"):
+    if $esc_menu.visible:
+      get_tree().paused = false
+      $esc_menu.hide()
+    else:
+      get_tree().paused = true
+      $esc_menu.show()
+    return
+
+  if $esc_menu.visible:
+    if event.is_action_pressed("menu_quit"):
+      get_tree().paused = false
+      get_tree().quit()
+    elif event.is_action_pressed("menu_restart"):
+      get_tree().paused = false
+      get_tree().change_scene_to_file("res://scenes/splash.tscn")
+    return
+
   if event.is_action_pressed("action"):
     Action.perform()
 

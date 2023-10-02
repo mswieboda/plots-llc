@@ -1,0 +1,42 @@
+[gd_scene load_steps=2 format=3 uid="uid://b0jqw68hwunw4"]
+
+[ext_resource type="Script" path="res://scenes/splash.gd" id="1_fv8lp"]
+
+[node name="splash" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_fv8lp")
+
+[node name="menu" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="menu"]
+layout_mode = 0
+offset_left = 459.0
+offset_top = 254.0
+offset_right = 688.0
+offset_bottom = 354.0
+color = Color(0, 0.462745, 0.592157, 1)
+
+[node name="TextEdit" type="TextEdit" parent="menu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 477.0
+offset_top = 272.0
+offset_right = -480.0
+offset_bottom = -309.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "		P			:		play
+		Q			:		quit"
