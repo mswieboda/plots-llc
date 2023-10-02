@@ -10,17 +10,22 @@ const OXYGEN_INCREASE = 6
 
 func get_action_name():
   if player.resource:
-    return "inject %s\noxygen level: %s%%" % [TYPE, str(levels_gui.oxygen)]
+    return "inject %s" % TYPE
 
   return ""
 
 
 func get_action_info():
-  return "oxygen tank\ninject %s" % TYPE
+  var message = "oxygen tank\ninject %s" % TYPE
+
+  if Global.is_power_out:
+    message += " (NO POWER - can't inject)"
+
+  return message
 
 
 func can_perform():
-  return player.resource == TYPE
+  return not Global.is_power_out and player.resource == TYPE
 
 
 func perform():

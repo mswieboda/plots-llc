@@ -10,7 +10,6 @@ var plot = null
 var printing_plot = null
 var is_valid = false
 
-
 func _ready():
   $mesh/AnimationPlayer.connect("animation_finished", _on_animation_finished)
 
@@ -42,6 +41,9 @@ func display_storage():
   elif items.size() == 2 and not is_valid:
     extra = "\ninvalid combination"
 
+  if Global.is_power_out:
+    extra += " (NO POWER - can't print)"
+
   return "inputed: %s%s" % [stored(), extra]
 
 
@@ -63,6 +65,9 @@ func get_action_info():
 
 
 func can_perform():
+  if Global.is_power_out:
+    return false
+
   if is_player_holding() and not plot:
     return items.size() < 2
 
@@ -82,7 +87,7 @@ func perform():
     is_valid = is_valid_recipe()
 
     if is_valid:
-      start_printing()
+      setup_printing()
   elif is_stored():
     var item = items.pop_back()
     if Global.RESOURCES.has(item):
@@ -103,7 +108,7 @@ func is_valid_recipe():
   return items.has('metal') and items.size() == 2
 
 
-func start_printing():
+func setup_printing():
   printing_plot = null
 
   if items.has('seeds'):
@@ -116,9 +121,14 @@ func start_printing():
     printing_plot = 'drill'
 
   if printing_plot:
-    levels_gui.add_energy(-ENERGY_USAGE_COST)
-    $mesh/AnimationPlayer.play("print")
-    $audio_printing.play()
+    start_printing()
+
+
+func start_printing():
+  levels_gui.add_energy(-ENERGY_USAGE_COST)
+  $mesh/AnimationPlayer.play("print")
+  $audio_printing.play()
+
 
 func update_changes():
   pass

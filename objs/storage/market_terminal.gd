@@ -42,11 +42,16 @@ func get_action_name():
   return ""
 
 func get_action_info():
-  return "market terminal\ntrade metal for raw materials"
+  var message = "market terminal\ntrade metal for raw materials"
+
+  if Global.is_power_out:
+    message += " (NO POWER - can't trade)"
+
+  return message
 
 
 func can_perform():
-  if $mesh/market_raw_material_spawn.get_child_count() > 0:
+  if Global.is_power_out or $mesh/market_raw_material_spawn.get_child_count() > 0:
     return false
 
   if raw_material:

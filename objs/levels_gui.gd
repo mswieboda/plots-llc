@@ -1,6 +1,6 @@
 extends CanvasLayer
 
-var energy = 100
+var energy = 1
 var oxygen = 100
 var food = 100
 
@@ -9,6 +9,7 @@ const WARNING_LEVEL = 25
 const ENERGY_COST_BASE = 0.05
 const ENERGY_COST_PLOT = 0.1
 const ENERGY_GENERATED = 0.35
+const POWER_RESUME_LEVEL = 1
 
 const OXYGEN_DRAIN = -0.1
 const FOOD_DRAIN = -0.19
@@ -17,6 +18,7 @@ const FOOD_DRAIN = -0.19
 @onready var plots = get_node('/root/main/rooms/plots')
 @onready var player = get_node('/root/main/player')
 @onready var sun = get_node('/root/main/sun')
+@onready var living_room = get_node('/root/main/rooms/living_room')
 
 var is_game_over = false
 var end_game_reason = ""
@@ -108,8 +110,10 @@ func add_energy(value):
   update_label('energy', energy)
 
   if energy <= 0 and not Global.is_power_out:
+    print('>>> add_energy pre power_shutdown ', energy, ' ', Global.is_power_out)
     power_shutdown()
-  elif Global.is_power_out and energy > 0:
+  elif Global.is_power_out and energy > POWER_RESUME_LEVEL:
+    print('>>> add_energy pre power_resume ', energy, ' ', Global.is_power_out)
     power_resume()
 
 func add_oxygen(value):
@@ -160,12 +164,14 @@ func power_shutdown():
   sun.light_energy = 0.03
   Global.is_power_out = true
   stop_plots()
+  Action.update_changes()
 
 
 func power_resume():
   sun.light_energy = 1
   Global.is_power_out = false
   start_plots()
+  Action.update_changes()
 
 
 func stop_plots():
