@@ -25,7 +25,7 @@ func can_perform():
   if player.resource:
     return false
 
-  if player.plot:
+  if player.plot and not resource:
     return player.plot != type
 
   return !!type
