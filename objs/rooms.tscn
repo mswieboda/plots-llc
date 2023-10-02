@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://bqa20lrsf8uht"]
+[gd_scene load_steps=19 format=3 uid="uid://bqa20lrsf8uht"]
 
 [ext_resource type="Script" path="res://objs/rooms.gd" id="1_eghmx"]
 [ext_resource type="PackedScene" uid="uid://bhdlu7tayhgxr" path="res://assets/models/level/Harvest_Room.dae" id="1_n8tqn"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://da4cj1n5aie0v" path="res://objs/storage/plot_printer.tscn" id="7_dfh06"]
 [ext_resource type="PackedScene" uid="uid://c4nwgu8low3ib" path="res://objs/storage/market_terminal.tscn" id="8_qvbfe"]
 [ext_resource type="PackedScene" uid="uid://8v8ui7r1d30f" path="res://objs/storage/trash.tscn" id="9_mroqi"]
+[ext_resource type="PackedScene" uid="uid://cncq85uqx5fqq" path="res://objs/storage/delivery.tscn" id="10_cs48g"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_uu57r"]
 size = Vector3(10, 0.1, 10)
@@ -79,7 +80,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.5, 0.8, 5.1)
 shape = SubResource("BoxShape3D_e48si")
 
 [node name="oxygen_tank" parent="living_room" instance=ExtResource("5_4kghu")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.06738, 0.8, -4.3)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.36491, 0.8, -4.3)
 
 [node name="food_store" parent="living_room" instance=ExtResource("4_n028q")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.25, -3.68595, -4.3)
@@ -95,3 +96,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.75, 0.8, -4.3)
 
 [node name="trash" parent="living_room" instance=ExtResource("9_mroqi")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 9.25, 0.8, 0.965824)
+
+[node name="delivery" parent="living_room" instance=ExtResource("10_cs48g")]
