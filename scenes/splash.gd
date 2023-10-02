@@ -1,6 +1,10 @@
 extends Control
 
 
+func _ready():
+  Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
+
+
 func _unhandled_input(event):
   if event.is_action_pressed("menu_quit"):
     get_tree().quit()
