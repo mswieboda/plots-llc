@@ -25,7 +25,7 @@ func cycle_trade_selection():
 
 
 func display_instructions():
-  return "Press [TAB] to cycle through resources:\n%s" % display_trade_raw_materials()
+  return "press [TAB] to cycle:\n%s" % display_trade_raw_materials()
 
 
 func display_trade_raw_materials():
