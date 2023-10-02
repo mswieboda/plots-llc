@@ -1,7 +1,7 @@
 extends CharacterBody3D
 
 @export
-var DEBUG = true
+var DEBUG = false
 const SPEED = 6.9
 const FAKE_EXTRA_GRAVITY = 5
 const FOOD_INCREASE = 7
