@@ -19,7 +19,6 @@ const FOOD_DRAIN = -5
 @onready var sun = get_node('/root/main/sun')
 
 var is_game_over = false
-var is_power_shutdown = false
 var end_game_reason = ""
 var start_time = 0
 var end_time = 0
@@ -98,10 +97,9 @@ func add_energy(value):
   energy = clamp(energy, 0, 100)
   update_label('energy', energy)
 
-  if energy <= 0 and not is_power_shutdown:
-    $audio_power_shutdown.play()
+  if energy <= 0 and not Global.is_power_out:
     power_shutdown()
-  elif is_power_shutdown and energy > 0:
+  elif Global.is_power_out and energy > 0:
     power_resume()
 
 func add_oxygen(value):
@@ -147,10 +145,40 @@ func _on_game_over_timer_timeout():
 
 
 func power_shutdown():
-  is_power_shutdown = true
+  $audio_power_shutdown.play()
   sun.light_energy = 0.03
+  Global.is_power_out = true
+  stop_plots()
 
 
 func power_resume():
-  is_power_shutdown = false
   sun.light_energy = 1
+  Global.is_power_out = false
+  start_plots()
+
+
+func stop_plots():
+  for plot in plots.get_children():
+    if plot.type == "farm":
+      plot.get_node('mesh_spawn/mesh/AnimationPlayer').pause()
+      plot.get_node('plant_grow_timer').stop()
+    elif plot.type == "drill":
+      plot.get_node('mesh_spawn/mesh/AnimationPlayer').pause()
+      plot.get_node('metal_spawn_timer').stop()
+      plot.get_node('plot_audio').stream_paused = true
+    elif plot.type == "oxygen pump":
+      plot.get_node('mesh_spawn/mesh/AnimationPlayer').pause()
+      plot.get_node('oxygen_spawn_timer').stop()
+
+func start_plots():
+  for plot in plots.get_children():
+    if plot.type == "farm":
+      plot.get_node('mesh_spawn/mesh/AnimationPlayer').play()
+      plot.get_node('plant_grow_timer').start()
+    elif plot.type == "drill":
+      plot.get_node('mesh_spawn/mesh/AnimationPlayer').play()
+      plot.get_node('metal_spawn_timer').start()
+      plot.get_node('plot_audio').stream_paused = false
+    elif plot.type == "oxygen pump":
+      plot.get_node('mesh_spawn/mesh/AnimationPlayer').play()
+      plot.get_node('oxygen_spawn_timer').start()

@@ -4,6 +4,8 @@ const RAW_MATERIALS = ['seeds', 'liquid oxygen', 'solar disk']
 const PLOTS = ['farm', 'drill', 'oxygen pump', 'solar panel']
 const RESOURCES = ['food', 'oxygen', 'metal']
 
+var is_power_out = false
+
 
 func remove_nodes(parent: Node3D):
   for node in parent.get_children():

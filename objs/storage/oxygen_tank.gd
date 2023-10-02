@@ -2,7 +2,7 @@ extends "res://objs/actionable.gd"
 
 const TYPE: String = "oxygen"
 const ENERGY_USAGE_COST = 1
-const OXYGEN_INCREASE = 7
+const OXYGEN_INCREASE = 6
 
 @onready var player = get_node("/root/main/player")
 @onready var levels_gui = get_node("/root/main/levels_gui")

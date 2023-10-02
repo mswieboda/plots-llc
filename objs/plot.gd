@@ -87,11 +87,17 @@ func update_mesh_type():
     animation_player.play("drill_rotate")
     var animation = animation_player.get_animation(animation_player.current_animation)
     animation.loop_mode = Animation.LOOP_LINEAR
+
+    if Global.is_power_out:
+      animation_player.pause()
   elif type == "oxygen pump":
     var animation_player = node.find_child("AnimationPlayer")
     animation_player.play("pump_move")
     var animation = animation_player.get_animation(animation_player.current_animation)
     animation.loop_mode = Animation.LOOP_LINEAR
+
+    if Global.is_power_out:
+      animation_player.pause()
 
   $mesh_spawn.add_child(node)
 
@@ -118,14 +124,18 @@ func play_plot_added():
   elif type == "drill":
     $plot_added.stream = preload("res://assets/sounds/drill_install.mp3")
     $plot_added.play()
-    $plot_audio.stream = preload("res://assets/sounds/drill_ongoing.mp3")
-    $plot_audio.volume_db = -19
-    $plot_audio.play()
-    $metal_spawn_timer.start()
+
+    if not Global.is_power_out:
+      $plot_audio.stream = preload("res://assets/sounds/drill_ongoing.mp3")
+      $plot_audio.volume_db = -19
+      $plot_audio.play()
+      $metal_spawn_timer.start()
   elif type == "oxygen pump":
     $plot_added.stream = preload("res://assets/sounds/oxygen_install.mp3")
     $plot_added.play()
-    $oxygen_spawn_timer.start()
+
+    if not Global.is_power_out:
+      $oxygen_spawn_timer.start()
 
 
 func grab_resource():
@@ -146,8 +156,9 @@ func grab_resource():
 
 
 func _on_oxygen_spawn_timer_timeout():
-  if $oxygen_spawn.has_node('resource'):
+  if Global.is_power_out or resource:
     $oxygen_spawn_timer.stop()
+    return
 
   var node = preload("res://objs/resources/oxygen.tscn").instantiate()
   node.name = "resource"
@@ -156,6 +167,7 @@ func _on_oxygen_spawn_timer_timeout():
   $resource_produced.volume_db = -3
   $resource_produced.play()
   resource = "oxygen"
+  $metal_spawn_timer.start()
 
 
 func start_plant_animation(node):
@@ -163,24 +175,25 @@ func start_plant_animation(node):
   animation_player.play("plant_grow_1")
   animation_player.advance(0.1)
   animation_player.pause()
-  $plant_grow_timer.start()
+
+  if not Global.is_power_out:
+    $plant_grow_timer.start()
 
 
 func _on_plant_grow_timer_timeout():
+  if Global.is_power_out or resource:
+    $plant_grow_timer.start()
+    return
+
   var animation_player = $mesh_spawn/mesh/AnimationPlayer
 
   if animation_player.assigned_animation == 'plant_grow_1' and animation_player.current_animation_position == 0.1:
     animation_player.play('plant_grow_1')
-    $plant_grow_timer.start()
   elif animation_player.assigned_animation == 'plant_grow_1':
     animation_player.play('plant_grow_2')
-    $plant_grow_timer.start()
   elif animation_player.assigned_animation == 'plant_grow_2':
     animation_player.play('plant_grow_3')
-    $plant_grow_timer.start()
   elif animation_player.assigned_animation == 'plant_grow_3':
-    $plant_grow_timer.stop()
-
     var node = preload("res://objs/resources/food.tscn").instantiate()
     node.name = "resource"
     $food_spawn.add_child(node)
@@ -189,10 +202,13 @@ func _on_plant_grow_timer_timeout():
     $resource_produced.play()
     resource = "food"
 
+  $plant_grow_timer.start()
+
 
 func _on_metal_spawn_timer_timeout():
-  if $metal_spawn.has_node('resource'):
+  if Global.is_power_out or resource:
     $metal_spawn_timer.stop()
+    return
 
   var node = preload("res://objs/resources/metal.tscn").instantiate()
   node.name = "resource"
@@ -201,3 +217,4 @@ func _on_metal_spawn_timer_timeout():
   $resource_produced.volume_db = -3
   $resource_produced.play()
   resource = "metal"
+  $metal_spawn_timer.start()
