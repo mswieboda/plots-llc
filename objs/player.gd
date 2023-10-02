@@ -4,7 +4,7 @@ extends CharacterBody3D
 var DEBUG = true
 const SPEED = 6.9
 const FAKE_EXTRA_GRAVITY = 5
-
+const FOOD_INCREASE = 7
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
@@ -216,7 +216,7 @@ func perform():
   $audio_eating_player.play()
 
   remove_resource()
-  get_node('/root/main/levels_gui').add_food(5)
+  get_node('/root/main/levels_gui').add_food(FOOD_INCREASE)
   Action.remove_action(self)
   Action.update_changes()
 
