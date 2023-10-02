@@ -11,7 +11,7 @@ const ENERGY_COST_PLOT = 0.1
 const ENERGY_GENERATED = 0.35
 
 const OXYGEN_DRAIN = -0.1
-const FOOD_DRAIN = -5
+const FOOD_DRAIN = -0.19
 
 @onready var hbox = $margin/hbox
 @onready var plots = get_node('/root/main/rooms/plots')
