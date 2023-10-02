@@ -7,12 +7,12 @@ var food = 100
 const WARNING_LEVEL = 25
 
 const ENERGY_COST_BASE = 0.05
-const ENERGY_COST_PLOT = 0.07
-const ENERGY_GENERATED = 0.35
+const ENERGY_COST_PLOT = 0.1
+const ENERGY_GENERATED = 0.36
 const POWER_RESUME_LEVEL = 1
 
 const OXYGEN_DRAIN = -0.1
-const FOOD_DRAIN = -0.17
+const FOOD_DRAIN = -0.15
 
 @onready var hbox = $margin/vbox/hbox
 @onready var objectives = $margin/vbox/objectives
