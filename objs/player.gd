@@ -104,7 +104,9 @@ func unhandled_input_actions(event : InputEvent):
       get_tree().quit()
     elif event.is_action_pressed("menu_restart"):
       get_tree().paused = false
+      Action.actions.clear()
       get_tree().change_scene_to_file("res://scenes/splash.tscn")
+      get_tree().unload_current_scene()
     return
 
   if Action.action() and event.is_action_pressed(Action.action()["input"]):

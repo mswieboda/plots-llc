@@ -63,7 +63,7 @@ func get_action_info():
 
 
 func can_perform():
-  if is_player_holding():
+  if is_player_holding() and not plot:
     return items.size() < 2
 
   var is_player_holding_nothing = not player.plot and not player.resource and not player.raw_material
