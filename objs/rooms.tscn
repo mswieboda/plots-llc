@@ -5,10 +5,10 @@
 [ext_resource type="PackedScene" uid="uid://pomba5k16vdf" path="res://assets/models/level/living_room.gltf" id="3_grxth"]
 [ext_resource type="PackedScene" uid="uid://ktn3sxtb2p1b" path="res://objs/storage/food_store.tscn" id="4_n028q"]
 [ext_resource type="PackedScene" uid="uid://cdjjj4oedxaka" path="res://objs/storage/oxygen_tank.tscn" id="5_4kghu"]
-[ext_resource type="PackedScene" uid="uid://b6357ppi5j416" path="res://objs/storage/storage.tscn" id="6_virs4"]
+[ext_resource type="PackedScene" path="res://objs/storage/storage.tscn" id="6_virs4"]
 [ext_resource type="PackedScene" uid="uid://da4cj1n5aie0v" path="res://objs/storage/plot_printer.tscn" id="7_dfh06"]
 [ext_resource type="PackedScene" uid="uid://c4nwgu8low3ib" path="res://objs/storage/market_terminal.tscn" id="8_qvbfe"]
-[ext_resource type="PackedScene" uid="uid://8v8ui7r1d30f" path="res://objs/storage/trash.tscn" id="9_mroqi"]
+[ext_resource type="PackedScene" path="res://objs/storage/trash.tscn" id="9_mroqi"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_uu57r"]
 size = Vector3(10, 0.1, 10)
