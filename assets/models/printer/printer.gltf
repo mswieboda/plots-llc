@@ -282,9 +282,16 @@
 	],
 	"materials":[
 		{
+			"alphaMode":"BLEND",
 			"doubleSided":true,
 			"name":"printer_base",
 			"pbrMetallicRoughness":{
+				"baseColorFactor":[
+					1,
+					1,
+					1,
+					0.5
+				],
 				"baseColorTexture":{
 					"index":0
 				},
