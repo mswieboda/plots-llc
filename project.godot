@@ -22,7 +22,7 @@ Global="*res://globals/global.gd"
 
 [display]
 
-window/size/mode=2
+window/size/mode=4
 window/stretch/mode="canvas_items"
 
 [filesystem]
