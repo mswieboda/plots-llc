@@ -22,6 +22,7 @@ const FOOD_DRAIN = -0.19
 @onready var living_room = get_node('/root/main/rooms/living_room')
 
 var is_game_over = false
+var is_game_won = false
 var end_game_reason = ""
 var start_time = 0
 var end_time = 0
@@ -46,6 +47,11 @@ func update_gui_objectives():
   message += "- metals delivered: "
   message += str(Global.delivered_metals) + "/" + str(Global.delivered_metals_objective)
   objectives.text = message
+
+  if not is_game_won and Global.delivered_metals >= Global.delivered_metals_objective:
+    is_game_won = true
+    stop_game()
+    $game_won_timer.start()
 
 
 func update_gui():
@@ -119,10 +125,8 @@ func add_energy(value):
   update_label('energy', energy)
 
   if energy <= 0 and not Global.is_power_out:
-    print('>>> add_energy pre power_shutdown ', energy, ' ', Global.is_power_out)
     power_shutdown()
   elif Global.is_power_out and energy > POWER_RESUME_LEVEL:
-    print('>>> add_energy pre power_resume ', energy, ' ', Global.is_power_out)
     power_resume()
 
 func add_oxygen(value):
@@ -146,12 +150,14 @@ func add_food(value):
     end_game()
 
 
-func end_game():
+func stop_game():
   end_time = Time.get_ticks_msec()
   $game_over_timer.start()
   $music_stressed.stop()
   $music_chill.stop()
 
+func end_game():
+  stop_game()
   is_game_over = true
   player.die()
 
@@ -162,6 +168,7 @@ func _on_game_over_timer_timeout():
   var delivered = "Metal delivered: " + str(Global.delivered_metals) + "/" + str(Global.delivered_metals_objective)
   var message = "%s\n%s\n%s" % [reason, lasted, delivered]
 
+  $game_over_menu/vbox/title.text = "Game Over!"
   $game_over_menu/vbox/message.text = message
   $game_over_menu.show()
 
@@ -206,3 +213,14 @@ func start_plots():
     elif plot.type == "O2 pump":
       plot.get_node('mesh_spawn/mesh/AnimationPlayer').play()
       plot.get_node('oxygen_spawn_timer').start()
+
+
+func _on_game_won_timer_timeout():
+  var reason = "Congrats, objectives completed sustainably."
+  var lasted = "Finished in: %.2f min" % ((end_time - start_time) / 1000.0 / 60.0)
+  var delivered = "Metal delivered: " + str(Global.delivered_metals) + "/" + str(Global.delivered_metals_objective)
+  var message = "%s\n%s\n%s" % [reason, lasted, delivered]
+
+  $game_over_menu/vbox/title.text = "You Won!"
+  $game_over_menu/vbox/message.text = message
+  $game_over_menu.show()
