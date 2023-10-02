@@ -39,9 +39,11 @@ func perform():
     type = player.plot
     play_plot_added()
     player.remove_carry_plot()
+    update_mesh_type()
   elif type:
     player.add_carry_plot(type)
     remove_plot()
+    update_mesh_type()
 
 
 func remove_plot():
@@ -54,7 +56,6 @@ func remove_plot():
 
 
 func update_changes():
-  update_mesh_type()
   update_actionable_material()
 
 
