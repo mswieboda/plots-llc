@@ -1,6 +1,6 @@
 extends "res://objs/actionable.gd"
 
-const ENERGY_USAGE_COST = 5
+const ENERGY_USAGE_COST = 3
 
 @onready var player = get_node("/root/main/player")
 @onready var levels_gui = get_node("/root/main/levels_gui")
