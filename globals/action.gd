@@ -25,14 +25,14 @@ func action_node():
 
 
 func is_action_node(n, input = "action"):
-  var action = action()
+  var a = action()
 
-  if not action:
+  if not a:
     return false
 
-  var node = action["node"]
+  var node = a["node"]
 
-  return node and node.name == n.name and action["input"] == input
+  return node and node.name == n.name and a["input"] == input
 
 
 func get_display() -> String:
