@@ -1,6 +1,6 @@
 extends CanvasLayer
 
-var energy = 1
+var energy = 100
 var oxygen = 100
 var food = 100
 
