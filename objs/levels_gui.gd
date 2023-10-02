@@ -14,7 +14,8 @@ const POWER_RESUME_LEVEL = 1
 const OXYGEN_DRAIN = -0.1
 const FOOD_DRAIN = -0.19
 
-@onready var hbox = $margin/hbox
+@onready var hbox = $margin/vbox/hbox
+@onready var objectives = $margin/vbox/objectives
 @onready var plots = get_node('/root/main/rooms/plots')
 @onready var player = get_node('/root/main/player')
 @onready var sun = get_node('/root/main/sun')
@@ -40,7 +41,15 @@ func _unhandled_input(event):
       get_tree().unload_current_scene()
 
 
+func update_gui_objectives():
+  var message = "Objectives:\n"
+  message += "- metals delivered: "
+  message += str(Global.delivered_metals) + "/" + str(Global.delivered_metals_objective)
+  objectives.text = message
+
+
 func update_gui():
+  update_gui_objectives()
   update_label('energy', energy)
   update_label('oxygen', oxygen)
   update_label('food', food)
@@ -132,7 +141,6 @@ func add_food(value):
   update_label('food', food)
 
   if food <= 0 and not is_game_over:
-    # TODO: audio death sound
     $audio_starvation.play()
     end_game_reason = "starved"
     end_game()
@@ -151,8 +159,7 @@ func end_game():
 func _on_game_over_timer_timeout():
   var reason = "Oh no, you %s and died." % end_game_reason
   var lasted = "Lasted: %.2f min" % ((end_time - start_time) / 1000.0 / 60.0)
-#  var delivered = "Metal delivered: %d" % 9
-  var delivered = ""
+  var delivered = "Metal delivered: " + str(Global.delivered_metals) + "/" + str(Global.delivered_metals_objective)
   var message = "%s\n%s\n%s" % [reason, lasted, delivered]
 
   $game_over_menu/vbox/message.text = message

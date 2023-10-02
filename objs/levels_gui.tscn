@@ -1,6 +1,7 @@
-[gd_scene load_steps=10 format=3 uid="uid://khk0o0agsd6w"]
+[gd_scene load_steps=11 format=3 uid="uid://khk0o0agsd6w"]
 
 [ext_resource type="Script" path="res://objs/levels_gui.gd" id="1_cgp06"]
+[ext_resource type="FontFile" uid="uid://o6iltpv0mnpf" path="res://assets/fonts/exo/Exo-SemiBold.ttf" id="2_ky4dl"]
 [ext_resource type="AudioStream" uid="uid://mqefo4s4jeoi" path="res://assets/music/chill.mp3" id="2_wome5"]
 [ext_resource type="AudioStream" uid="uid://d440vgxge423" path="res://assets/music/stressed.mp3" id="3_4kmj2"]
 [ext_resource type="AudioStream" uid="uid://tdttf0as3d42" path="res://assets/sounds/gasping.mp3" id="4_bh5dg"]
@@ -42,10 +43,22 @@ grow_vertical = 2
 theme_override_constants/margin_left = 8
 theme_override_constants/margin_top = 8
 
-[node name="hbox" type="HBoxContainer" parent="margin"]
+[node name="vbox" type="VBoxContainer" parent="margin"]
 layout_mode = 2
 
-[node name="energy" type="ProgressBar" parent="margin/hbox"]
+[node name="objectives" type="Label" parent="margin/vbox"]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 1
+theme_override_constants/shadow_outline_size = 3
+theme_override_fonts/font = ExtResource("2_ky4dl")
+theme_override_font_sizes/font_size = 12
+
+[node name="hbox" type="HBoxContainer" parent="margin/vbox"]
+layout_mode = 2
+
+[node name="energy" type="ProgressBar" parent="margin/vbox/hbox"]
 custom_minimum_size = Vector2(16, 300)
 layout_mode = 2
 theme_override_styles/fill = SubResource("StyleBoxFlat_q1ly6")
@@ -53,7 +66,7 @@ value = 100.0
 fill_mode = 3
 show_percentage = false
 
-[node name="oxygen" type="ProgressBar" parent="margin/hbox"]
+[node name="oxygen" type="ProgressBar" parent="margin/vbox/hbox"]
 custom_minimum_size = Vector2(16, 300)
 layout_mode = 2
 theme_override_styles/fill = SubResource("StyleBoxFlat_2808i")
@@ -61,7 +74,7 @@ value = 100.0
 fill_mode = 3
 show_percentage = false
 
-[node name="food" type="ProgressBar" parent="margin/hbox"]
+[node name="food" type="ProgressBar" parent="margin/vbox/hbox"]
 custom_minimum_size = Vector2(16, 300)
 layout_mode = 2
 theme_override_styles/fill = SubResource("StyleBoxFlat_fnq3b")

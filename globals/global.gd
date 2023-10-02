@@ -5,6 +5,8 @@ const PLOTS = ['farm', 'drill', 'O2 pump', 'solar panel']
 const RESOURCES = ['food', 'O2 tank', 'metal']
 
 var is_power_out = false
+var delivered_metals = 0
+var delivered_metals_objective = 10
 
 
 func remove_nodes(parent: Node3D):

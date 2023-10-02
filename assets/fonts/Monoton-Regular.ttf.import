@@ -3,12 +3,12 @@
 importer="font_data_dynamic"
 type="FontFile"
 uid="uid://v82guwx7ce4s"
-path="res://.godot/imported/Monoton-Regular.ttf-a0bb35ca5c1f073178c21a83daa3594e.fontdata"
+path="res://.godot/imported/Monoton-Regular.ttf-278d291e4d1e7855f135fa3a92f96a5e.fontdata"
 
 [deps]
 
-source_file="res://scenes/Monoton-Regular.ttf"
-dest_files=["res://.godot/imported/Monoton-Regular.ttf-a0bb35ca5c1f073178c21a83daa3594e.fontdata"]
+source_file="res://assets/fonts/Monoton-Regular.ttf"
+dest_files=["res://.godot/imported/Monoton-Regular.ttf-278d291e4d1e7855f135fa3a92f96a5e.fontdata"]
 
 [params]
 

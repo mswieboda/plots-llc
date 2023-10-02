@@ -38,6 +38,8 @@ func perform():
 
     $audio_trade_made.play()
     levels_gui.add_energy(-ENERGY_USAGE_COST)
+    Global.delivered_metals += 1
+    levels_gui.update_gui_objectives()
 
   Action.update_changes()
 

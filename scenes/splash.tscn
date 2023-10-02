@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://b0jqw68hwunw4"]
+[gd_scene load_steps=5 format=3 uid="uid://b0jqw68hwunw4"]
 
 [ext_resource type="Script" path="res://scenes/splash.gd" id="1_fv8lp"]
 [ext_resource type="Texture2D" uid="uid://x3voebuopyh1" path="res://scenes/splash.png" id="2_03a0w"]
-[ext_resource type="FontFile" uid="uid://v82guwx7ce4s" path="res://scenes/Monoton-Regular.ttf" id="3_tmkh1"]
+[ext_resource type="FontFile" uid="uid://o6iltpv0mnpf" path="res://assets/fonts/exo/Exo-SemiBold.ttf" id="3_6kar3"]
+[ext_resource type="FontFile" uid="uid://v82guwx7ce4s" path="res://assets/fonts/Monoton-Regular.ttf" id="4_6jdit"]
 
 [node name="splash" type="Control"]
 layout_mode = 3
@@ -49,6 +50,7 @@ theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 1
 theme_override_constants/shadow_outline_size = 3
+theme_override_fonts/font = ExtResource("3_6kar3")
 text = "[P] play
 [Q] quit"
 horizontal_alignment = 1
@@ -63,7 +65,7 @@ theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 1
 theme_override_constants/shadow_outline_size = 3
-theme_override_fonts/font = ExtResource("3_tmkh1")
+theme_override_fonts/font = ExtResource("4_6jdit")
 theme_override_font_sizes/font_size = 50
 text = "   PLOTS         LLC"
 
@@ -77,6 +79,6 @@ theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 1
 theme_override_constants/shadow_outline_size = 3
-theme_override_fonts/font = ExtResource("3_tmkh1")
+theme_override_fonts/font = ExtResource("4_6jdit")
 theme_override_font_sizes/font_size = 25
 text = "Limited Lawn Company"
