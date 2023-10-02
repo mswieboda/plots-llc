@@ -5,7 +5,7 @@ const ENERGY_USAGE_COST = 5
 @onready var player = get_node("/root/main/player")
 @onready var levels_gui = get_node("/root/main/levels_gui")
 var raw_material = null
-var trade_raw_material = "seeds"
+var trade_raw_material = "solar disk"
 
 
 func _unhandled_input(event):

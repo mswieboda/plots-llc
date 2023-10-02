@@ -1,6 +1,6 @@
 extends Node
 
-const RAW_MATERIALS = ['seeds', 'liquid O2', 'solar disk']
+const RAW_MATERIALS = ['solar disk', 'seeds', 'liquid O2']
 const PLOTS = ['farm', 'drill', 'O2 pump', 'solar panel']
 const RESOURCES = ['food', 'O2 tank', 'metal']
 
