@@ -17,6 +17,7 @@ var dead = false
 
 func _ready():
   animation_player.play("idle")
+  add_carry_plot("drill")
 
 
 func _physics_process(delta):

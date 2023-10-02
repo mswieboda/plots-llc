@@ -1,6 +1,7 @@
 extends Camera3D
 
 @onready var player = get_parent().get_node('player')
+
 var distance = 0
 
 func _ready():
