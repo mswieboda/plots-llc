@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://da4cj1n5aie0v"]
+[gd_scene load_steps=8 format=3 uid="uid://da4cj1n5aie0v"]
 
 [ext_resource type="Script" path="res://objs/storage/plot_printer.gd" id="1_u1uoc"]
 [ext_resource type="AudioStream" uid="uid://bdhh8hluat28f" path="res://assets/sounds/put_in_storage.mp3" id="2_6n46w"]
 [ext_resource type="PackedScene" uid="uid://b54qxh4kuqq2w" path="res://assets/models/printer/printer.gltf" id="2_ahtxq"]
 [ext_resource type="AudioStream" uid="uid://wfn4ftlcrn6f" path="res://assets/sounds/take_out_of_storage.mp3" id="3_kuu0d"]
+[ext_resource type="AudioStream" uid="uid://bfh6qo1g18iwm" path="res://assets/sounds/printing.mp3" id="5_chuty"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_f3ppr"]
 size = Vector3(2, 2, 2)
@@ -20,7 +21,7 @@ shape = SubResource("BoxShape3D_f3ppr")
 [node name="mesh" parent="." instance=ExtResource("2_ahtxq")]
 
 [node name="plot_spawn" type="Node3D" parent="mesh"]
-transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, -0.0117102, -0.149565, -0.00387573)
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, -0.0117102, 1.34518, -0.00387573)
 
 [node name="area" type="Area3D" parent="."]
 
@@ -33,6 +34,10 @@ unit_size = 3.0
 
 [node name="audio_take" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("3_kuu0d")
+unit_size = 3.0
+
+[node name="audio_printing" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("5_chuty")
 unit_size = 3.0
 
 [connection signal="body_entered" from="area" to="." method="_on_area_body_entered"]

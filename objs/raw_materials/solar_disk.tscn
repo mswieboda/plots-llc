@@ -9,7 +9,7 @@ radius = 0.25
 height = 0.125
 is_hemisphere = true
 
-[node name="solar_panel" type="Node3D"]
+[node name="solar_disk" type="Node3D"]
 
 [node name="mesh" type="MeshInstance3D" parent="."]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)

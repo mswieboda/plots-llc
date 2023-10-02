@@ -1,8 +1,8 @@
 extends Node
 
-const RAW_MATERIALS = ["seeds", "liquid oxygen"]
+const RAW_MATERIALS = ['seeds', 'liquid oxygen', 'solar disk']
 const PLOTS = ['farm', 'drill', 'oxygen pump', 'solar panel']
-const RESOURCES = ['food', 'oxygen', 'metal', 'solar panel']
+const RESOURCES = ['food', 'oxygen', 'metal']
 
 
 func remove_nodes(parent: Node3D):
@@ -49,8 +49,6 @@ func create_resource_node(resource):
     node = preload("res://objs/resources/oxygen.tscn")
   elif resource == "metal":
     node = preload("res://objs/resources/metal.tscn")
-  elif resource == "solar panel":
-    node = preload("res://objs/resources/solar_panel.tscn")
 
   return node.instantiate() if node else null
 
@@ -60,7 +58,9 @@ func create_raw_material_node(raw_material):
 
   if raw_material == "seeds":
     node = preload("res://objs/raw_materials/seeds.tscn")
-  if raw_material == "liquid oxygen":
+  elif raw_material == "liquid oxygen":
     node = preload("res://objs/raw_materials/liquid_oxygen.tscn")
+  elif raw_material == "solar disk":
+    node = preload("res://objs/raw_materials/solar_disk.tscn")
 
   return node.instantiate() if node else null

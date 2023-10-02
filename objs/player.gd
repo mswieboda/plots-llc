@@ -94,14 +94,20 @@ func unhandled_input_actions(event : InputEvent):
   if DEBUG and event.is_action_pressed("test_plot"):
     if plot:
       switch_carry_plot()
-    elif not resource:
+    elif not resource and not raw_material:
       add_carry_plot(Global.PLOTS[0])
 
   if DEBUG and event.is_action_pressed("test_resource"):
     if resource:
       switch_resource()
-    elif not plot:
+    elif not plot and not raw_material:
       add_resource(Global.RESOURCES[0])
+
+  if DEBUG and event.is_action_pressed("test_raw_material"):
+    if raw_material:
+      switch_raw_material()
+    elif not plot and not resource:
+      add_raw_material(Global.RAW_MATERIALS[0])
 
 
 func add_carry_plot(type):
@@ -169,7 +175,6 @@ func remove_raw_material():
   Action.update_changes()
 
 
-
 func switch_resource():
   var next_resource = next_thing(resource, Global.RESOURCES)
 
@@ -177,6 +182,17 @@ func switch_resource():
 
   if next_resource:
     add_resource(next_resource)
+
+  Action.update_changes()
+
+
+func switch_raw_material():
+  var next_raw_material = next_thing(raw_material, Global.RAW_MATERIALS)
+
+  remove_raw_material()
+
+  if next_raw_material:
+    add_raw_material(next_raw_material)
 
   Action.update_changes()
 
