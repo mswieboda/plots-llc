@@ -118,6 +118,7 @@ func start_printing():
   if printing_plot:
     levels_gui.add_energy(-ENERGY_USAGE_COST)
     $mesh/AnimationPlayer.play("print")
+    $audio_printing.play()
 
 func update_changes():
   pass
@@ -141,5 +142,4 @@ func _on_animation_finished(animation_name):
   printing_plot = null
   items.clear()
   $mesh/plot_spawn.add_child(Global.create_carry_plot_node(plot))
-  $audio_printing.play()
   Action.update_changes()
