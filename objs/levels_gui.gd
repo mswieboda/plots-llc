@@ -28,6 +28,16 @@ func _ready():
   update_gui()
 
 
+func _unhandled_input(event):
+  if $game_over_menu.visible:
+    if event.is_action_pressed("menu_quit"):
+      get_tree().quit()
+    elif event.is_action_pressed("menu_restart"):
+      Action.actions.clear()
+      get_tree().change_scene_to_file("res://scenes/splash.tscn")
+      get_tree().unload_current_scene()
+
+
 func update_gui():
   update_label('energy', energy)
   update_label('oxygen', oxygen)
@@ -135,13 +145,14 @@ func end_game():
 
 
 func _on_game_over_timer_timeout():
-  # TODO: implement an actual UI menu for this
   var reason = "Oh no, you %s and died." % end_game_reason
-  var funny = "Blame it on the limited plots in space Plots, LLC provided you."
-  var stats = "Lasted: %.2f min" % ((end_time - start_time) / 1000.0 / 60.0)
-  var instructions = "Please exit the game and restart to start over."
-  var message = "%s\n%s\n%s\n%s" % [reason, funny, stats, instructions]
-  OS.alert(message, "Game Over")
+  var lasted = "Lasted: %.2f min" % ((end_time - start_time) / 1000.0 / 60.0)
+#  var delivered = "Metal delivered: %d" % 9
+  var delivered = ""
+  var message = "%s\n%s\n%s" % [reason, lasted, delivered]
+
+  $game_over_menu/vbox/message.text = message
+  $game_over_menu.show()
 
 
 func power_shutdown():
