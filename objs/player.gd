@@ -221,5 +221,10 @@ func perform():
   Action.update_changes()
 
 
+func die():
+  dead = true
+  $rotated/mesh/AnimationPlayer.play("death")
+
+
 func update_changes():
   pass

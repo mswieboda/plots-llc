@@ -133,7 +133,7 @@ func end_game():
   $music_chill.stop()
 
   is_game_over = true
-  player.dead = true
+  player.die()
 
 
 func _on_game_over_timer_timeout():
