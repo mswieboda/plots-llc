@@ -27,7 +27,7 @@ func get_action_name():
 
 
 func get_action_info():
-  return "plot printer\ninput resources and raw materials to create plots\n%s" % display_storage()
+  return "plot printer\ncombine metal and raw materials to create plots\n%s" % display_storage()
 
 
 func can_perform():

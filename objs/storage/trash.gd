@@ -56,18 +56,17 @@ func perform():
     resource = player.resource
     player.remove_resource()
     $mesh/resource_spawn.add_child(Global.create_resource_node(resource))
-    $destroy_timer.start()
   elif player.plot:
     plot = player.plot
     player.remove_carry_plot()
     $mesh/plot_spawn.add_child(Global.create_carry_plot_node(plot))
-    $destroy_timer.start()
   elif player.raw_material:
     raw_material = player.raw_material
     player.remove_raw_material()
     $mesh/raw_material_spawn.add_child(Global.create_raw_material_node(raw_material))
-    $destroy_timer.start()
 
+  $destroy_timer.start()
+  $audio_store.play()
   Action.update_changes()
 
 

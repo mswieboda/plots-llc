@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://8v8ui7r1d30f"]
+[gd_scene load_steps=8 format=3 uid="uid://8v8ui7r1d30f"]
 
 [ext_resource type="Script" path="res://objs/storage/trash.gd" id="1_ixsc6"]
+[ext_resource type="AudioStream" uid="uid://bdhh8hluat28f" path="res://assets/sounds/put_in_storage.mp3" id="3_bhcxk"]
 [ext_resource type="AudioStream" uid="uid://oviwkigvnhsb" path="res://assets/sounds/trash_destroyer.mp3" id="3_ved31"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_f3ppr"]
@@ -41,6 +42,10 @@ shape = SubResource("BoxShape3D_cpoff")
 
 [node name="audio_destroy" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("3_ved31")
+unit_size = 3.0
+
+[node name="audio_store" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("3_bhcxk")
 unit_size = 3.0
 
 [node name="destroy_timer" type="Timer" parent="."]

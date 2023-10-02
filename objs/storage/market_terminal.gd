@@ -83,6 +83,7 @@ func add_bought_raw_material(bought_raw_material):
   raw_material = bought_raw_material
   Global.remove_nodes($mesh/market_raw_material_spawn)
   $mesh/raw_material_spawn.add_child(Global.create_raw_material_node(raw_material))
+  $audio_trade_made.play()
   Action.update_changes()
 
 
