@@ -22,10 +22,12 @@ func get_action_name():
 
 
 func can_perform():
-  if player.resource:
+  if player.resource or player.raw_material:
     return false
 
-  if player.plot and not resource:
+  if player.plot:
+    if resource:
+      return false
     return player.plot != type
 
   return !!type
@@ -60,7 +62,7 @@ func update_changes():
 
 
 func update_actionable_material():
-  if Action.is_action_node(self, "action_plot") or Action.is_action_node(self) and can_perform():
+  if (Action.is_action_node(self, "action_plot") or Action.is_action_node(self)) and can_perform():
     var material = StandardMaterial3D.new()
     material.albedo_color = Color(1, 1, 1, 0.069)
     material.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
